@@ -1386,3 +1386,14 @@ INFO 2026-02-16 20:03:34,709 middleware GET /api/docs/ - 200
 INFO 2026-02-16 20:03:34,710 basehttp "GET /api/docs/ HTTP/1.1" 200 4472
 INFO 2026-02-16 20:03:35,562 middleware GET /api/schema/ - 200
 INFO 2026-02-16 20:03:35,562 basehttp "GET /api/schema/ HTTP/1.1" 200 667273
+INFO 2026-02-17 12:33:12,691 autoreload Watching for file changes with StatReloader
+WARNING 2026-02-17 12:33:16,966 log Not Found: /
+WARNING 2026-02-17 12:33:16,967 basehttp "GET / HTTP/1.1" 404 3479
+WARNING 2026-02-17 12:33:17,191 log Not Found: /favicon.ico
+WARNING 2026-02-17 12:33:17,191 basehttp "GET /favicon.ico HTTP/1.1" 404 3530
+INFO 2026-02-17 12:33:41,525 basehttp "OPTIONS /api/core/auth/token/ HTTP/1.1" 200 0
+INFO 2026-02-17 12:33:42,161 middleware POST /api/core/auth/token/ - 401
+WARNING 2026-02-17 12:33:42,162 log Unauthorized: /api/core/auth/token/
+WARNING 2026-02-17 12:33:42,163 basehttp "POST /api/core/auth/token/ HTTP/1.1" 401 63
+INFO 2026-02-17 12:34:01,984 middleware POST /api/core/auth/token/ - 401
+WARNING 2026-02-17 12:34:01,985 log Unauthorized: /api/core/auth/token/
