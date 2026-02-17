@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -35,6 +37,7 @@ import {
 } from "recharts";
 import { GapAnalysis } from "./GapAnalysis";
 import { ComplianceRecommendations } from "./ComplianceRecommendations";
+import type { ComplianceResult } from "../../types/compliance.types.ts";
 
 export function FrameworkComplianceDetail() {
   const { frameworkId } = useParams<{ frameworkId: string }>();

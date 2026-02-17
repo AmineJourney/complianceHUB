@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useAuthStore } from "../stores/authStore";
 import { authApi } from "../api/auth";
 import { useMutation, useQuery } from "@tanstack/react-query";

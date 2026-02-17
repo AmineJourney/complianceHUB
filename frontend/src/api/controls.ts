@@ -7,7 +7,7 @@ import type {
 
 export const controlsApi = {
   // Reference Controls
-  getReferenceControls: async (params?: any) => {
+  getReferenceControls: async (params?: unknown) => {
     const response = await apiClient.get<{ results: ReferenceControl[] }>(
       "/controls/reference-controls/",
       { params },
@@ -23,7 +23,7 @@ export const controlsApi = {
   },
 
   // Applied Controls
-  getAppliedControls: async (params?: any) => {
+  getAppliedControls: async (params?: unknown) => {
     const response = await apiClient.get<{ results: AppliedControl[] }>(
       "/controls/applied-controls/",
       { params },
