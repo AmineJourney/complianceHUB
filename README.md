@@ -109,7 +109,7 @@ Application-level isolation using a shared database and shared schema:
 ## Project Structure
 
 ```
-complianceos/
+compliancehub/
 ├── backend/
 │   ├── config/
 │   │   ├── settings.py
@@ -169,8 +169,8 @@ Ensure the following are installed on your system:
 ### 1. Clone and navigate
 
 ```bash
-git clone https://github.com/your-org/complianceos.git
-cd complianceos/backend
+git clone https://github.com/your-org/compliancehub.git
+cd compliancehub/backend
 ```
 
 ### 2. Create a virtual environment
@@ -267,7 +267,7 @@ DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 
 # Database
-DB_NAME=complianceos
+DB_NAME=compliancehub
 DB_USER=postgres
 DB_PASSWORD=your_db_password
 DB_HOST=localhost
@@ -297,7 +297,7 @@ EMAIL_HOST_PASSWORD=your_email_password
 
 ```ini
 VITE_API_BASE_URL=http://localhost:8000/api
-VITE_APP_NAME=ComplianceOS
+VITE_APP_NAME=ComplianceHUB
 ```
 
 ---
@@ -311,9 +311,9 @@ psql -U postgres
 ```
 
 ```sql
-CREATE DATABASE complianceos;
-CREATE USER complianceos_user WITH PASSWORD 'your_password';
-GRANT ALL PRIVILEGES ON DATABASE complianceos TO complianceos_user;
+CREATE DATABASE compliancehub;
+CREATE USER compliancehub_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE compliancehub TO compliancehub_user;
 \q
 ```
 
@@ -684,7 +684,7 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_DB: complianceos
+      POSTGRES_DB: compliancehub
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
@@ -858,4 +858,4 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 - **Issues:** Open a GitHub issue with full reproduction steps
 - **Docs:** Visit `/api/docs/` on your running backend for interactive API documentation
-- **Email:** support@complianceos.example.com
+- **Email:** support@compliancehub.example.com
