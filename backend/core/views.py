@@ -1,147 +1,179 @@
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
+# core/views.py
+from rest_framework import status, viewsets
+from rest_framework.decorators import api_view, permission_classes, action
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from django.db.models import Q
-from .models import Company, User, Membership
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
+from django.db import transaction
+from .models import Company, Membership
 from .serializers import (
-    CompanySerializer, UserSerializer, MembershipSerializer,
-    UserRegistrationSerializer, CompanyWithMembershipSerializer
+    UserSerializer, UserRegistrationSerializer,
+    CompanySerializer, MembershipSerializer,
+    CustomTokenObtainPairSerializer
 )
-from .permissions import IsTenantMember, RolePermission
 
-
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    """Custom JWT token with company_id claim"""
-    
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        
-        # Get user's companies
-        memberships = Membership.objects.filter(
-            user=self.user,
-            is_deleted=False,
-            company__is_active=True
-        ).select_related('company')
-        
-        companies = [
-            {
-                'id': str(m.company.id),
-                'name': m.company.name,
-                'role': m.role
-            }
-            for m in memberships
-        ]
-        
-        data['companies'] = companies
-        
-        # If user has only one company, add it to token
-        if len(companies) == 1:
-            data['company_id'] = companies[0]['id']
-        
-        return data
+User = get_user_model()
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
+    """
+    Custom JWT token obtain view that returns user companies
+    POST /api/auth/token/
+    Body: { "email": "user@example.com", "password": "password" }
+    Returns: { "access": "...", "refresh": "...", "companies": [...] }
+    """
     serializer_class = CustomTokenObtainPairSerializer
 
 
-class CompanyViewSet(viewsets.ModelViewSet):
-    """Company CRUD operations"""
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register(request):
+    """
+    User registration endpoint
+    POST /api/auth/register/
+    Body: {
+        "email": "user@example.com",
+        "username": "username",
+        "password": "password",
+        "password_confirm": "password",
+        "first_name": "John",
+        "last_name": "Doe"
+    }
+    """
+    serializer = UserRegistrationSerializer(data=request.data)
     
-    queryset = Company.objects.all()
+    if serializer.is_valid():
+        user = serializer.save()
+        return Response(
+            {
+                'message': 'User registered successfully',
+                'user': UserSerializer(user).data
+            },
+            status=status.HTTP_201_CREATED
+        )
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def current_user(request):
+    """
+    Get current authenticated user
+    GET /api/auth/me/
+    """
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def logout(request):
+    """
+    Logout user by blacklisting refresh token
+    POST /api/auth/logout/
+    Body: { "refresh": "refresh_token" }
+    """
+    try:
+        refresh_token = request.data.get('refresh')
+        if refresh_token:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+        
+        return Response(
+            {'message': 'Logged out successfully'},
+            status=status.HTTP_200_OK
+        )
+    except Exception as e:
+        return Response(
+            {'error': str(e)},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+
+class CompanyViewSet(viewsets.ModelViewSet):
+    """
+    Company management endpoints
+    """
     serializer_class = CompanySerializer
     permission_classes = [IsAuthenticated]
-    filterset_fields = ['plan', 'is_active']
-    search_fields = ['name']
     
     def get_queryset(self):
-        """Filter companies user has access to"""
-        user = self.request.user
+        """Get companies the user is a member of"""
         return Company.objects.filter(
-            memberships__user=user,
+            memberships__user=self.request.user,
             memberships__is_deleted=False
         ).distinct()
     
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return CompanyWithMembershipSerializer
-        return CompanySerializer
+    def create(self, request, *args, **kwargs):
+        """Not allowed - use create_with_membership instead"""
+        return Response(
+            {'error': 'Use POST /companies/create_with_membership/ instead'},
+            status=status.HTTP_405_METHOD_NOT_ALLOWED
+        )
     
     @action(detail=False, methods=['post'])
     def create_with_membership(self, request):
-        """Create company and add creator as owner"""
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        company = serializer.save()
+        """
+        Create a new company and make the user an owner
+        POST /api/companies/create_with_membership/
+        Body: { "name": "Company Name" }
+        """
+        name = request.data.get('name')
+        if not name:
+            return Response(
+                {'error': 'Company name is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
         
-        # Create owner membership
-        Membership.objects.create(
-            user=request.user,
-            company=company,
-            role='owner'
+        with transaction.atomic():
+            # Create company
+            company = Company.objects.create(
+                name=name,
+                plan='free',  # Default to free plan
+                max_users=5,
+                max_storage_mb=1024
+            )
+            
+            # Create owner membership
+            membership = Membership.objects.create(
+                user=request.user,
+                company=company,
+                role='owner',
+                is_deleted=False
+            )
+        
+        return Response(
+            {
+                'company': CompanySerializer(company).data,
+                'membership': MembershipSerializer(membership).data
+            },
+            status=status.HTTP_201_CREATED
         )
-        
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    """User CRUD operations"""
-    
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsTenantMember]
-    search_fields = ['email', 'username', 'first_name', 'last_name']
-    
-    def get_queryset(self):
-        """Filter users in same company"""
-        if hasattr(self.request, 'tenant'):
-            return User.objects.filter(
-                memberships__company=self.request.tenant,
-                memberships__is_deleted=False
-            ).distinct()
-        return User.objects.none()
-    
-    @action(detail=False, methods=['get'])
-    def me(self, request):
-        """Get current user profile"""
-        serializer = self.get_serializer(request.user)
-        return Response(serializer.data)
-    
-    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
-    def register(self, request):
-        """User registration"""
-        serializer = UserRegistrationSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-            'id': user.id,
-            'email': user.email,
-            'message': 'Registration successful'
-        }, status=status.HTTP_201_CREATED)
-
-
-class MembershipViewSet(viewsets.ModelViewSet):
-    """Membership management"""
-    
-    queryset = Membership.objects.all()
+class MembershipViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Membership management endpoints (read-only for now)
+    """
     serializer_class = MembershipSerializer
-    permission_classes = [IsAuthenticated, IsTenantMember, RolePermission]
-    filterset_fields = ['role']
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        """Filter memberships for current company"""
-        if hasattr(self.request, 'tenant'):
-            return Membership.objects.filter(
-                company=self.request.tenant
-            ).select_related('user', 'company')
-        return Membership.objects.none()
-    
-    def perform_create(self, serializer):
-        """Set invited_by to current user"""
-        serializer.save(
-            invited_by=self.request.user,
-            company=self.request.tenant
-        )
+        """
+        Get memberships
+        Can filter by company: ?company=<company_id>
+        """
+        queryset = Membership.objects.filter(
+            user=self.request.user,
+            is_deleted=False
+        ).select_related('user', 'company')
+        
+        # Filter by company if provided
+        company_id = self.request.query_params.get('company')
+        if company_id:
+            queryset = queryset.filter(company_id=company_id)
+        
+        return queryset

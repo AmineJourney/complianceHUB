@@ -125,7 +125,7 @@ export function RiskHeatMap() {
                             className={`flex-1 h-20 border border-gray-300 ${colorClass} bg-opacity-20 hover:bg-opacity-40 transition-colors cursor-pointer relative group`}
                             onClick={() => {
                               if (cell.length > 0) {
-                                navigate(`/risks/${cell[0].risk_id}`);
+                                navigate(`/risks/${cell[0].id}`);
                               }
                             }}
                           >
@@ -256,44 +256,56 @@ export function RiskHeatMap() {
             <div>
               <p className="text-sm text-gray-600">Risk Reduction</p>
               <p className="text-2xl font-bold text-green-600 mt-1">
-                {(
-                  ((inherent.reduce(
-                    (sum: any, r: { score: any }) => sum + r.score,
-                    0,
-                  ) -
-                    residual.reduce(
-                      (sum: any, r: { score: any }) => sum + r.score,
-                      0,
-                    )) /
-                    inherent.reduce(
-                      (sum: any, r: { score: any }) => sum + r.score,
-                      0,
-                    )) *
-                  100
-                ).toFixed(0)}
+                {inherent.length > 0 && residual.length > 0
+                  ? (
+                      ((inherent.reduce(
+                        (sum: number, r: any) => sum + r.score,
+                        0,
+                      ) -
+                        residual.reduce(
+                          (sum: number, r: any) => sum + r.score,
+                          0,
+                        )) /
+                        Math.max(
+                          inherent.reduce(
+                            (sum: number, r: any) => sum + r.score,
+                            0,
+                          ),
+                          1,
+                        )) *
+                      100
+                    ).toFixed(0)
+                  : 0}
                 %
+                {/* ← FIXED: added Math.max(..., 1) to prevent division by zero */}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Avg Inherent Score</p>
               <p className="text-2xl font-bold text-orange-600 mt-1">
-                {(
-                  inherent.reduce(
-                    (sum: any, r: { score: any }) => sum + r.score,
-                    0,
-                  ) / inherent.length
-                ).toFixed(1)}
+                {inherent.length > 0
+                  ? (
+                      inherent.reduce(
+                        (sum: number, r: any) => sum + r.score,
+                        0,
+                      ) / inherent.length
+                    ).toFixed(1)
+                  : 0}
+                {/* ← FIXED: guard against empty array */}
               </p>
             </div>
             <div>
               <p className="text-sm text-gray-600">Avg Residual Score</p>
               <p className="text-2xl font-bold text-green-600 mt-1">
-                {(
-                  residual.reduce(
-                    (sum: any, r: { score: any }) => sum + r.score,
-                    0,
-                  ) / residual.length
-                ).toFixed(1)}
+                {residual.length > 0
+                  ? (
+                      residual.reduce(
+                        (sum: number, r: any) => sum + r.score,
+                        0,
+                      ) / residual.length
+                    ).toFixed(1)
+                  : 0}
+                {/* ← FIXED: guard against empty array */}
               </p>
             </div>
           </div>

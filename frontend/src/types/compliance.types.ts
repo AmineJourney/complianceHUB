@@ -19,9 +19,13 @@ export interface ComplianceResult {
   requirements_non_compliant: number;
   total_controls: number;
   controls_operational: number;
+  controls_implemented: number; // ← ADDED
+  controls_in_progress: number; // ← ADDED
+  controls_not_started: number;
   gap_count: number;
   calculation_date: string;
   is_current: boolean;
+  calculated_at: string;
 }
 
 export interface ComplianceOverview {

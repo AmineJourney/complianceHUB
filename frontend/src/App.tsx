@@ -24,12 +24,14 @@ import { FrameworkAdoptionList } from "./features/compliance/FrameworkAdoptionLi
 import { ComplianceReports } from "./features/compliance/ComplianceReports";
 import { complianceApi } from "./api/compliance.ts";
 import { GapAnalysis } from "./features/compliance/GapAnalysis.tsx";
+import { Register } from "./features/auth/Register";
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
       retry: 1,
+      staleTime: 30_000,
     },
   },
 });
@@ -49,6 +51,13 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function AuthenticatedRoute({ children }: { children: React.ReactNode }) {
+  // For select-company page: must be logged in but company not required
+  const { isAuthenticated } = useAuthStore();
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  return <>{children}</>;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -56,7 +65,15 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
-          <Route path="/select-company" element={<CompanySelector />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/select-company"
+            element={
+              <AuthenticatedRoute>
+                <CompanySelector />
+              </AuthenticatedRoute>
+            }
+          />
 
           {/* Protected routes */}
           <Route

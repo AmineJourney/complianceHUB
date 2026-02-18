@@ -26,6 +26,9 @@ export interface Risk {
   risk_owner_email?: string;
   status: "identified" | "assessing" | "treating" | "monitoring" | "closed";
   treatment_strategy: "mitigate" | "transfer" | "accept" | "avoid";
+  treatment_plan?: string;
+  potential_causes?: string;
+  potential_consequences?: string;
   residual_risk_data: {
     residual_score: number;
     residual_level: string;

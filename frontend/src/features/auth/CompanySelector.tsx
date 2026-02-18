@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { authApi } from "../../api/auth";
 import { useAuthStore } from "../../stores/authStore";
 import {
@@ -13,56 +15,80 @@ import {
 import { Button } from "../../components/ui/button";
 import { Building2, Plus } from "lucide-react";
 import { LoadingSpinner } from "../../components/common/LoadingSpinner";
+import { getErrorMessage } from "../../api/client.ts";
 
 export function CompanySelector() {
   const navigate = useNavigate();
   const { setCompany, user } = useAuthStore();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newCompanyName, setNewCompanyName] = useState("");
+  const [selectingId, setSelectingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const { data: companies, isLoading } = useQuery({
+  const { data: companiesData = [], isLoading } = useQuery({
     queryKey: ["companies"],
     queryFn: authApi.getCompanies,
+    select: (data) => data,
   });
 
-  const handleSelectCompany = async (companyId: string) => {
-    const company = companies?.find((c) => c.id === companyId);
-    if (company) {
-      // Get membership for this company
-      const response = await fetch(
-        `/api/core/memberships/?company=${companyId}`,
-      );
-      const memberships = await response.json();
-      const membership = memberships.results.find(
-        (m: any) => m.user.id === user?.id,
-      );
+  const companies = companiesData;
 
-      if (membership) {
-        setCompany(company, membership);
-        navigate("/dashboard");
+  const handleSelectCompany = async (companyId: string) => {
+    setSelectingId(companyId);
+
+    setError(null);
+    try {
+      // ← FIXED: use authApi.getMemberships() instead of raw fetch()
+      const membershipsData = await authApi.getMemberships(companyId);
+      const membership = membershipsData.find((m: any) => m.user === user?.id);
+      console.log("Memberships for company", companyId, membershipsData);
+      if (!membership) {
+        setError("Could not find your membership for this organization.");
+        return;
       }
+
+      const company = companies?.find((c) => c.id === companyId);
+      if (!company) {
+        setError("Company not found.");
+        return;
+      }
+
+      // Set company in store and navigate
+      setCompany(company, membership);
+      console.log("Selected company:", company);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(getErrorMessage(err));
+    } finally {
+      setSelectingId(null);
     }
   };
 
-  const handleCreateCompany = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const company = await authApi.createCompany(newCompanyName);
-      // After creating, fetch the membership
-      const response = await fetch(
-        `/api/core/memberships/?company=${company.id}`,
-      );
-      const memberships = await response.json();
-      const membership = memberships.results.find(
-        (m: any) => m.user.id === user?.id,
-      );
+  // Create company mutation
+  const createMutation = useMutation({
+    mutationFn: authApi.createCompany,
+    onSuccess: async (company) => {
+      // Fetch memberships for the new company
+      const membershipsData = await authApi.getMemberships(company.id);
+      const membership = membershipsData.find((m: any) => m.user === user?.id);
 
-      if (membership) {
-        setCompany(company, membership);
-        navigate("/dashboard");
+      if (!membership) {
+        setError("Could not find your membership for this organization.");
+        return;
       }
-    } catch (error) {
-      console.error("Failed to create company:", error);
+
+      setCompany(company, membership);
+      navigate("/dashboard");
+    },
+    onError: (err) => {
+      setError(getErrorMessage(err));
+    },
+  });
+
+  const handleCreateCompany = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newCompanyName.trim()) {
+      createMutation.mutate(newCompanyName.trim());
     }
   };
 

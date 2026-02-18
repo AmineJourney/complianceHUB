@@ -3,7 +3,11 @@ import { persist } from "zustand/middleware";
 import type { User, Company, Membership, AuthState } from "../types/auth.types";
 
 interface AuthStore extends AuthState {
-  setAuth: (user: User, accessToken: string, refreshToken: string) => void;
+  setAuth: (
+    user: User | null,
+    accessToken: string,
+    refreshToken: string,
+  ) => void;
   setCompany: (company: Company, membership: Membership) => void;
   setAccessToken: (token: string) => void;
   logout: () => void;
@@ -79,6 +83,14 @@ export const useAuthStore = create<AuthStore>()(
     }),
     {
       name: "auth-storage",
+      partialize: (state) => ({
+        user: state.user,
+        company: state.company,
+        membership: state.membership,
+        accessToken: state.accessToken,
+        refreshToken: state.refreshToken,
+        isAuthenticated: state.isAuthenticated,
+      }),
     },
   ),
 );

@@ -1,86 +1,80 @@
+# core/middleware.py
+import logging
 from django.utils.deprecation import MiddlewareMixin
-from django.http import JsonResponse
-from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework_simplejwt.exceptions import TokenError
 from .models import Company, Membership
+
+logger = logging.getLogger('api.requests')
 
 
 class TenantMiddleware(MiddlewareMixin):
     """
-    Extracts company from JWT token and attaches to request
+    Middleware to set the current company (tenant) on the request object.
+    
+    The company is determined from:
+    1. X-Company-ID header (for API requests)
+    2. Session (for browser requests)
+    
+    This must be placed AFTER AuthenticationMiddleware in MIDDLEWARE setting.
     """
     
     def process_request(self, request):
-        """Extract and validate tenant from request"""
-        request.tenant = None
-        request.membership = None
+        # Skip for anonymous users
+        if not request.user.is_authenticated:
+            request.tenant = None
+            return
         
-        # Skip for non-API endpoints
-        if not request.path.startswith('/api/'):
-            return None
+        # Get company ID from header or session
+        company_id = request.META.get('HTTP_X_COMPANY_ID') or request.session.get('company_id')
         
-        # Extract token from header
-        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-        if not auth_header.startswith('Bearer '):
-            return None
-        
-        token_string = auth_header.split(' ')[1]
+        if not company_id:
+            request.tenant = None
+            return
         
         try:
-            # Decode JWT token
-            token = AccessToken(token_string)
-            user_id = token.get('user_id')
-            company_id = token.get('company_id')  # We'll add this in JWT claims
+            # Verify user has access to this company
+            membership = Membership.objects.select_related('company').get(
+                user=request.user,
+                company_id=company_id,
+                is_active=True,
+                company__is_active=True
+            )
             
-            if not company_id:
-                return JsonResponse({
-                    'error': 'No company specified in token'
-                }, status=400)
+            # Set tenant and membership on request
+            request.tenant = membership.company
+            request.membership = membership
+            request.user_role = membership.role
             
-            # Get company
-            try:
-                company = Company.objects.get(id=company_id, is_active=True, is_deleted=False)
-                request.tenant = company
-            except Company.DoesNotExist:
-                return JsonResponse({
-                    'error': 'Invalid or inactive company'
-                }, status=403)
-            
-            # Get membership for RBAC
-            try:
-                membership = Membership.objects.get(
-                    user_id=user_id,
-                    company=company,
-                    is_deleted=False
-                )
-                request.membership = membership
-            except Membership.DoesNotExist:
-                return JsonResponse({
-                    'error': 'User is not a member of this company'
-                }, status=403)
-                
-        except TokenError:
-            # Token is invalid, let authentication handle it
-            pass
-        
-        return None
+        except Membership.DoesNotExist:
+            # User doesn't have access to this company
+            request.tenant = None
+            request.membership = None
+            request.user_role = None
 
 
 class RequestLoggingMiddleware(MiddlewareMixin):
-    """Log API requests for audit trail"""
+    """
+    Middleware to log API requests for audit purposes.
+    """
+    
+    def process_request(self, request):
+        # Log API requests (skip admin and static)
+        if request.path.startswith('/api/'):
+            user_info = 'anonymous'
+            if request.user.is_authenticated:
+                user_info = f"{request.user.email} (ID: {request.user.id})"
+            
+            company_info = ''
+            if hasattr(request, 'tenant') and request.tenant:
+                company_info = f" | Company: {request.tenant.name} (ID: {request.tenant.id})"
+            
+            logger.info(
+                f"{request.method} {request.path} | User: {user_info}{company_info}"
+            )
     
     def process_response(self, request, response):
-        """Log request details"""
+        # Log response status for API requests
         if request.path.startswith('/api/'):
-            # Log to your logging system
-            import logging
-            logger = logging.getLogger('api.requests')
-            
-            logger.info(f"{request.method} {request.path} - {response.status_code}", extra={
-                'user': getattr(request.user, 'email', 'anonymous'),
-                'company': getattr(request.tenant, 'name', None),
-                'ip': request.META.get('REMOTE_ADDR'),
-                'user_agent': request.META.get('HTTP_USER_AGENT', ''),
-            })
-        
+            logger.info(
+                f"{request.method} {request.path} | Status: {response.status_code}"
+            )
         return response

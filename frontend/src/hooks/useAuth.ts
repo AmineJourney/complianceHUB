@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useAuthStore } from "../stores/authStore";
 import { authApi } from "../api/auth";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import type { LoginRequest, RegisterRequest } from "../types/auth.types";
 
@@ -14,48 +14,57 @@ export function useAuth() {
     isAuthenticated,
     setAuth,
     setCompany,
-    logout,
+    logout: logoutStore,
   } = useAuthStore();
 
+  // Login mutation
   const loginMutation = useMutation({
-    mutationFn: authApi.login,
-    onSuccess: (data) => {
-      const { access, refresh, companies, company_id } = data;
+    mutationFn: async (credentials: LoginRequest) => {
+      // Perform both operations in mutationFn so errors propagate correctly
+      const tokens = await authApi.login(credentials);
+      setAuth(null, tokens.access, tokens.refresh); // Temporarily set tokens to allow authApi.getCurrentUser() to work
+      const currentUser = await authApi.getCurrentUser();
+      return { tokens, currentUser };
+    },
+    onSuccess: ({ tokens, currentUser }) => {
+      // Set auth state
+      setAuth(currentUser, tokens.access, tokens.refresh);
 
-      // If user has only one company, auto-select it
-      if (companies.length === 1) {
-        // We'll need to fetch full user data
-        authApi.getCurrentUser().then((user) => {
-          setAuth(user, access, refresh);
-          // Navigate to company selector or dashboard
-          navigate("/select-company");
-        });
-      } else {
-        authApi.getCurrentUser().then((user) => {
-          setAuth(user, access, refresh);
-          navigate("/select-company");
-        });
-      }
+      // Navigate to company selection
+      navigate("/select-company");
     },
   });
 
+  // REGISTER (auto-login after registration)
+  // Register mutation
   const registerMutation = useMutation({
     mutationFn: authApi.register,
     onSuccess: () => {
+      // After successful registration, redirect to login
       navigate("/login");
     },
   });
 
-  const logoutUser = () => {
-    logout();
-    navigate("/login");
+  // Logout function
+  const logoutUser = async () => {
+    try {
+      // Try to blacklist the refresh token
+      const { refreshToken } = useAuthStore.getState();
+      if (refreshToken) {
+        await authApi.logout(refreshToken);
+      }
+    } catch (error) {
+      // Ignore errors during logout
+      console.error("Logout error:", error);
+    } finally {
+      // Always clear local state and redirect
+      logoutStore();
+      navigate("/login");
+    }
   };
 
   return {
-    user,
-    company,
-    membership,
-    isAuthenticated,
+    ...useAuthStore(),
     login: loginMutation.mutate,
     register: registerMutation.mutate,
     logout: logoutUser,

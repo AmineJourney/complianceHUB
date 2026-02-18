@@ -5,8 +5,7 @@ import axios, {
 } from "axios";
 import { useAuthStore } from "../stores/authStore";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = "http://localhost:8000";
 
 // Create axios instance
 const apiClient: AxiosInstance = axios.create({
@@ -14,18 +13,25 @@ const apiClient: AxiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true, // Important for CORS with credentials
 });
 
 // Request interceptor to add auth token
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    // Import useAuthStore at the top of the file
     const { accessToken, company } = useAuthStore.getState();
+
+    console.log("Access Token:", accessToken);
 
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     // Add company_id to token if available (handled by backend middleware)
+    if (company?.id) {
+      config.headers["X-Company-ID"] = company.id;
+    }
     // The backend TenantMiddleware extracts company from JWT
 
     return config;
@@ -49,18 +55,19 @@ apiClient.interceptors.response.use(
 
       try {
         // Try to refresh token
-        const { refreshToken } = useAuthStore.getState();
+        const { refreshToken, setAccessToken, logout } =
+          useAuthStore.getState();
 
         if (refreshToken) {
           const response = await axios.post(
-            `${API_BASE_URL}/api/core/auth/token/refresh/`,
+            `${API_BASE_URL}/api/auth/token/refresh/`,
             {
               refresh: refreshToken,
             },
           );
 
           const { access } = response.data;
-          useAuthStore.getState().setAccessToken(access);
+          setAccessToken(access);
 
           // Retry original request with new token
           originalRequest.headers.Authorization = `Bearer ${access}`;
@@ -83,21 +90,26 @@ export default apiClient;
 // Helper for handling API errors
 export function getErrorMessage(error: unknown): string {
   if (axios.isAxiosError(error)) {
-    if (error.response?.data?.error) {
-      return error.response.data.error;
+    const data = error.response?.data;
+
+    // Handle different error formats
+    if (data?.error) return data.error;
+    if (data?.detail) return data.detail;
+    if (data?.message) return data.message;
+    if (data?.non_field_errors) return data.non_field_errors.join(", ");
+
+    // Handle field-specific errors
+    const firstKey = Object.keys(data || {})[0];
+    if (firstKey && data) {
+      const fieldError = data[firstKey];
+      if (Array.isArray(fieldError))
+        return `${firstKey}: ${fieldError.join(", ")}`;
+      return `${firstKey}: ${fieldError}`;
     }
-    if (error.response?.data?.detail) {
-      return error.response.data.detail;
-    }
-    if (error.response?.data?.message) {
-      return error.response.data.message;
-    }
+
     return error.message;
   }
 
-  if (error instanceof Error) {
-    return error.message;
-  }
-
+  if (error instanceof Error) return error.message;
   return "An unexpected error occurred";
 }

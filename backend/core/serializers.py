@@ -1,107 +1,155 @@
+# core/serializers.py
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from .models import Company, User, Membership
+from .models import Company, Membership
+
+User = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """User serializer for responses"""
+    
+    class Meta:
+        model = User
+        fields = [
+            'id', 'email', 'username', 'first_name', 'last_name',
+            'is_active', 'created_at'
+        ]
+        read_only_fields = ['id', 'created_at']
+
+
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    """User registration serializer with password confirmation"""
+    
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        validators=[validate_password],
+        style={'input_type': 'password'}
+    )
+    password_confirm = serializers.CharField(
+        write_only=True,
+        required=True,
+        style={'input_type': 'password'}
+    )
+    
+    class Meta:
+        model = User
+        fields = [
+            'email', 'username', 'password', 'password_confirm',
+            'first_name', 'last_name'
+        ]
+        extra_kwargs = {
+            'email': {'required': True},
+            'username': {'required': True},
+            'first_name': {'required': True},
+            'last_name': {'required': True},
+        }
+    
+    def validate_email(self, value):
+        """Ensure email is unique"""
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("A user with this email already exists.")
+        return value
+    
+    def validate_username(self, value):
+        """Ensure username is unique"""
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("A user with this username already exists.")
+        return value
+    
+    def validate(self, attrs):
+        """Ensure passwords match"""
+        if attrs.get('password') != attrs.get('password_confirm'):
+            raise serializers.ValidationError({
+                "password_confirm": "Passwords do not match."
+            })
+        return attrs
+    
+    def create(self, validated_data):
+        """Create user with hashed password"""
+        validated_data.pop('password_confirm')
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            username=validated_data['username'],
+            password=validated_data['password'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name']
+        )
+        return user
 
 
 class CompanySerializer(serializers.ModelSerializer):
     """Company serializer"""
     
-    member_count = serializers.SerializerMethodField()
-    
     class Meta:
         model = Company
         fields = [
-            'id', 'name', 'plan', 'is_active', 'max_users', 'max_storage_mb',
-            'member_count', 'created_at', 'updated_at'
+            'id', 'name', 'plan', 'is_active',
+            'max_users', 'max_storage_mb', 'created_at'
         ]
-        read_only_fields = ['id', 'created_at', 'updated_at', 'member_count']
-    
-    def get_member_count(self, obj):
-        return obj.memberships.filter(is_deleted=False).count()
-
-
-class UserSerializer(serializers.ModelSerializer):
-    """User serializer"""
-    
-    class Meta:
-        model = User
-        fields = [
-            'id', 'username', 'email', 'first_name', 'last_name',
-            'phone_number', 'avatar', 'is_active', 'email_verified',
-            'last_login', 'created_at'
-        ]
-        read_only_fields = ['id', 'created_at', 'last_login', 'email_verified']
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
-
-
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    """User registration with password validation"""
-    
-    password = serializers.CharField(write_only=True, validators=[validate_password])
-    password_confirm = serializers.CharField(write_only=True)
-    
-    class Meta:
-        model = User
-        fields = ['email', 'username', 'password', 'password_confirm', 'first_name', 'last_name']
-    
-    def validate(self, attrs):
-        if attrs['password'] != attrs['password_confirm']:
-            raise serializers.ValidationError({
-                'password_confirm': 'Passwords do not match'
-            })
-        return attrs
-    
-    def create(self, validated_data):
-        validated_data.pop('password_confirm')
-        user = User.objects.create_user(**validated_data)
-        return user
+        read_only_fields = ['id', 'created_at']
 
 
 class MembershipSerializer(serializers.ModelSerializer):
     """Membership serializer"""
     
-    user = UserSerializer(read_only=True)
-    user_id = serializers.UUIDField(write_only=True)
+    user_email = serializers.EmailField(source='user.email', read_only=True)
+    user_name = serializers.SerializerMethodField()
     company_name = serializers.CharField(source='company.name', read_only=True)
     
     class Meta:
         model = Membership
         fields = [
-            'id', 'user', 'user_id', 'company', 'company_name', 'role',
-            'invited_by', 'invitation_accepted_at', 'created_at'
+            'id', 'user', 'company', 'role', 'is_deleted',
+            'user_email', 'user_name', 'company_name', 'created_at'
         ]
-        read_only_fields = ['id', 'created_at', 'invitation_accepted_at']
+        read_only_fields = ['id', 'created_at']
+    
+    def get_user_name(self, obj):
+        return f"{obj.user.first_name} {obj.user.last_name}"
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """
+    Custom token serializer that returns user companies
+    """
     
     def validate(self, attrs):
-        """Validate membership creation"""
-        request = self.context.get('request')
+        # Get default token data
+        data = super().validate(attrs)
         
-        # Ensure user is adding to their own company
-        if hasattr(request, 'tenant'):
-            attrs['company'] = request.tenant
+        # Add user companies to response
+        user = self.user
+        memberships = Membership.objects.filter(
+            user=user,
+            is_deleted=False
+        ).select_related('company')
         
-        # Validate user exists
-        user_id = attrs.get('user_id')
-        try:
-            User.objects.get(id=user_id, is_deleted=False)
-        except User.DoesNotExist:
-            raise serializers.ValidationError({'user_id': 'User not found'})
+        companies = [
+            {
+                'id': str(membership.company.id),
+                'name': membership.company.name,
+                'role': membership.role
+            }
+            for membership in memberships
+        ]
         
-        return attrs
+        data['companies'] = companies
+        
+        # If user has only one company, auto-select it
+        if len(companies) == 1:
+            data['company_id'] = companies[0]['id']
+        
+        return data
 
-
-class CompanyWithMembershipSerializer(CompanySerializer):
-    """Company with current user's membership role"""
-    
-    current_user_role = serializers.SerializerMethodField()
-    
-    class Meta(CompanySerializer.Meta):
-        fields = CompanySerializer.Meta.fields + ['current_user_role']
-    
-    def get_current_user_role(self, obj):
-        request = self.context.get('request')
-        if request and hasattr(request, 'membership'):
-            return request.membership.role
-        return None
+    def get_membership(self, request, company_id):
+        membership = Membership.objects.select_related('company').get(
+            user=request.user,
+            company_id=company_id,
+            is_deleted=False,
+            company__is_active=True
+        )
+        return membership

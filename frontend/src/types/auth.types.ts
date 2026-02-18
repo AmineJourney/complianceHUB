@@ -12,7 +12,7 @@ export interface Company {
   id: string;
   name: string;
   plan: "free" | "starter" | "professional" | "enterprise";
-  is_active: boolean;
+  is_deleted: boolean;
   max_users: number;
   max_storage_mb: number;
   created_at: string;
@@ -20,9 +20,10 @@ export interface Company {
 
 export interface Membership {
   id: string;
-  user: User;
-  company: Company;
+  user: string;
+  company: string;
   role: "owner" | "admin" | "manager" | "analyst" | "auditor" | "viewer";
+  is_deleted: boolean;
   created_at: string;
 }
 
@@ -58,4 +59,11 @@ export interface AuthState {
   accessToken: string | null;
   refreshToken: string | null;
   isAuthenticated: boolean;
+}
+
+export interface PaginatedResponse<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
 }

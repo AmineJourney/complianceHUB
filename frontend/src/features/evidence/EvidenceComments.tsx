@@ -5,7 +5,7 @@ import { evidenceApi } from "../../api/evidence";
 import { useAuthStore } from "../../stores/authStore";
 import { Button } from "../../components/ui/button";
 import { LoadingSpinner } from "../../components/common/LoadingSpinner";
-import { MessageSquare, Send, Trash2 } from "lucide-react";
+import { MessageSquare, Send } from "lucide-react";
 import { formatDateTime, getInitials } from "../../lib/utils";
 import type { EvidenceComment } from "../../types/evidence.types";
 

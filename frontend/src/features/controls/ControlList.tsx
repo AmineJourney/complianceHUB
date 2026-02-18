@@ -13,7 +13,7 @@ import { Button } from "../../components/ui/button";
 import { Badge } from "../../components/ui/badge";
 import { Input } from "../../components/ui/input";
 import { LoadingSpinner } from "../../components/common/LoadingSpinner";
-import { Plus, Search, Filter, Eye, Edit, Trash2 } from "lucide-react";
+import { Plus, Search, Filter, Eye } from "lucide-react";
 import { CONTROL_STATUS } from "../../lib/constants";
 import { ApplyControlDialog } from "./ApplyControlDialog";
 import { cn } from "../../lib/utils";
