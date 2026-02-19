@@ -15,7 +15,6 @@ import { getInitials } from "../../lib/utils";
 export function Header() {
   const { user, membership, logout } = useAuth();
   const { toggleSidebar } = useUIStore();
-
   return (
     <header className="flex h-16 items-center justify-between border-b bg-white px-6">
       <Button

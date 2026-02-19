@@ -238,6 +238,7 @@ export const complianceApi = {
     const response = await apiClient.get("/library/frameworks/", {
       params: { is_published: true, page_size: 100 },
     });
+    console.log("Fetched frameworks:", response.data);
     return response.data;
   },
 };

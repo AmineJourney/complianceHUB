@@ -114,7 +114,7 @@ export function ApplyControlDialog({
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <p className="font-medium text-gray-900">
-                              {control.code}
+                              {control.id}
                             </p>
                             <p className="text-sm text-gray-600 mt-1">
                               {control.name}

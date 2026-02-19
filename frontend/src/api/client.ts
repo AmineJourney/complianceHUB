@@ -22,14 +22,12 @@ apiClient.interceptors.request.use(
     // Import useAuthStore at the top of the file
     const { accessToken, company } = useAuthStore.getState();
 
-    console.log("Access Token:", accessToken);
-
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
     }
 
     // Add company_id to token if available (handled by backend middleware)
-    if (company?.id) {
+    if (company) {
       config.headers["X-Company-ID"] = company.id;
     }
     // The backend TenantMiddleware extracts company from JWT

@@ -142,7 +142,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
                 user=request.user,
                 company=company,
                 role='owner',
-                is_deleted=False
+                is_deleted=False,
+                is_active=True
             )
         
         return Response(

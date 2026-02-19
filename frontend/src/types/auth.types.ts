@@ -12,7 +12,7 @@ export interface Company {
   id: string;
   name: string;
   plan: "free" | "starter" | "professional" | "enterprise";
-  is_deleted: boolean;
+  is_active: boolean; // ← Changed from is_deleted (backend uses is_active)
   max_users: number;
   max_storage_mb: number;
   created_at: string;
@@ -20,11 +20,17 @@ export interface Company {
 
 export interface Membership {
   id: string;
-  user: string;
-  company: string;
+  user: string; // UUID string
+  company: string; // ← FIXED: UUID string, not Company object
   role: "owner" | "admin" | "manager" | "analyst" | "auditor" | "viewer";
+  is_active: boolean;
   is_deleted: boolean;
   created_at: string;
+
+  // Additional fields from backend serializer
+  user_email?: string;
+  user_name?: string;
+  company_name?: string;
 }
 
 export interface LoginRequest {
@@ -35,12 +41,12 @@ export interface LoginRequest {
 export interface LoginResponse {
   access: string;
   refresh: string;
-  companies: Array<{
+  companies?: Array<{
+    // ← Made optional since not always present
     id: string;
     name: string;
     role: string;
   }>;
-  company_id?: string;
 }
 
 export interface RegisterRequest {
@@ -65,5 +71,6 @@ export interface PaginatedResponse<T> {
   count: number;
   next: string | null;
   previous: string | null;
+  page_size?: number | null; // ← Made optional
   results: T[];
 }

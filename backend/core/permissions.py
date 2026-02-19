@@ -1,4 +1,5 @@
 from rest_framework import permissions
+from urllib3 import request
 from .models import ROLE_PERMISSIONS
 
 
@@ -9,6 +10,8 @@ class IsTenantMember(permissions.BasePermission):
     
     def has_permission(self, request, view):
         """Check if user has tenant membership"""
+        print("User:", request.user)
+        print("Tenant:", getattr(request.tenant, 'tenant', None))
         return (
             request.user and 
             request.user.is_authenticated and 

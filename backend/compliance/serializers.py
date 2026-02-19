@@ -134,6 +134,7 @@ class FrameworkAdoptionSerializer(serializers.ModelSerializer):
         
         # Set company from request
         if hasattr(request, 'tenant'):
+            print(request.tenant)
             attrs['company'] = request.tenant
         
         return attrs

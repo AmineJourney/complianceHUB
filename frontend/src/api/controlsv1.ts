@@ -5,24 +5,10 @@ import type {
   ControlDashboard,
 } from "../types/control.types";
 
-interface PaginatedResponse<T> {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T[];
-}
-
 export const controlsApi = {
   // Reference Controls
-  getReferenceControls: async (params?: {
-    page?: number;
-    page_size?: number;
-    search?: string;
-    control_family?: string;
-    control_type?: string;
-    priority?: string;
-  }) => {
-    const response = await apiClient.get<PaginatedResponse<ReferenceControl>>(
+  getReferenceControls: async (params?: unknown) => {
+    const response = await apiClient.get<{ results: ReferenceControl[] }>(
       "/controls/reference-controls/",
       { params },
     );
@@ -37,16 +23,8 @@ export const controlsApi = {
   },
 
   // Applied Controls
-  getAppliedControls: async (params?: {
-    page?: number;
-    page_size?: number;
-    search?: string;
-    status?: string;
-    department?: string;
-    control_owner?: string;
-    has_deficiencies?: boolean;
-  }) => {
-    const response = await apiClient.get<PaginatedResponse<AppliedControl>>(
+  getAppliedControls: async (params?: unknown) => {
+    const response = await apiClient.get<{ results: AppliedControl[] }>(
       "/controls/applied-controls/",
       { params },
     );
@@ -84,7 +62,6 @@ export const controlsApi = {
     reference_control: string;
     department?: string;
     control_owner?: string;
-    status?: string;
   }) => {
     const response = await apiClient.post<AppliedControl>(
       "/controls/applied-controls/apply_control/",
@@ -114,20 +91,6 @@ export const controlsApi = {
   getOverdueReviews: async () => {
     const response = await apiClient.get<AppliedControl[]>(
       "/controls/applied-controls/overdue_reviews/",
-    );
-    return response.data;
-  },
-
-  getControlsWithDeficiencies: async () => {
-    const response = await apiClient.get<AppliedControl[]>(
-      "/controls/applied-controls/with_deficiencies/",
-    );
-    return response.data;
-  },
-
-  getEffectivenessMetrics: async () => {
-    const response = await apiClient.get(
-      "/controls/applied-controls/effectiveness_metrics/",
     );
     return response.data;
   },

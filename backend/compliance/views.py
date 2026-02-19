@@ -374,7 +374,7 @@ class FrameworkAdoptionViewSet(viewsets.ModelViewSet):
     def adopt_framework(self, request):
         """Adopt a new framework"""
         framework_id = request.data.get('framework')
-        
+        print('Adopting framework:', request)
         if not framework_id:
             return Response(
                 {'error': 'framework is required'},

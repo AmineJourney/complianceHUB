@@ -25,6 +25,10 @@ import { ComplianceReports } from "./features/compliance/ComplianceReports";
 import { complianceApi } from "./api/compliance.ts";
 import { GapAnalysis } from "./features/compliance/GapAnalysis.tsx";
 import { Register } from "./features/auth/Register";
+import { FrameworkList } from "./features/library/FrameworkList";
+import { FrameworkDetail } from "./features/library/FrameworkDetail";
+import { DepartmentTree } from "./features/organizations/DepartmentTree";
+import { DepartmentList } from "./features/organizations/DepartmentList";
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -113,10 +117,18 @@ function App() {
               <Route path="reports" element={<ComplianceReports />} />
             </Route>
             <Route
-              path="organizations"
-              element={<div>Organizations Page</div>}
+              path="/organizations/departments"
+              element={<DepartmentList />}
             />
-            <Route path="library" element={<div>Library Page</div>} />
+            <Route
+              path="/organizations/departments/tree"
+              element={<DepartmentTree />}
+            />
+            <Route path="/library/frameworks" element={<FrameworkList />} />
+            <Route
+              path="/library/frameworks/:id"
+              element={<FrameworkDetail />}
+            />
           </Route>
 
           {/* 404 */}

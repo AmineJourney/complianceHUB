@@ -122,7 +122,7 @@ class Membership(TimeStampedModel, SoftDeleteModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='memberships')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='memberships')
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-    
+    is_active = models.BooleanField(default=True, db_index=True)
     # Invitation tracking
     invited_by = models.ForeignKey(
         User, 

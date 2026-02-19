@@ -1,3 +1,4 @@
+// src/api/auth.ts - UPDATED VERSION
 import apiClient from "./client";
 import type {
   LoginRequest,
@@ -5,11 +6,11 @@ import type {
   RegisterRequest,
   User,
   Company,
-  PaginatedResponse,
   Membership,
-} from "../types/auth.types";
+} from "@/types/auth.types";
 
 export const authApi = {
+  // Login - returns JWT tokens and user's companies
   login: async (credentials: LoginRequest): Promise<LoginResponse> => {
     const response = await apiClient.post<LoginResponse>(
       "/auth/token/",
@@ -18,49 +19,56 @@ export const authApi = {
     return response.data;
   },
 
-  logout: async (refreshToken: string): Promise<void> => {
-    await apiClient.post("/auth/logout/", { refresh: refreshToken });
-  },
-
+  // Register new user
   register: async (data: RegisterRequest): Promise<User> => {
-    console.log("Registering user with data:", data);
     const response = await apiClient.post<User>("/auth/register/", data);
-    console.log("Registration response:", response.data);
     return response.data;
   },
 
+  // Refresh access token
   refreshToken: async (refresh: string): Promise<{ access: string }> => {
-    const response = await apiClient.post("/auth/token/refresh/", {
-      refresh,
-    });
+    const response = await apiClient.post("/auth/token/refresh/", { refresh });
     return response.data;
   },
 
+  // Get current user details
   getCurrentUser: async (): Promise<User> => {
     const response = await apiClient.get<User>("/auth/me/");
     return response.data;
   },
 
+  // Get user's companies
   getCompanies: async (): Promise<Company[]> => {
-    const response =
-      await apiClient.get<PaginatedResponse<Company>>("/companies/");
+    const response = await apiClient.get<{
+      count: number;
+      results: Company[];
+    }>("/companies/");
+
     return response.data.results;
   },
 
-  getMemberships: async (companyId: string): Promise<Membership[]> => {
-    const response = await apiClient.get<PaginatedResponse<Membership>>(
+  // Get memberships - with optional filter by company
+  getMemberships: async (params?: {
+    company?: string;
+  }): Promise<{ results: Membership[] }> => {
+    const response = await apiClient.get<{ results: Membership[] }>(
       "/memberships/",
-      { params: { company: companyId } },
+      { params },
     );
-
-    return response.data.results;
+    return response.data;
   },
 
+  // Create company (with automatic owner membership)
   createCompany: async (name: string): Promise<Company> => {
     const response = await apiClient.post<Company>(
       "/companies/create_with_membership/",
       { name },
     );
     return response.data;
+  },
+
+  // Logout - blacklist refresh token
+  logout: async (refreshToken: string): Promise<void> => {
+    await apiClient.post("/auth/logout/", { refresh: refreshToken });
   },
 };

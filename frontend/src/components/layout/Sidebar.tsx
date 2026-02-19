@@ -9,9 +9,9 @@ import {
   AlertTriangle,
   CheckSquare,
   Building2,
-  Library,
   ChevronLeft,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 
@@ -21,15 +21,27 @@ const navigation = [
   { name: "Evidence", href: "/evidence", icon: FileText },
   { name: "Risks", href: "/risks", icon: AlertTriangle },
   { name: "Compliance", href: "/compliance", icon: CheckSquare },
-  { name: "Organizations", href: "/organizations", icon: Building2 },
-  { name: "Library", href: "/library", icon: Library },
+  {
+    name: "Departments",
+    href: "/organizations/departments",
+    icon: Building2,
+    children: [
+      { name: "List View", href: "/organizations/departments" },
+      { name: "Tree View", href: "/organizations/departments/tree" },
+    ],
+  },
+  {
+    name: "Framework Library",
+    href: "/library/frameworks",
+    icon: BookOpen,
+  },
 ];
 
 export function Sidebar() {
   const location = useLocation();
   const { sidebarOpen, toggleSidebar } = useUIStore();
   const { company } = useAuthStore();
-
+  console.log("Company in Sidebar:", company);
   return (
     <>
       {/* Mobile backdrop */}
