@@ -17117,3 +17117,198 @@ Traceback (most recent call last):
 KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
 INFO 2026-02-19 20:16:41,185 middleware GET /api/compliance/results/overview/ | Status: 500
 ERROR 2026-02-19 20:16:41,186 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141328
+INFO 2026-02-19 20:20:54,427 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:20:54,465 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-19 20:20:54,467 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-19 20:20:59,314 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:20:59,322 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-19 20:20:59,323 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-19 20:21:01,462 basehttp "OPTIONS /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 0
+INFO 2026-02-19 20:21:01,472 middleware GET /api/controls/reference-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:21:01,511 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-02-19 20:21:01,512 basehttp "GET /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 12660
+INFO 2026-02-19 20:21:06,340 basehttp "OPTIONS /api/controls/applied-controls/apply_control/ HTTP/1.1" 200 0
+INFO 2026-02-19 20:21:06,345 middleware POST /api/controls/applied-controls/apply_control/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-19 20:21:06,382 log Internal Server Error: /api/controls/applied-controls/apply_control/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 172, in apply_control
+    applied_control = ControlApplicationService.apply_control(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: controls.services.ControlApplicationService.apply_control() got multiple values for keyword argument 'reference_control'
+INFO 2026-02-19 20:21:06,385 middleware POST /api/controls/applied-controls/apply_control/ | Status: 500
+ERROR 2026-02-19 20:21:06,386 basehttp "POST /api/controls/applied-controls/apply_control/ HTTP/1.1" 500 114170
+INFO 2026-02-19 20:22:47,507 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:47,526 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-19 20:22:47,528 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-19 20:22:48,650 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:48,659 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-19 20:22:48,660 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-19 20:22:49,431 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:49,445 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-02-19 20:22:49,445 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-19 20:22:49,453 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:49,464 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-02-19 20:22:49,465 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-02-19 20:22:50,298 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:50,323 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-02-19 20:22:50,325 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-19 20:22:50,362 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:50,373 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-02-19 20:22:50,374 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-02-19 20:22:51,232 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:51,235 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:51,242 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-19 20:22:51,243 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-19 20:22:51,268 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:51,275 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-19 20:22:51,280 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-02-19 20:22:51,289 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-19 20:22:51,307 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-19 20:22:51,312 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-19 20:22:51,312 middleware GET /api/compliance/results/overview/ | Status: 500
+INFO 2026-02-19 20:22:51,313 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+ERROR 2026-02-19 20:22:51,314 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141308
+INFO 2026-02-19 20:22:52,343 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-19 20:22:52,394 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-19 20:22:52,397 middleware GET /api/compliance/results/overview/ | Status: 500
+ERROR 2026-02-19 20:22:52,399 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141308
+INFO 2026-02-19 20:22:53,159 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-02-19 20:22:53,167 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:53,180 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-19 20:22:53,181 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-19 20:22:54,343 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-02-19 20:22:54,354 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:22:54,379 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-19 20:22:54,380 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 811
+INFO 2026-02-19 20:25:33,989 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-19 20:25:34,005 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-19 20:25:34,007 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 811
