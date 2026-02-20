@@ -29,6 +29,9 @@ import { FrameworkList } from "./features/library/FrameworkList";
 import { FrameworkDetail } from "./features/library/FrameworkDetail";
 import { DepartmentTree } from "./features/organizations/DepartmentTree";
 import { DepartmentList } from "./features/organizations/DepartmentList";
+import { Profile } from "./features/profile/profile.tsx";
+import { Settings } from "./features/settings/settings.tsx";
+
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -78,7 +81,6 @@ function App() {
               </AuthenticatedRoute>
             }
           />
-
           {/* Protected routes */}
           <Route
             path="/"
@@ -130,7 +132,8 @@ function App() {
               element={<FrameworkDetail />}
             />
           </Route>
-
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
           {/* 404 */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

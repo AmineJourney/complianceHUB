@@ -17312,3 +17312,84 @@ INFO 2026-02-19 20:22:54,380 basehttp "GET /api/library/frameworks/ HTTP/1.1" 20
 INFO 2026-02-19 20:25:33,989 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
 INFO 2026-02-19 20:25:34,005 middleware GET /api/library/frameworks/ | Status: 200
 INFO 2026-02-19 20:25:34,007 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 811
+INFO 2026-02-20 00:53:06,256 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 00:53:16,066 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-02-20 00:53:16,528 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:53:16,557 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-02-20 00:53:16,557 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 00:53:16,558 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-02-20 00:53:16,563 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-02-20 00:53:16,566 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-02-20 00:53:16,658 middleware POST /api/auth/token/refresh/ | Status: 200
+INFO 2026-02-20 00:53:16,659 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 200 582
+INFO 2026-02-20 00:53:16,675 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:53:16,736 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 00:53:16,736 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 00:53:22,572 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:53:22,595 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 00:53:22,596 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 00:53:32,008 basehttp "OPTIONS /api/memberships/ HTTP/1.1" 200 0
+INFO 2026-02-20 00:53:32,020 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:53:32,049 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 00:53:32,051 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 00:56:23,177 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:56:23,199 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 00:56:23,200 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 00:56:24,862 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:56:24,873 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 00:56:24,874 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 00:56:59,813 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:56:59,834 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 00:56:59,836 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 00:57:16,561 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 00:57:16,570 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 00:57:16,571 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:00:02,151 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:00:02,161 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:00:02,162 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:00:05,080 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:00:05,090 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:00:05,090 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:00:40,811 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:00:40,816 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:00:40,817 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:01:31,012 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:01:31,028 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 01:01:31,030 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 01:01:47,706 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:01:47,718 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:01:47,720 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:02:12,162 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:02:12,173 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:02:12,174 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:02:13,890 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:02:13,900 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:02:13,901 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:02:22,331 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:02:22,341 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:02:22,343 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:03:19,200 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:03:19,206 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:03:19,207 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:03:26,526 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:03:26,537 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:03:26,538 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:04:11,123 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:04:11,134 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:04:11,136 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:04:27,356 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:04:27,373 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:04:27,376 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:04:43,129 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:04:43,143 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 01:04:43,144 basehttp "GET /api/memberships/ HTTP/1.1" 200 1292
+INFO 2026-02-20 01:05:37,429 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:05:37,458 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 01:05:37,459 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 01:06:18,154 basehttp "OPTIONS /api/companies/7b03c48d-f096-41c8-abb7-c520cf882fb0/ HTTP/1.1" 200 0
+INFO 2026-02-20 01:06:18,164 middleware PATCH /api/companies/7b03c48d-f096-41c8-abb7-c520cf882fb0/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:06:18,208 middleware PATCH /api/companies/7b03c48d-f096-41c8-abb7-c520cf882fb0/ | Status: 200
+INFO 2026-02-20 01:06:18,209 basehttp "PATCH /api/companies/7b03c48d-f096-41c8-abb7-c520cf882fb0/ HTTP/1.1" 200 182
+INFO 2026-02-20 01:06:33,521 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 01:06:33,539 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 01:06:33,540 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177

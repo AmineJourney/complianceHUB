@@ -16,7 +16,8 @@ urlpatterns = [
     path('auth/register/', views.register, name='register'),
     path('auth/logout/', views.logout, name='logout'),
     path('auth/me/', views.current_user, name='current_user'),
-    
+    path('auth/me/', views.update_profile, name='update_profile'),  # ← Add this (PATCH)
+    path('auth/change-password/', views.change_password, name='change_password'), 
     # Include router URLs (companies, memberships)
     path('', include(router.urls)),
 ]

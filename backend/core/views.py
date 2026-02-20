@@ -93,6 +93,79 @@ def logout(request):
         )
 
 
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    """
+    Update current user profile
+    PATCH /api/auth/me/
+    Body: { "first_name": "John", "last_name": "Doe", "email": "new@email.com" }
+    """
+    user = request.user
+    
+    # Update allowed fields
+    if 'first_name' in request.data:
+        user.first_name = request.data['first_name']
+    if 'last_name' in request.data:
+        user.last_name = request.data['last_name']
+    if 'email' in request.data:
+        # Check if email is already taken
+        if User.objects.exclude(id=user.id).filter(email=request.data['email']).exists():
+            return Response(
+                {'error': 'Email already in use'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        user.email = request.data['email']
+    
+    user.save()
+    
+    return Response(UserSerializer(user).data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def change_password(request):
+    """
+    Change user password
+    POST /api/auth/change-password/
+    Body: {
+        "old_password": "current_password",
+        "new_password": "new_password",
+        "new_password_confirm": "new_password"
+    }
+    """
+    user = request.user
+    old_password = request.data.get('old_password')
+    new_password = request.data.get('new_password')
+    new_password_confirm = request.data.get('new_password_confirm')
+    
+    # Validate old password
+    if not user.check_password(old_password):
+        return Response(
+            {'error': 'Current password is incorrect'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Validate new passwords match
+    if new_password != new_password_confirm:
+        return Response(
+            {'error': 'New passwords do not match'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Validate password strength (minimum 8 characters)
+    if len(new_password) < 8:
+        return Response(
+            {'error': 'Password must be at least 8 characters'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Set new password
+    user.set_password(new_password)
+    user.save()
+    
+    return Response({'message': 'Password changed successfully'})
+
 class CompanyViewSet(viewsets.ModelViewSet):
     """
     Company management endpoints
@@ -114,6 +187,48 @@ class CompanyViewSet(viewsets.ModelViewSet):
             status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
     
+    def update(self, request, *args, **kwargs):
+        """Update company - only owner/admin can update"""
+        company = self.get_object()
+        
+        # Check if user is owner or admin
+        membership = Membership.objects.filter(
+            user=request.user,
+            company=company,
+            is_deleted=False
+        ).first()
+        
+        if not membership or membership.role not in ['owner', 'admin']:
+            return Response(
+                {'error': 'Only owners and admins can update company settings'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        return super().update(request, *args, **kwargs)
+    
+    def destroy(self, request, *args, **kwargs):
+        """Delete company - only owner can delete"""
+        company = self.get_object()
+        
+        # Check if user is owner
+        membership = Membership.objects.filter(
+            user=request.user,
+            company=company,
+            is_deleted=False
+        ).first()
+        
+        if not membership or membership.role != 'owner':
+            return Response(
+                {'error': 'Only the company owner can delete the company'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        # Soft delete instead of hard delete
+        company.is_deleted = True
+        company.save()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
     @action(detail=False, methods=['post'])
     def create_with_membership(self, request):
         """
@@ -132,9 +247,10 @@ class CompanyViewSet(viewsets.ModelViewSet):
             # Create company
             company = Company.objects.create(
                 name=name,
-                plan='free',  # Default to free plan
+                plan='free',
                 max_users=5,
-                max_storage_mb=1024
+                max_storage_mb=1024,
+                is_active=True  # ← Add this
             )
             
             # Create owner membership
@@ -142,8 +258,8 @@ class CompanyViewSet(viewsets.ModelViewSet):
                 user=request.user,
                 company=company,
                 role='owner',
-                is_deleted=False,
-                is_active=True
+                is_active=True,  # ← Add this
+                is_deleted=False
             )
         
         return Response(

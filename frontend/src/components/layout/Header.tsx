@@ -11,6 +11,7 @@ import {
 } from "../../components/ui/dropdown-menu";
 import { useUIStore } from "../../stores/uiStore";
 import { getInitials } from "../../lib/utils";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const { user, membership, logout } = useAuth();
@@ -58,13 +59,17 @@ export function Header() {
             <DropdownMenuSeparator />
 
             <DropdownMenuItem>
-              <UserIcon className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <Link to="/profile" className="flex items-center">
+                <UserIcon className="mr-2 h-4 w-4" />
+                <span>Profile</span>
+              </Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
+              <Link to="/settings" className="flex items-center">
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Settings</span>
+              </Link>
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
