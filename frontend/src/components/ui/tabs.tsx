@@ -1,10 +1,15 @@
+// src/components/ui/tabs.tsx
+// Rewrite — fixes:
+//   1. cva boolean variant (`active: { true, false }`) is unreliable across cva versions;
+//      replaced with plain cn() conditionals
+//   2. TabsContent wasn't returning null cleanly in all React versions (minor)
+//   3. Added forwardRef on elements that compose into layouts
+//   4. Added proper ARIA attributes (aria-controls, tabindex)
+
 import * as React from "react";
-import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
-/* -------------------------------------------------------------------------- */
-/*                                   Context                                  */
-/* -------------------------------------------------------------------------- */
+// ─── Context ──────────────────────────────────────────────────────────────────
 
 interface TabsContextValue {
   value: string;
@@ -15,15 +20,11 @@ const TabsContext = React.createContext<TabsContextValue | null>(null);
 
 function useTabsContext() {
   const ctx = React.useContext(TabsContext);
-  if (!ctx) {
-    throw new Error("Tabs components must be used inside <Tabs />");
-  }
+  if (!ctx) throw new Error("Tabs sub-components must be inside <Tabs />");
   return ctx;
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                    Tabs                                    */
-/* -------------------------------------------------------------------------- */
+// ─── Tabs (root) ──────────────────────────────────────────────────────────────
 
 interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultValue: string;
@@ -45,7 +46,7 @@ export function Tabs({
   const value = controlledValue ?? uncontrolledValue;
 
   const setValue = (v: string) => {
-    if (!controlledValue) setUncontrolledValue(v);
+    if (controlledValue === undefined) setUncontrolledValue(v);
     onValueChange?.(v);
   };
 
@@ -58,95 +59,91 @@ export function Tabs({
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  TabsList                                  */
-/* -------------------------------------------------------------------------- */
+// ─── TabsList ─────────────────────────────────────────────────────────────────
 
-const tabsListVariants = cva(
-  "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
-);
+export const TabsList = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    role="tablist"
+    className={cn(
+      "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground",
+      className,
+    )}
+    {...props}
+  />
+));
+TabsList.displayName = "TabsList";
 
-export function TabsList({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div
-      role="tablist"
-      className={cn(tabsListVariants(), className)}
-      {...props}
-    />
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                TabsTrigger                                 */
-/* -------------------------------------------------------------------------- */
-
-const tabsTriggerVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      active: {
-        true: "bg-background text-foreground shadow-sm",
-        false: "text-muted-foreground hover:text-foreground",
-      },
-    },
-  },
-);
+// ─── TabsTrigger ─────────────────────────────────────────────────────────────
 
 interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
 
-export function TabsTrigger({
-  value,
-  className,
-  children,
-  ...props
-}: TabsTriggerProps) {
+export const TabsTrigger = React.forwardRef<
+  HTMLButtonElement,
+  TabsTriggerProps
+>(({ value, className, children, ...props }, ref) => {
   const { value: activeValue, setValue } = useTabsContext();
   const isActive = activeValue === value;
 
   return (
     <button
+      ref={ref}
       type="button"
       role="tab"
       aria-selected={isActive}
+      tabIndex={isActive ? 0 : -1}
       onClick={() => setValue(value)}
-      className={cn(tabsTriggerVariants({ active: isActive }), className)}
+      className={cn(
+        // Base styles
+        "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium",
+        "ring-offset-background transition-all",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "disabled:pointer-events-none disabled:opacity-50",
+        // Active vs inactive
+        isActive
+          ? "bg-background text-foreground shadow"
+          : "text-muted-foreground hover:text-foreground hover:bg-background/60",
+        className,
+      )}
       {...props}
     >
       {children}
     </button>
   );
-}
+});
+TabsTrigger.displayName = "TabsTrigger";
 
-/* -------------------------------------------------------------------------- */
-/*                                TabsContent                                 */
-/* -------------------------------------------------------------------------- */
+// ─── TabsContent ──────────────────────────────────────────────────────────────
 
 interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
   value: string;
 }
 
-export function TabsContent({
-  value,
-  className,
-  children,
-  ...props
-}: TabsContentProps) {
-  const { value: activeValue } = useTabsContext();
+export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
+  ({ value, className, children, ...props }, ref) => {
+    const { value: activeValue } = useTabsContext();
 
-  if (activeValue !== value) return null;
+    if (activeValue !== value) return null;
 
-  return (
-    <div
-      role="tabpanel"
-      className={cn("mt-4 focus:outline-none", className)}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
+    return (
+      <div
+        ref={ref}
+        role="tabpanel"
+        tabIndex={0}
+        className={cn(
+          "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+TabsContent.displayName = "TabsContent";

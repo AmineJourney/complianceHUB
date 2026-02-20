@@ -2,37 +2,31 @@ from rest_framework import serializers
 from .models import (
     ComplianceResult, ComplianceGap, FrameworkAdoption, ComplianceReport
 )
-from library.serializers import FrameworkSerializer
 from django.utils import timezone
-from .models import ComplianceResult
 from drf_spectacular.utils import extend_schema_field
+
 
 class ComplianceResultSerializer(serializers.ModelSerializer):
     """Serializer for ComplianceResult with computed fields."""
 
-    # Direct model fields with nested sources
     framework_code = serializers.CharField(source='framework.code', read_only=True)
     framework_name = serializers.CharField(source='framework.name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
     calculated_by_email = serializers.CharField(source='calculated_by.email', read_only=True)
 
-    # Computed fields from model methods
     compliance_grade = serializers.CharField(source='get_compliance_grade', read_only=True)
     compliance_status = serializers.CharField(source='get_compliance_status', read_only=True)
 
-    # SerializerMethodField example
     gap_count = serializers.SerializerMethodField()
     is_certification_expired = serializers.SerializerMethodField()
 
     @extend_schema_field(serializers.IntegerField())
     def get_gap_count(self, obj):
-        # Assumes `ComplianceResult` model has `get_gap_count()` method
         return obj.get_gap_count()
 
     @extend_schema_field(serializers.BooleanField())
     def get_is_certification_expired(self, obj):
-        # Assumes model has a `certification_expiry_date` field
-        if obj.certification_expiry_date:
+        if hasattr(obj, 'certification_expiry_date') and obj.certification_expiry_date:
             return obj.certification_expiry_date < timezone.now()
         return False
 
@@ -54,15 +48,14 @@ class ComplianceResultSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'company', 'calculation_date', 'created_at', 'updated_at']
 
 
-
 class ComplianceResultListSerializer(serializers.ModelSerializer):
     """Lightweight compliance result serializer"""
-    
+
     framework_code = serializers.CharField(source='framework.code')
     framework_name = serializers.CharField(source='framework.name')
     compliance_grade = serializers.CharField(source='get_compliance_grade')
     gap_count = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = ComplianceResult
         fields = [
@@ -71,17 +64,20 @@ class ComplianceResultListSerializer(serializers.ModelSerializer):
             'calculation_date', 'is_current'
         ]
 
+    def get_gap_count(self, obj):
+        return obj.get_gap_count()
+
 
 class ComplianceGapSerializer(serializers.ModelSerializer):
     """Compliance gap serializer"""
-    
+
     requirement_code = serializers.CharField(source='requirement.code', read_only=True)
     requirement_title = serializers.CharField(source='requirement.title', read_only=True)
     remediation_owner_email = serializers.CharField(
         source='remediation_owner.email',
         read_only=True
     )
-    
+
     class Meta:
         model = ComplianceGap
         fields = [
@@ -93,27 +89,23 @@ class ComplianceGapSerializer(serializers.ModelSerializer):
             'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'company', 'resolved_at', 'created_at', 'updated_at']
-    
+
     def validate(self, attrs):
-        """Validate gap"""
         request = self.context.get('request')
-        
-        # Set company from request
         if hasattr(request, 'tenant'):
             attrs['company'] = request.tenant
-        
         return attrs
 
 
 class FrameworkAdoptionSerializer(serializers.ModelSerializer):
     """Framework adoption serializer"""
-    
+
     framework_code = serializers.CharField(source='framework.code', read_only=True)
     framework_name = serializers.CharField(source='framework.name', read_only=True)
     program_owner_email = serializers.CharField(source='program_owner.email', read_only=True)
     is_certification_expired = serializers.BooleanField(read_only=True)
     is_audit_overdue = serializers.BooleanField(read_only=True)
-    
+
     class Meta:
         model = FrameworkAdoption
         fields = [
@@ -127,27 +119,22 @@ class FrameworkAdoptionSerializer(serializers.ModelSerializer):
             'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'company', 'created_at', 'updated_at']
-    
+
     def validate(self, attrs):
-        """Validate adoption"""
         request = self.context.get('request')
-        
-        # Set company from request
         if hasattr(request, 'tenant'):
-            print(request.tenant)
             attrs['company'] = request.tenant
-        
         return attrs
 
 
 class ComplianceReportSerializer(serializers.ModelSerializer):
     """Compliance report serializer"""
-    
+
     framework_code = serializers.CharField(source='framework.code', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
     generated_by_email = serializers.CharField(source='generated_by.email', read_only=True)
     report_url = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = ComplianceReport
         fields = [
@@ -161,41 +148,37 @@ class ComplianceReportSerializer(serializers.ModelSerializer):
             'id', 'company', 'report_file', 'generation_status',
             'created_at', 'updated_at'
         ]
-    
+
     def get_report_url(self, obj):
-        """Get report file URL"""
         request = self.context.get('request')
         if obj.report_file and request:
             return request.build_absolute_uri(obj.report_file.url)
         return None
-    
+
     def validate(self, attrs):
-        """Validate report"""
         request = self.context.get('request')
-        
-        # Set company from request
         if hasattr(request, 'tenant'):
             attrs['company'] = request.tenant
-        
-        # Set generated_by
         if not self.instance and request:
             attrs['generated_by'] = request.user
-        
         return attrs
 
 
 class ComplianceOverviewSerializer(serializers.Serializer):
     """Serializer for compliance overview"""
-    
-    total_frameworks = serializers.IntegerField()
-    avg_compliance_score = serializers.FloatField()
-    avg_coverage = serializers.FloatField()
-    frameworks = serializers.ListField()
+
+    # ✅ FIX: added default=0 / default=list so a missing key never causes a
+    # KeyError 500. The real fix is in services.py (early-return dict now
+    # includes avg_coverage), but these defaults act as a safety net.
+    total_frameworks = serializers.IntegerField(default=0)
+    avg_compliance_score = serializers.FloatField(default=0)
+    avg_coverage = serializers.FloatField(default=0)
+    frameworks = serializers.ListField(default=list)
 
 
 class ComplianceTrendSerializer(serializers.Serializer):
     """Serializer for compliance trends"""
-    
+
     date = serializers.DateField()
     compliance_score = serializers.FloatField()
     coverage_percentage = serializers.FloatField()
@@ -204,7 +187,7 @@ class ComplianceTrendSerializer(serializers.Serializer):
 
 class GapAnalysisSerializer(serializers.Serializer):
     """Serializer for gap analysis"""
-    
+
     gaps = serializers.ListField()
     total = serializers.IntegerField()
     by_severity = serializers.DictField()
@@ -212,7 +195,7 @@ class GapAnalysisSerializer(serializers.Serializer):
 
 class RecommendationSerializer(serializers.Serializer):
     """Serializer for compliance recommendations"""
-    
+
     priority = serializers.CharField()
     type = serializers.CharField()
     title = serializers.CharField()

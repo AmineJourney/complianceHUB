@@ -17393,3 +17393,826 @@ INFO 2026-02-20 01:06:18,209 basehttp "PATCH /api/companies/7b03c48d-f096-41c8-a
 INFO 2026-02-20 01:06:33,521 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
 INFO 2026-02-20 01:06:33,539 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
 INFO 2026-02-20 01:06:33,540 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 15:30:53,766 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 15:31:32,419 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:32,952 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 15:31:32,985 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-02-20 15:31:32,986 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 15:31:32,987 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-02-20 15:31:32,995 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:32,998 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-02-20 15:31:33,084 middleware POST /api/auth/token/refresh/ | Status: 401
+WARNING 2026-02-20 15:31:33,085 log Unauthorized: /api/auth/token/refresh/
+WARNING 2026-02-20 15:31:33,086 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 401 58
+INFO 2026-02-20 15:31:39,923 basehttp "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:39,929 middleware POST /api/auth/token/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:40,414 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-20 15:31:40,415 basehttp "POST /api/auth/token/ HTTP/1.1" 200 917
+INFO 2026-02-20 15:31:40,422 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:40,428 middleware GET /api/auth/me/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:40,445 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-20 15:31:40,445 basehttp "GET /api/auth/me/ HTTP/1.1" 200 202
+INFO 2026-02-20 15:31:40,451 basehttp "OPTIONS /api/companies/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:40,457 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:40,467 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 15:31:40,468 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 15:31:40,489 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:40,502 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 15:31:40,503 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 15:31:41,855 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:41,859 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 15:31:41,861 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 15:31:41,866 basehttp "OPTIONS /api/memberships/?company=263dcd8f-a1c7-4fad-9e0b-a41e7fb70890 HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:41,870 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:41,877 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 15:31:41,877 basehttp "GET /api/memberships/?company=263dcd8f-a1c7-4fad-9e0b-a41e7fb70890 HTTP/1.1" 200 463
+INFO 2026-02-20 15:31:41,927 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:41,929 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 15:31:41,930 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 15:31:41,931 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:31:42,945 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:42,948 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 15:31:42,948 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 15:31:42,950 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:31:52,643 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:52,653 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 15:31:52,654 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 15:31:52,656 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:31:53,684 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:53,687 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 15:31:53,688 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 15:31:53,690 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:31:57,541 basehttp "OPTIONS /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 15:31:57,556 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:57,559 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 15:31:57,560 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 15:31:57,561 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 15:31:58,581 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:31:58,584 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 15:31:58,584 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 15:31:58,585 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:00,907 basehttp "OPTIONS /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:00,907 basehttp "OPTIONS /api/evidence/evidence/analytics/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:00,925 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:00,929 middleware GET /api/evidence/evidence/ | Status: 403
+WARNING 2026-02-20 15:32:00,930 log Forbidden: /api/evidence/evidence/
+WARNING 2026-02-20 15:32:00,930 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:01,122 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:01,124 middleware GET /api/evidence/evidence/analytics/ | Status: 403
+WARNING 2026-02-20 15:32:01,125 log Forbidden: /api/evidence/evidence/analytics/
+WARNING 2026-02-20 15:32:01,127 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:01,948 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:01,950 middleware GET /api/evidence/evidence/ | Status: 403
+WARNING 2026-02-20 15:32:01,951 log Forbidden: /api/evidence/evidence/
+WARNING 2026-02-20 15:32:01,952 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:02,148 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:02,151 middleware GET /api/evidence/evidence/analytics/ | Status: 403
+WARNING 2026-02-20 15:32:02,152 log Forbidden: /api/evidence/evidence/analytics/
+WARNING 2026-02-20 15:32:02,152 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:06,033 basehttp "OPTIONS /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:06,033 basehttp "OPTIONS /api/risk/risks/summary/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:06,052 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:06,052 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:06,056 middleware GET /api/risk/risks/ | Status: 403
+INFO 2026-02-20 15:32:06,056 middleware GET /api/risk/risks/summary/ | Status: 403
+WARNING 2026-02-20 15:32:06,056 log Forbidden: /api/risk/risks/
+WARNING 2026-02-20 15:32:06,057 log Forbidden: /api/risk/risks/summary/
+WARNING 2026-02-20 15:32:06,058 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:06,059 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:07,085 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:07,085 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:07,089 middleware GET /api/risk/risks/ | Status: 403
+INFO 2026-02-20 15:32:07,089 middleware GET /api/risk/risks/summary/ | Status: 403
+WARNING 2026-02-20 15:32:07,090 log Forbidden: /api/risk/risks/
+WARNING 2026-02-20 15:32:07,091 log Forbidden: /api/risk/risks/summary/
+WARNING 2026-02-20 15:32:07,092 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:07,092 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:08,045 basehttp "OPTIONS /api/compliance/adoptions/active/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:08,046 basehttp "OPTIONS /api/compliance/results/overview/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:08,048 basehttp "OPTIONS /api/compliance/gaps/open/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:08,049 basehttp "OPTIONS /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:08,066 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:08,067 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:08,070 middleware GET /api/compliance/adoptions/active/ | Status: 403
+INFO 2026-02-20 15:32:08,070 middleware GET /api/compliance/results/overview/ | Status: 403
+WARNING 2026-02-20 15:32:08,070 log Forbidden: /api/compliance/adoptions/active/
+WARNING 2026-02-20 15:32:08,071 log Forbidden: /api/compliance/results/overview/
+WARNING 2026-02-20 15:32:08,072 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:08,072 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:08,092 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:08,092 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:08,096 middleware GET /api/compliance/gaps/open/ | Status: 403
+INFO 2026-02-20 15:32:08,096 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 403
+WARNING 2026-02-20 15:32:08,096 log Forbidden: /api/compliance/gaps/open/
+WARNING 2026-02-20 15:32:08,097 log Forbidden: /api/compliance/adoptions/expiring_soon/
+WARNING 2026-02-20 15:32:08,097 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:08,098 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:09,101 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:09,102 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:09,111 middleware GET /api/compliance/adoptions/active/ | Status: 403
+INFO 2026-02-20 15:32:09,111 middleware GET /api/compliance/results/overview/ | Status: 403
+WARNING 2026-02-20 15:32:09,112 log Forbidden: /api/compliance/adoptions/active/
+WARNING 2026-02-20 15:32:09,113 log Forbidden: /api/compliance/results/overview/
+WARNING 2026-02-20 15:32:09,114 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:09,115 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:09,224 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:09,229 middleware GET /api/compliance/gaps/open/ | Status: 403
+INFO 2026-02-20 15:32:09,229 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+WARNING 2026-02-20 15:32:09,229 log Forbidden: /api/compliance/gaps/open/
+INFO 2026-02-20 15:32:09,232 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 403
+WARNING 2026-02-20 15:32:09,232 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 403 63
+WARNING 2026-02-20 15:32:09,233 log Forbidden: /api/compliance/adoptions/expiring_soon/
+WARNING 2026-02-20 15:32:09,234 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:10,451 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:10,465 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:10,467 middleware GET /api/organizations/departments/ | Status: 403
+WARNING 2026-02-20 15:32:10,467 log Forbidden: /api/organizations/departments/
+WARNING 2026-02-20 15:32:10,468 basehttp "GET /api/organizations/departments/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:11,483 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:11,485 middleware GET /api/organizations/departments/ | Status: 403
+WARNING 2026-02-20 15:32:11,487 log Forbidden: /api/organizations/departments/
+WARNING 2026-02-20 15:32:11,487 basehttp "GET /api/organizations/departments/ HTTP/1.1" 403 63
+INFO 2026-02-20 15:32:12,475 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:12,489 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:12,540 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-20 15:32:12,541 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 811
+INFO 2026-02-20 15:32:18,039 basehttp "OPTIONS /api/memberships/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:32:18,055 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:18,061 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 15:32:18,061 basehttp "GET /api/memberships/ HTTP/1.1" 200 1708
+INFO 2026-02-20 15:32:57,367 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:32:57,375 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 15:32:57,375 basehttp "GET /api/memberships/ HTTP/1.1" 200 1708
+INFO 2026-02-20 15:33:45,023 basehttp "OPTIONS /api/memberships/company_members/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:33:45,024 basehttp "OPTIONS /api/invitations/ HTTP/1.1" 200 0
+INFO 2026-02-20 15:33:45,041 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:33:45,043 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:33:45,045 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:33:45,047 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:33:45,047 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:33:45,048 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:33:45,049 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:33:46,066 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:33:46,069 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:33:46,069 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:33:46,070 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:34:08,954 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:08,958 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:34:08,959 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:34:08,961 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:34:09,986 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:09,989 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:34:09,990 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:34:09,991 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:34:12,879 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:12,881 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:34:12,882 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:34:12,883 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:34:13,899 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:13,902 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:34:13,902 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:34:13,904 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:34:44,762 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:44,763 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:34:44,769 middleware GET /api/invitations/ | Status: 200
+INFO 2026-02-20 15:34:44,769 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:34:44,770 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:34:44,770 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:34:44,772 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:35:21,394 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:35:21,398 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:35:21,401 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:35:21,404 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:35:21,416 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:35:21,421 middleware GET /api/invitations/ | Status: 200
+INFO 2026-02-20 15:35:21,422 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+INFO 2026-02-20 15:35:39,685 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:35:39,687 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:35:39,688 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:35:39,688 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:35:40,724 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:35:40,727 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:35:40,728 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:35:40,729 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:36:36,696 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:36,697 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:36,702 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:36:36,702 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:36:36,702 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:36:36,703 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:36:36,704 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:36:37,937 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:37,939 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:36:37,940 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:36:37,941 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:36:39,463 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:39,463 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:39,467 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:36:39,470 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:36:39,471 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:36:39,472 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:36:39,473 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:36:40,507 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:36:40,510 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:36:40,511 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:36:40,512 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:37:22,782 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:37:22,787 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:37:22,789 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:37:22,795 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:37:22,795 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:37:22,796 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:37:22,798 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:37:23,826 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:37:23,828 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:37:23,829 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:37:23,831 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:38:26,678 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:38:26,682 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:38:26,686 middleware GET /api/invitations/ | Status: 200
+INFO 2026-02-20 15:38:26,691 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:38:26,692 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:38:26,692 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:38:26,692 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:38:27,732 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:38:27,736 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:38:27,737 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:38:27,738 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:06,385 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:06,386 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:06,392 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:41:06,392 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:41:06,393 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:41:06,395 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:41:06,395 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:07,420 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:07,422 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:07,423 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:07,424 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:14,165 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:14,169 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:14,171 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:14,172 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:15,189 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:15,191 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:15,192 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:15,193 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:20,356 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:20,361 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:20,362 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:20,363 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:21,386 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:21,389 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:21,389 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:21,390 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:50,713 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:50,714 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:50,720 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:41:50,723 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:41:50,724 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:41:50,726 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:41:50,726 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:41:54,656 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:41:54,660 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:41:54,661 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:41:54,663 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:43,683 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:43,683 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:43,688 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:42:43,688 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:42:43,689 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:42:43,690 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:42:43,690 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:44,713 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:44,716 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:42:44,717 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:42:44,717 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:50,671 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:50,673 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:42:50,674 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:42:50,675 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:51,698 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:51,701 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:42:51,702 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:42:51,702 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:55,011 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:55,013 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:42:55,013 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:42:55,015 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:42:56,031 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:42:56,034 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:42:56,034 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:42:56,035 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:08,146 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:08,150 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:43:08,151 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:43:08,152 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:09,164 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:09,167 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:43:09,167 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:43:09,168 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:22,197 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:22,197 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:22,200 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:43:22,202 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:43:22,202 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:43:22,204 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:43:22,204 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:28,301 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:28,304 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:43:28,305 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:43:28,305 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:33,679 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:33,681 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:43:33,681 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:43:33,682 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:43:41,476 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:43:41,479 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:43:41,480 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:43:41,481 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:44:35,722 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:35,722 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:35,729 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:44:35,730 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:44:35,730 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:44:35,732 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+WARNING 2026-02-20 15:44:35,732 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:44:36,780 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:36,781 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:44:36,782 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:44:36,782 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:44:37,504 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:37,505 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:37,509 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:44:37,510 log Bad Request: /api/memberships/company_members/
+INFO 2026-02-20 15:44:37,512 middleware GET /api/invitations/ | Status: 200
+WARNING 2026-02-20 15:44:37,513 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:44:37,514 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+INFO 2026-02-20 15:44:38,529 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:44:38,531 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:44:38,532 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:44:38,532 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:45:13,692 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:45:13,693 middleware GET /api/memberships/company_members/ | Status: 400
+INFO 2026-02-20 15:45:13,693 middleware GET /api/invitations/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+WARNING 2026-02-20 15:45:13,694 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:45:13,695 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 15:45:13,697 middleware GET /api/invitations/ | Status: 200
+INFO 2026-02-20 15:45:13,698 basehttp "GET /api/invitations/ HTTP/1.1" 200 52
+INFO 2026-02-20 15:45:35,177 middleware GET /api/memberships/company_members/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 15:45:35,178 middleware GET /api/memberships/company_members/ | Status: 400
+WARNING 2026-02-20 15:45:35,179 log Bad Request: /api/memberships/company_members/
+WARNING 2026-02-20 15:45:35,179 basehttp "GET /api/memberships/company_members/ HTTP/1.1" 400 37
+INFO 2026-02-20 19:31:58,568 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:32:08,373 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:08,795 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:08,821 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-02-20 19:32:08,822 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 19:32:08,824 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-02-20 19:32:08,830 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:08,833 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-02-20 19:32:08,922 middleware POST /api/auth/token/refresh/ | Status: 200
+INFO 2026-02-20 19:32:08,924 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 200 582
+INFO 2026-02-20 19:32:08,953 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:08,957 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 19:32:08,958 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 19:32:08,959 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:09,980 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:09,984 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 19:32:09,984 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 19:32:09,985 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:21,386 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:21,390 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 19:32:21,392 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 19:32:21,394 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:22,443 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:22,446 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 19:32:22,447 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 19:32:22,449 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:25,433 basehttp "OPTIONS /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:25,451 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:25,454 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 19:32:25,455 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 19:32:25,456 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:26,475 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:26,479 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 19:32:26,480 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 19:32:26,481 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:27,727 basehttp "OPTIONS /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:27,727 basehttp "OPTIONS /api/evidence/evidence/analytics/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:27,749 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:27,753 middleware GET /api/evidence/evidence/analytics/ | Status: 403
+WARNING 2026-02-20 19:32:27,754 log Forbidden: /api/evidence/evidence/analytics/
+WARNING 2026-02-20 19:32:27,756 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:27,864 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:27,867 middleware GET /api/evidence/evidence/ | Status: 403
+WARNING 2026-02-20 19:32:27,868 log Forbidden: /api/evidence/evidence/
+WARNING 2026-02-20 19:32:27,869 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:28,776 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:28,780 middleware GET /api/evidence/evidence/analytics/ | Status: 403
+WARNING 2026-02-20 19:32:28,781 log Forbidden: /api/evidence/evidence/analytics/
+WARNING 2026-02-20 19:32:28,782 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:28,890 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:28,894 middleware GET /api/evidence/evidence/ | Status: 403
+WARNING 2026-02-20 19:32:28,895 log Forbidden: /api/evidence/evidence/
+WARNING 2026-02-20 19:32:28,896 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:32,932 basehttp "OPTIONS /api/risk/risks/summary/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:32,933 basehttp "OPTIONS /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:32,958 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:32,959 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:32,965 middleware GET /api/risk/risks/ | Status: 403
+INFO 2026-02-20 19:32:32,965 middleware GET /api/risk/risks/summary/ | Status: 403
+WARNING 2026-02-20 19:32:32,966 log Forbidden: /api/risk/risks/
+WARNING 2026-02-20 19:32:32,967 log Forbidden: /api/risk/risks/summary/
+WARNING 2026-02-20 19:32:32,968 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:32,969 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:33,992 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:33,992 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:33,997 middleware GET /api/risk/risks/ | Status: 403
+INFO 2026-02-20 19:32:33,997 middleware GET /api/risk/risks/summary/ | Status: 403
+WARNING 2026-02-20 19:32:33,998 log Forbidden: /api/risk/risks/
+WARNING 2026-02-20 19:32:33,999 log Forbidden: /api/risk/risks/summary/
+WARNING 2026-02-20 19:32:34,000 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:34,001 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:36,367 basehttp "OPTIONS /api/compliance/results/overview/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:36,367 basehttp "OPTIONS /api/compliance/adoptions/active/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:36,370 basehttp "OPTIONS /api/compliance/gaps/open/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:36,370 basehttp "OPTIONS /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:36,392 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:36,393 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:36,398 middleware GET /api/compliance/results/overview/ | Status: 403
+INFO 2026-02-20 19:32:36,398 middleware GET /api/compliance/adoptions/active/ | Status: 403
+WARNING 2026-02-20 19:32:36,399 log Forbidden: /api/compliance/results/overview/
+WARNING 2026-02-20 19:32:36,399 log Forbidden: /api/compliance/adoptions/active/
+WARNING 2026-02-20 19:32:36,401 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:36,402 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:36,426 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:36,426 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:36,433 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 403
+INFO 2026-02-20 19:32:36,433 middleware GET /api/compliance/gaps/open/ | Status: 403
+WARNING 2026-02-20 19:32:36,434 log Forbidden: /api/compliance/adoptions/expiring_soon/
+WARNING 2026-02-20 19:32:36,435 log Forbidden: /api/compliance/gaps/open/
+WARNING 2026-02-20 19:32:36,437 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:36,437 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:37,433 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:37,434 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:37,438 middleware GET /api/compliance/results/overview/ | Status: 403
+INFO 2026-02-20 19:32:37,439 middleware GET /api/compliance/adoptions/active/ | Status: 403
+WARNING 2026-02-20 19:32:37,439 log Forbidden: /api/compliance/results/overview/
+WARNING 2026-02-20 19:32:37,440 log Forbidden: /api/compliance/adoptions/active/
+WARNING 2026-02-20 19:32:37,441 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:37,441 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:37,467 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:37,468 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:37,472 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 403
+INFO 2026-02-20 19:32:37,473 middleware GET /api/compliance/gaps/open/ | Status: 403
+WARNING 2026-02-20 19:32:37,473 log Forbidden: /api/compliance/adoptions/expiring_soon/
+WARNING 2026-02-20 19:32:37,474 log Forbidden: /api/compliance/gaps/open/
+WARNING 2026-02-20 19:32:37,476 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 403 63
+WARNING 2026-02-20 19:32:37,476 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:39,498 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:32:39,516 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:39,519 middleware GET /api/organizations/departments/ | Status: 403
+WARNING 2026-02-20 19:32:39,520 log Forbidden: /api/organizations/departments/
+WARNING 2026-02-20 19:32:39,521 basehttp "GET /api/organizations/departments/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:32:40,542 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:32:40,546 middleware GET /api/organizations/departments/ | Status: 403
+WARNING 2026-02-20 19:32:40,547 log Forbidden: /api/organizations/departments/
+WARNING 2026-02-20 19:32:40,548 basehttp "GET /api/organizations/departments/ HTTP/1.1" 403 63
+INFO 2026-02-20 19:33:01,863 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:33:01,879 middleware POST /api/auth/logout/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:01,889 middleware POST /api/auth/logout/ | Status: 400
+WARNING 2026-02-20 19:33:01,890 log Bad Request: /api/auth/logout/
+WARNING 2026-02-20 19:33:01,891 basehttp "POST /api/auth/logout/ HTTP/1.1" 400 32
+INFO 2026-02-20 19:33:09,436 basehttp "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:33:09,446 middleware POST /api/auth/token/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:10,068 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-20 19:33:10,069 basehttp "POST /api/auth/token/ HTTP/1.1" 200 917
+INFO 2026-02-20 19:33:10,082 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:33:10,093 middleware GET /api/auth/me/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:10,102 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-20 19:33:10,103 basehttp "GET /api/auth/me/ HTTP/1.1" 200 202
+INFO 2026-02-20 19:33:10,109 basehttp "OPTIONS /api/companies/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:33:10,116 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:10,135 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 19:33:10,135 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 19:33:10,188 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:10,198 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 19:33:10,199 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 19:33:12,915 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:12,922 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 19:33:12,923 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 19:33:12,930 basehttp "OPTIONS /api/memberships/?company=7b03c48d-f096-41c8-abb7-c520cf882fb0 HTTP/1.1" 200 0
+INFO 2026-02-20 19:33:12,936 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 19:33:12,948 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 19:33:12,949 basehttp "GET /api/memberships/?company=7b03c48d-f096-41c8-abb7-c520cf882fb0 HTTP/1.1" 200 473
+INFO 2026-02-20 19:33:13,091 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:13,158 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 19:33:13,159 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 19:33:16,495 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:16,509 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-20 19:33:16,510 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:33:17,869 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:17,870 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:17,923 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-02-20 19:33:17,924 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:33:17,941 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-02-20 19:33:17,943 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-02-20 19:33:18,871 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:18,872 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:18,940 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-02-20 19:33:18,940 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-02-20 19:33:18,941 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:33:18,942 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-02-20 19:33:19,693 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:19,697 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:19,741 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-20 19:33:19,747 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:33:19,842 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:19,846 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:19,875 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-20 19:33:19,877 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:33:19,885 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-20 19:33:19,887 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+ERROR 2026-02-20 19:33:20,233 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-20 19:33:20,239 middleware GET /api/compliance/results/overview/ | Status: 500
+ERROR 2026-02-20 19:33:20,240 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141518
+INFO 2026-02-20 19:33:21,273 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-20 19:33:21,322 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-20 19:33:21,325 middleware GET /api/compliance/results/overview/ | Status: 500
+ERROR 2026-02-20 19:33:21,326 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141518
+INFO 2026-02-20 19:33:28,031 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:28,055 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-20 19:33:28,057 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-20 19:33:45,257 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:33:53,738 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:53,740 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:53,743 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:53,745 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:33:53,805 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-20 19:33:53,809 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-20 19:33:53,811 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-20 19:33:53,812 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:33:53,815 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:33:53,816 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+ERROR 2026-02-20 19:33:53,880 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-20 19:33:53,886 middleware GET /api/compliance/results/overview/ | Status: 500
+ERROR 2026-02-20 19:33:53,888 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141518
+INFO 2026-02-20 19:33:54,905 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-20 19:33:54,964 log Internal Server Error: /api/compliance/results/overview/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 446, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 94, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'avg_coverage'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\compliance\views.py", line 173, in overview
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 555, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 253, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\serializers.py", line 509, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\fields.py", line 479, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `avg_coverage` on serializer `ComplianceOverviewSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'avg_coverage'."
+INFO 2026-02-20 19:33:54,969 middleware GET /api/compliance/results/overview/ | Status: 500
+ERROR 2026-02-20 19:33:54,970 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 500 141518
+INFO 2026-02-20 19:43:32,041 autoreload C:\Users\legion\Desktop\compliancehub\backend\compliance\services.py changed, reloading.
+INFO 2026-02-20 19:43:32,934 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:43:40,413 autoreload C:\Users\legion\Desktop\compliancehub\backend\compliance\services.py changed, reloading.
+INFO 2026-02-20 19:43:41,317 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:44:11,882 autoreload C:\Users\legion\Desktop\compliancehub\backend\compliance\serializers.py changed, reloading.
+INFO 2026-02-20 19:44:12,858 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:44:22,564 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 19:44:29,917 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:29,919 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:29,962 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-02-20 19:44:29,963 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-02-20 19:44:29,964 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:44:29,966 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-02-20 19:44:31,105 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:31,106 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:31,117 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-20 19:44:31,119 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-02-20 19:44:31,129 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:31,131 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-20 19:44:31,134 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:44:31,146 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-20 19:44:31,147 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:44:31,175 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:31,196 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-20 19:44:31,197 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-02-20 19:44:34,391 basehttp "OPTIONS /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 0
+INFO 2026-02-20 19:44:34,399 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:34,429 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-20 19:44:34,430 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 811
+INFO 2026-02-20 19:44:44,107 basehttp "OPTIONS /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 200 0
+INFO 2026-02-20 19:44:44,115 middleware POST /api/compliance/adoptions/adopt_framework/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:44,123 middleware POST /api/compliance/adoptions/adopt_framework/ | Status: 400
+WARNING 2026-02-20 19:44:44,123 log Bad Request: /api/compliance/adoptions/adopt_framework/
+WARNING 2026-02-20 19:44:44,124 basehttp "POST /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 400 37
+INFO 2026-02-20 19:44:51,667 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:51,698 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 19:44:51,699 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 19:44:53,475 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:53,482 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-20 19:44:53,483 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:44:54,577 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:54,579 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 19:44:54,595 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-02-20 19:44:54,596 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 19:44:54,601 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-02-20 19:44:54,602 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194

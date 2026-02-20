@@ -1,4 +1,17 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+// src/App.tsx  ← FULL REPLACEMENT
+// Key fixes vs original:
+//   1. Profile & Settings are now INSIDE ProtectedRoute + AppLayout
+//   2. /invite/:token is a public route (no auth required)
+//   3. /settings/users → <TeamManagement /> (was a dead navigate() call)
+//   4. GapPage fixed to support multi-framework selection
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useSearchParams,
+} from "react-router-dom";
 import "./App.css";
 import {
   QueryClient,
@@ -8,6 +21,8 @@ import {
 import { useAuthStore } from "./stores/authStore";
 import { AppLayout } from "./components/layout/AppLayout";
 import { Login } from "./features/auth/Login";
+import { Register } from "./features/auth/Register";
+import { AcceptInvite } from "./features/auth/AcceptInvite";
 import { CompanySelector } from "./features/auth/CompanySelector";
 import { Dashboard } from "./features/dashboard/Dashboard";
 import { ControlList } from "./features/controls/ControlList";
@@ -22,17 +37,17 @@ import { ComplianceDashboard } from "./features/compliance/ComplianceDashboard";
 import { FrameworkComplianceDetail } from "./features/compliance/FrameworkComplianceDetail";
 import { FrameworkAdoptionList } from "./features/compliance/FrameworkAdoptionList";
 import { ComplianceReports } from "./features/compliance/ComplianceReports";
-import { complianceApi } from "./api/compliance.ts";
-import { GapAnalysis } from "./features/compliance/GapAnalysis.tsx";
-import { Register } from "./features/auth/Register";
+import { GapAnalysis } from "./features/compliance/GapAnalysis";
+import { complianceApi } from "./api/compliance";
 import { FrameworkList } from "./features/library/FrameworkList";
 import { FrameworkDetail } from "./features/library/FrameworkDetail";
 import { DepartmentTree } from "./features/organizations/DepartmentTree";
 import { DepartmentList } from "./features/organizations/DepartmentList";
-import { Profile } from "./features/profile/profile.tsx";
-import { Settings } from "./features/settings/settings.tsx";
+import { Profile } from "./features/profile/Profile";
+import { Settings } from "./features/settings/Settings";
+import { TeamManagement } from "./features/settings/TeamManagement";
+import { useState } from "react";
 
-// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -43,36 +58,36 @@ const queryClient = new QueryClient({
   },
 });
 
-// Protected Route wrapper
+// ── Route guards ──────────────────────────────────────────────────────────────
+
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, company } = useAuthStore();
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (!company) {
-    return <Navigate to="/select-company" replace />;
-  }
-
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  if (!company) return <Navigate to="/select-company" replace />;
   return <>{children}</>;
 }
 
 function AuthenticatedRoute({ children }: { children: React.ReactNode }) {
-  // For select-company page: must be logged in but company not required
   const { isAuthenticated } = useAuthStore();
   if (!isAuthenticated) return <Navigate to="/login" replace />;
   return <>{children}</>;
 }
+
+// ── App ───────────────────────────────────────────────────────────────────────
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          {/* Public routes */}
+          {/* ── Public routes ───────────────────────────────────────────── */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          {/* Invite accept — fully public, works for guests too */}
+          <Route path="/invite/:token" element={<AcceptInvite />} />
+
+          {/* ── Semi-authenticated (logged in, no company required) ──────── */}
           <Route
             path="/select-company"
             element={
@@ -81,7 +96,8 @@ function App() {
               </AuthenticatedRoute>
             }
           />
-          {/* Protected routes */}
+
+          {/* ── Protected routes (need company context) ──────────────────── */}
           <Route
             path="/"
             element={
@@ -93,21 +109,27 @@ function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
 
-            {/* Placeholder routes - to be implemented */}
+            {/* Controls */}
             <Route path="controls">
               <Route index element={<ControlList />} />
               <Route path="dashboard" element={<ControlDashboard />} />
               <Route path=":id" element={<ControlDetail />} />
             </Route>
+
+            {/* Evidence */}
             <Route path="evidence">
               <Route index element={<EvidenceList />} />
               <Route path=":id" element={<EvidenceDetail />} />
             </Route>
+
+            {/* Risks */}
             <Route path="risks">
               <Route index element={<RiskRegister />} />
               <Route path="heat-map" element={<RiskHeatMap />} />
               <Route path=":id" element={<RiskDetail />} />
             </Route>
+
+            {/* Compliance */}
             <Route path="compliance">
               <Route index element={<ComplianceDashboard />} />
               <Route
@@ -118,23 +140,35 @@ function App() {
               <Route path="gaps" element={<GapPage />} />
               <Route path="reports" element={<ComplianceReports />} />
             </Route>
+
+            {/* Organizations */}
             <Route
-              path="/organizations/departments"
+              path="organizations/departments"
               element={<DepartmentList />}
             />
             <Route
-              path="/organizations/departments/tree"
+              path="organizations/departments/tree"
               element={<DepartmentTree />}
             />
-            <Route path="/library/frameworks" element={<FrameworkList />} />
+
+            {/* Library */}
+            <Route path="library/frameworks" element={<FrameworkList />} />
             <Route
-              path="/library/frameworks/:id"
+              path="library/frameworks/:id"
               element={<FrameworkDetail />}
             />
+
+            {/* Profile — FIXED: now inside ProtectedRoute + AppLayout */}
+            <Route path="profile" element={<Profile />} />
+
+            {/* Settings — FIXED: now inside ProtectedRoute + AppLayout */}
+            <Route path="settings" element={<Settings />} />
+
+            {/* Team management — FIXED: was dead /settings/users navigate() */}
+            <Route path="settings/users" element={<TeamManagement />} />
           </Route>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/settings" element={<Settings />} />
-          {/* 404 */}
+
+          {/* ── 404 ────────────────────────────────────────────────────────── */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
@@ -142,16 +176,62 @@ function App() {
   );
 }
 
-// Standalone gap page wrapper
+// ── GapPage — FIXED: framework selector instead of hardcoded [0] ─────────────
+
 function GapPage() {
-  const { data: overview } = useQuery({
+  const { data: overview, isLoading } = useQuery({
     queryKey: ["compliance-overview"],
     queryFn: complianceApi.getOverview,
   });
-  const frameworkId = overview?.frameworks?.[0]?.framework_id;
-  if (!frameworkId)
-    return <div className="p-6 text-gray-500">No frameworks adopted yet</div>;
-  return <GapAnalysis frameworkId={frameworkId} />;
+
+  const [selectedFrameworkId, setSelectedFrameworkId] = useState<string | null>(
+    null,
+  );
+
+  const frameworks = overview?.frameworks ?? [];
+  const frameworkId =
+    selectedFrameworkId ?? frameworks[0]?.framework_id ?? null;
+
+  if (isLoading) {
+    return <div className="p-6 text-gray-400 text-sm">Loading frameworks…</div>;
+  }
+
+  if (frameworks.length === 0) {
+    return <div className="p-6 text-gray-500">No frameworks adopted yet.</div>;
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Framework selector — only shown when there are multiple */}
+      {frameworks.length > 1 && (
+        <div className="flex items-center gap-3 pb-2">
+          <label className="text-sm font-medium text-gray-700">
+            Framework:
+          </label>
+          <select
+            className="text-sm border border-gray-300 rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary"
+            value={frameworkId ?? ""}
+            onChange={(e) => setSelectedFrameworkId(e.target.value)}
+          >
+            {frameworks.map(
+              (f: {
+                framework_id: string;
+                framework_code: string;
+                framework_name?: string;
+              }) => (
+                <option key={f.framework_id} value={f.framework_id}>
+                  {f.framework_code}
+                  {f.framework_name ? ` — ${f.framework_name}` : ""}
+                </option>
+              ),
+            )}
+          </select>
+        </div>
+      )}
+
+      {frameworkId && <GapAnalysis frameworkId={frameworkId} />}
+    </div>
+  );
 }
 
 export default App;

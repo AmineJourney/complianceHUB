@@ -126,7 +126,7 @@ export function Profile() {
   const memberships = membershipsData?.results || [];
 
   return (
-    <div className="space-y-6 lg:px-80 py-6 md:px-2 sm:px-2">
+    <div className="space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Profile</h1>

@@ -133,14 +133,21 @@ class ComplianceCalculationService:
             control_info = []
             
             for control in applied_controls:
-                control_score = control.calculate_compliance_score()
+                control_score = control.calculate_compliance_score() if hasattr(control, 'calculate_compliance_score') else 0
                 control_scores.append(control_score)
+                control_info.append({
+                    'id': str(control.id),
+                    'code': control.reference_control.code,
+                    'name': control.reference_control.name,
+                    'status': control.status,
+                    'score': control_score
+                })
                 
-                # Track control status
+                # Update control summary
                 control_summary['total'] += 1
                 if control.status == 'operational':
                     control_summary['operational'] += 1
-                elif control.status in ['implemented', 'testing']:
+                elif control.status == 'implemented':
                     control_summary['implemented'] += 1
                 elif control.status == 'in_progress':
                     control_summary['in_progress'] += 1
@@ -152,28 +159,20 @@ class ComplianceCalculationService:
                     applied_control=control,
                     is_deleted=False
                 ).count()
-                
                 if evidence_count > 0:
                     evidence_summary['controls_with_evidence'] += 1
-                    evidence_summary['total_evidence'] += evidence_count
-                
-                control_info.append({
-                    'id': str(control.id),
-                    'code': control.reference_control.code,
-                    'name': control.reference_control.name,
-                    'status': control.status,
-                    'score': control_score,
-                    'evidence_count': evidence_count
-                })
+                evidence_summary['total_evidence'] += evidence_count
             
-            # Average score across all controls
-            avg_score = sum(control_scores) / len(control_scores)
+            # Calculate requirement score
+            req_score = sum(control_scores) / len(control_scores) if control_scores else 0
+            max_compliance_points += 100
+            total_compliance_points += req_score
             
-            # Classify requirement
-            if avg_score >= 85:
+            # Determine requirement status
+            if req_score >= 90:
                 requirements_compliant += 1
                 req_status = 'compliant'
-            elif avg_score >= 50:
+            elif req_score >= 50:
                 requirements_partial += 1
                 req_status = 'partial'
             else:
@@ -184,13 +183,9 @@ class ComplianceCalculationService:
                 'code': requirement.code,
                 'title': requirement.title,
                 'status': req_status,
-                'score': round(avg_score, 2),
-                'controls': control_info
+                'controls': control_info,
+                'score': round(req_score, 2)
             }
-            
-            # Accumulate points
-            total_compliance_points += avg_score
-            max_compliance_points += 100
         
         # Calculate overall metrics
         coverage_percentage = (requirements_addressed / total_requirements) * 100
@@ -301,9 +296,11 @@ class ComplianceAnalyticsService:
         ).select_related('framework')
         
         if not current_results.exists():
+            # ✅ FIX: avg_coverage was missing here, causing KeyError in serializer
             return {
                 'total_frameworks': 0,
                 'avg_compliance_score': 0,
+                'avg_coverage': 0,
                 'frameworks': []
             }
         
@@ -395,7 +392,7 @@ class ComplianceAnalyticsService:
         ).first()
         
         if not result:
-            return {'gaps': [], 'total': 0}
+            return {'gaps': [], 'total': 0, 'by_severity': {'high': 0, 'medium': 0, 'low': 0}}
         
         gaps = []
         
@@ -417,6 +414,8 @@ class ComplianceAnalyticsService:
                     gap['severity'] = 'high'
                 elif req_data['status'] == 'partial':
                     gap['severity'] = 'medium'
+                else:
+                    gap['severity'] = 'low'
                 
                 gaps.append(gap)
         
@@ -447,6 +446,7 @@ class ComplianceRecommendationService:
             list of recommended actions
         """
         from controls.models import AppliedControl
+        from django.utils import timezone
         
         # Get current compliance result
         result = ComplianceResult.objects.filter(
@@ -512,5 +512,5 @@ class ComplianceRecommendationService:
         # Sort by priority
         priority_order = {'critical': 0, 'high': 1, 'medium': 2, 'low': 3}
         actions.sort(key=lambda x: priority_order.get(x['priority'], 99))
-        
-        return actions[:20]  # Return top 20
+
+        return actions[:20]  # Return top 20 actions

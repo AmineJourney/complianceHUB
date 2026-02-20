@@ -1,14 +1,17 @@
 import uuid
+import secrets
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import timezone
+from datetime import timedelta
 
 
 class TimeStampedModel(models.Model):
     """Abstract base model with timestamps"""
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
         abstract = True
 
@@ -17,41 +20,34 @@ class SoftDeleteModel(models.Model):
     """Abstract base model with soft delete"""
     is_deleted = models.BooleanField(default=False, db_index=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
-    
+
     class Meta:
         abstract = True
-    
+
     def delete(self, using=None, keep_parents=False, hard=False):
-        """Override delete to implement soft delete"""
         if hard:
             super().delete(using=using, keep_parents=keep_parents)
         else:
-            from django.utils import timezone
             self.is_deleted = True
             self.deleted_at = timezone.now()
             self.save()
 
 
 class Company(TimeStampedModel, SoftDeleteModel):
-    """
-    Company/Tenant model - root of multi-tenancy isolation
-    """
     PLAN_CHOICES = [
         ('free', 'Free'),
         ('starter', 'Starter'),
         ('professional', 'Professional'),
         ('enterprise', 'Enterprise'),
     ]
-    
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     plan = models.CharField(max_length=20, choices=PLAN_CHOICES, default='free')
     is_active = models.BooleanField(default=True, db_index=True)
-    
-    # Subscription info
     max_users = models.IntegerField(default=5)
-    max_storage_mb = models.IntegerField(default=1000)  # 1GB
-    
+    max_storage_mb = models.IntegerField(default=1000)
+
     class Meta:
         db_table = 'companies'
         verbose_name_plural = 'Companies'
@@ -59,40 +55,28 @@ class Company(TimeStampedModel, SoftDeleteModel):
         indexes = [
             models.Index(fields=['is_active', '-created_at']),
         ]
-    
+
     def __str__(self):
         return self.name
-    
+
     def clean(self):
-        """Validate company data"""
         if self.max_users < 1:
             raise ValidationError({'max_users': 'Must be at least 1'})
 
 
 class User(AbstractUser, TimeStampedModel, SoftDeleteModel):
-    """
-    Extended user model with UUID primary key
-    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
-    
-    # Override username to make it non-unique (unique per company via Membership)
     username = models.CharField(max_length=150)
-    
-    # Profile fields
     phone_number = models.CharField(max_length=20, blank=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    
-    # Email verification
     email_verified = models.BooleanField(default=False)
     email_verification_token = models.CharField(max_length=255, blank=True)
-    
-    # Last activity tracking
     last_login_ip = models.GenericIPAddressField(null=True, blank=True)
-    
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
-    
+
     class Meta:
         db_table = 'users'
         ordering = ['-created_at']
@@ -100,15 +84,12 @@ class User(AbstractUser, TimeStampedModel, SoftDeleteModel):
             models.Index(fields=['email']),
             models.Index(fields=['is_active', '-created_at']),
         ]
-    
+
     def __str__(self):
         return self.email
 
 
 class Membership(TimeStampedModel, SoftDeleteModel):
-    """
-    User-Company-Role association for multi-tenancy and RBAC
-    """
     ROLE_CHOICES = [
         ('owner', 'Owner'),
         ('admin', 'Administrator'),
@@ -117,22 +98,21 @@ class Membership(TimeStampedModel, SoftDeleteModel):
         ('auditor', 'Auditor'),
         ('viewer', 'Viewer'),
     ]
-    
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='memberships')
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='memberships')
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
     is_active = models.BooleanField(default=True, db_index=True)
-    # Invitation tracking
     invited_by = models.ForeignKey(
-        User, 
-        on_delete=models.SET_NULL, 
-        null=True, 
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
         blank=True,
         related_name='sent_invitations'
     )
     invitation_accepted_at = models.DateTimeField(null=True, blank=True)
-    
+
     class Meta:
         db_table = 'memberships'
         unique_together = [['user', 'company']]
@@ -141,17 +121,14 @@ class Membership(TimeStampedModel, SoftDeleteModel):
             models.Index(fields=['user', 'company']),
             models.Index(fields=['company', 'role']),
         ]
-    
+
     def __str__(self):
         return f"{self.user.email} - {self.company.name} ({self.role})"
-    
+
     def clean(self):
-        """Validate membership"""
         if self.user.is_deleted or self.company.is_deleted:
             raise ValidationError('Cannot create membership with deleted user or company')
-        
-        # Check company user limit
-        if not self.pk:  # New membership
+        if not self.pk:
             active_memberships = Membership.objects.filter(
                 company=self.company,
                 is_deleted=False
@@ -162,9 +139,119 @@ class Membership(TimeStampedModel, SoftDeleteModel):
                 )
 
 
-# Permission matrix
+def _default_expiry():
+    return timezone.now() + timedelta(days=7)
+
+
+class Invitation(TimeStampedModel):
+    """
+    Token-based invitation to join a company.
+    No email required — the inviter copies the link and shares it manually.
+    """
+    ROLE_CHOICES = Membership.ROLE_CHOICES
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name='invitations'
+    )
+    invited_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='created_invitations'
+    )
+
+    # Optional: restrict which email can use this link
+    email = models.EmailField(
+        blank=True,
+        help_text='If set, only this email can accept the invite'
+    )
+
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='viewer')
+
+    # The secret token embedded in the shareable link
+    token = models.CharField(
+        max_length=64,
+        unique=True,
+        default=secrets.token_urlsafe
+    )
+
+    expires_at = models.DateTimeField(default=_default_expiry)
+
+    accepted_at = models.DateTimeField(null=True, blank=True)
+    accepted_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='accepted_invitations'
+    )
+
+    is_revoked = models.BooleanField(default=False, db_index=True)
+
+    class Meta:
+        db_table = 'invitations'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['token']),
+            models.Index(fields=['company', '-created_at']),
+        ]
+
+    def __str__(self):
+        return f"Invite to {self.company.name} ({self.role}) by {self.invited_by.email}"
+
+    @property
+    def is_expired(self):
+        return timezone.now() > self.expires_at
+
+    @property
+    def is_valid(self):
+        return not self.is_revoked and not self.is_expired and self.accepted_at is None
+
+    def accept(self, user):
+        """Mark invitation as accepted and create/update membership."""
+        if not self.is_valid:
+            raise ValidationError('This invitation is no longer valid.')
+
+        if self.email and self.email.lower() != user.email.lower():
+            raise ValidationError('This invitation was issued for a different email address.')
+
+        # Check if membership already exists
+        membership, created = Membership.objects.get_or_create(
+            user=user,
+            company=self.company,
+            defaults={
+                'role': self.role,
+                'invited_by': self.invited_by,
+                'invitation_accepted_at': timezone.now(),
+                'is_active': True,
+                'is_deleted': False,
+            }
+        )
+
+        if not created:
+            if not membership.is_deleted:
+                raise ValidationError('You are already a member of this company.')
+            # Re-activate soft-deleted membership
+            membership.is_deleted = False
+            membership.deleted_at = None
+            membership.role = self.role
+            membership.invited_by = self.invited_by
+            membership.invitation_accepted_at = timezone.now()
+            membership.is_active = True
+            membership.save()
+
+        self.accepted_at = timezone.now()
+        self.accepted_by = user
+        self.save()
+
+        return membership
+
+
+# Permission matrix (kept for reference by permission classes)
 ROLE_PERMISSIONS = {
-    'owner': ['*'],  # Full access
+    'owner': ['*'],
     'admin': [
         'view_any', 'create_any', 'update_any', 'delete_any',
         'manage_users', 'manage_settings'
