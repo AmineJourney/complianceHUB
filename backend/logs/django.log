@@ -18216,3 +18216,257 @@ INFO 2026-02-20 19:44:54,595 middleware GET /api/evidence/evidence/ | Status: 20
 INFO 2026-02-20 19:44:54,596 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
 INFO 2026-02-20 19:44:54,601 middleware GET /api/evidence/evidence/analytics/ | Status: 200
 INFO 2026-02-20 19:44:54,602 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-02-20 20:04:52,232 autoreload C:\Users\legion\Desktop\compliancehub\backend\core\models.py changed, reloading.
+INFO 2026-02-20 20:04:53,663 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 20:05:21,459 autoreload C:\Users\legion\Desktop\compliancehub\backend\core\views.py changed, reloading.
+INFO 2026-02-20 20:05:22,845 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 20:05:37,689 autoreload C:\Users\legion\Desktop\compliancehub\backend\core\urls.py changed, reloading.
+INFO 2026-02-20 20:05:38,598 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 20:06:37,483 autoreload C:\Users\legion\Desktop\compliancehub\backend\config\settings.py changed, reloading.
+INFO 2026-02-20 20:06:38,466 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 20:11:13,699 middleware POST /api/auth/logout/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:13,729 middleware POST /api/auth/logout/ | Status: 200
+INFO 2026-02-20 20:11:13,731 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-02-20 20:11:26,381 middleware POST /api/auth/token/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:26,774 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-20 20:11:26,775 basehttp "POST /api/auth/token/ HTTP/1.1" 200 727
+INFO 2026-02-20 20:11:26,786 middleware GET /api/auth/me/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:26,792 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-20 20:11:26,794 basehttp "GET /api/auth/me/ HTTP/1.1" 200 190
+INFO 2026-02-20 20:11:26,800 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:26,806 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:11:26,807 basehttp "GET /api/companies/ HTTP/1.1" 200 225
+INFO 2026-02-20 20:11:26,819 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:26,828 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:11:26,830 basehttp "GET /api/companies/ HTTP/1.1" 200 225
+INFO 2026-02-20 20:11:27,155 basehttp "OPTIONS /api/memberships/?company=a122f0a7-1ce3-4281-b4b6-49ebbbd245b3 HTTP/1.1" 200 0
+INFO 2026-02-20 20:11:27,160 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:27,167 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 20:11:27,168 basehttp "GET /api/memberships/?company=a122f0a7-1ce3-4281-b4b6-49ebbbd245b3 HTTP/1.1" 200 449
+INFO 2026-02-20 20:11:27,236 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:27,239 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 20:11:27,239 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 20:11:27,240 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:28,253 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:28,255 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 20:11:28,256 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 20:11:28,257 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:33,565 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:33,567 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 20:11:33,568 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 20:11:33,569 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:34,590 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:34,593 middleware GET /api/controls/applied-controls/ | Status: 403
+WARNING 2026-02-20 20:11:34,593 log Forbidden: /api/controls/applied-controls/
+WARNING 2026-02-20 20:11:34,594 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:37,297 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:37,300 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 20:11:37,300 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 20:11:37,301 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:38,325 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:38,329 middleware GET /api/controls/applied-controls/dashboard/ | Status: 403
+WARNING 2026-02-20 20:11:38,330 log Forbidden: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-20 20:11:38,331 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 403 63
+INFO 2026-02-20 20:11:41,670 middleware POST /api/auth/logout/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:41,677 middleware POST /api/auth/logout/ | Status: 200
+INFO 2026-02-20 20:11:41,678 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-02-20 20:11:48,456 middleware POST /api/auth/token/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:48,819 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-20 20:11:48,820 basehttp "POST /api/auth/token/ HTTP/1.1" 200 917
+INFO 2026-02-20 20:11:48,832 middleware GET /api/auth/me/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:48,835 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-20 20:11:48,835 basehttp "GET /api/auth/me/ HTTP/1.1" 200 202
+INFO 2026-02-20 20:11:48,841 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:48,847 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:11:48,848 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:11:48,894 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:48,903 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:11:48,904 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:11:51,109 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:51,115 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:11:51,116 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:11:51,125 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:11:51,133 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 20:11:51,135 basehttp "GET /api/memberships/?company=7b03c48d-f096-41c8-abb7-c520cf882fb0 HTTP/1.1" 200 473
+INFO 2026-02-20 20:11:51,230 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:51,256 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 20:11:51,256 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 20:11:53,309 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:53,319 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-20 20:11:53,320 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 20:11:54,673 middleware GET /api/evidence/evidence/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:54,690 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-02-20 20:11:54,691 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 20:11:54,739 middleware GET /api/evidence/evidence/analytics/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:54,761 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-02-20 20:11:54,762 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-02-20 20:11:55,550 middleware GET /api/risk/risks/summary/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:55,551 middleware GET /api/risk/risks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:55,562 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-02-20 20:11:55,563 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-02-20 20:11:55,570 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-02-20 20:11:55,571 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 20:11:56,435 middleware GET /api/compliance/results/overview/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:56,436 middleware GET /api/compliance/adoptions/active/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:56,445 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-20 20:11:56,446 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-02-20 20:11:56,454 middleware GET /api/compliance/gaps/open/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:56,463 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-20 20:11:56,464 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-20 20:11:56,471 middleware GET /api/compliance/adoptions/expiring_soon/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:56,477 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-20 20:11:56,478 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-20 20:11:56,479 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-02-20 20:11:56,481 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-20 20:11:57,658 middleware GET /api/organizations/departments/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:57,670 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-20 20:11:57,671 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-20 20:11:58,524 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-02-20 20:11:58,534 middleware GET /api/library/frameworks/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:11:58,584 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-20 20:11:58,585 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 811
+INFO 2026-02-20 20:12:02,808 middleware POST /api/auth/logout/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:12:02,823 middleware POST /api/auth/logout/ | Status: 200
+INFO 2026-02-20 20:12:02,825 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-02-20 20:12:09,459 basehttp "OPTIONS /api/auth/password-reset/ HTTP/1.1" 200 0
+INFO 2026-02-20 20:12:09,466 middleware POST /api/auth/password-reset/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+ERROR 2026-02-20 20:12:09,654 log Internal Server Error: /api/auth/password-reset/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "password_reset_tokens" does not exist
+LINE 1: UPDATE "password_reset_tokens" SET "expires_at" = '2026-02-2...
+               ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\core\views.py", line 146, in request_password_reset
+    ).update(expires_at=timezone.now())
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 1206, in update
+    rows = query.get_compiler(self.db).execute_sql(CURSOR)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1984, in execute_sql
+    cursor = super().execute_sql(result_type)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "password_reset_tokens" does not exist
+LINE 1: UPDATE "password_reset_tokens" SET "expires_at" = '2026-02-2...
+               ^
+
+INFO 2026-02-20 20:12:09,662 middleware POST /api/auth/password-reset/ | Status: 500
+ERROR 2026-02-20 20:12:09,663 basehttp "POST /api/auth/password-reset/ HTTP/1.1" 500 166346
+INFO 2026-02-20 20:12:21,793 middleware POST /api/auth/token/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:22,189 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-20 20:12:22,190 basehttp "POST /api/auth/token/ HTTP/1.1" 200 917
+INFO 2026-02-20 20:12:22,210 middleware GET /api/auth/me/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:22,215 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-20 20:12:22,217 basehttp "GET /api/auth/me/ HTTP/1.1" 200 202
+INFO 2026-02-20 20:12:22,226 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:22,237 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:12:22,238 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:12:22,326 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:22,335 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:12:22,336 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:12:23,768 middleware GET /api/companies/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:23,773 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-20 20:12:23,774 basehttp "GET /api/companies/ HTTP/1.1" 200 752
+INFO 2026-02-20 20:12:23,807 middleware GET /api/memberships/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f)
+INFO 2026-02-20 20:12:23,817 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-20 20:12:23,819 basehttp "GET /api/memberships/?company=7b03c48d-f096-41c8-abb7-c520cf882fb0 HTTP/1.1" 200 473
+INFO 2026-02-20 20:12:23,956 middleware GET /api/controls/applied-controls/dashboard/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:12:23,971 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-20 20:12:23,972 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-20 20:12:28,943 middleware GET /api/controls/applied-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:12:28,952 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-20 20:12:28,953 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-20 20:12:30,334 basehttp "OPTIONS /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 0
+INFO 2026-02-20 20:12:30,343 middleware GET /api/controls/reference-controls/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:12:30,368 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-02-20 20:12:30,369 basehttp "GET /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 12660
+INFO 2026-02-20 20:12:33,242 basehttp "OPTIONS /api/controls/applied-controls/apply_control/ HTTP/1.1" 200 0
+INFO 2026-02-20 20:12:33,251 middleware POST /api/controls/applied-controls/apply_control/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+ERROR 2026-02-20 20:12:33,290 log Internal Server Error: /api/controls/applied-controls/apply_control/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 172, in apply_control
+    applied_control = ControlApplicationService.apply_control(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: controls.services.ControlApplicationService.apply_control() got multiple values for keyword argument 'reference_control'
+INFO 2026-02-20 20:12:33,292 middleware POST /api/controls/applied-controls/apply_control/ | Status: 500
+ERROR 2026-02-20 20:12:33,293 basehttp "POST /api/controls/applied-controls/apply_control/ HTTP/1.1" 500 114526
+INFO 2026-02-20 20:12:40,328 middleware POST /api/auth/logout/ | User: tester@testing.com (ID: d1d9a0c8-3d9b-4fd1-8f4d-1224ad0fd79f) | Company: RAMAQs consulting (ID: 7b03c48d-f096-41c8-abb7-c520cf882fb0)
+INFO 2026-02-20 20:12:40,335 middleware POST /api/auth/logout/ | Status: 200
+INFO 2026-02-20 20:12:40,336 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 38

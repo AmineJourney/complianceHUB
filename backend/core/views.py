@@ -8,10 +8,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.core.mail import send_mail
+from django.conf import settings as django_settings
 from django.db import transaction
 from django.utils import timezone
 
-from .models import Company, Membership, Invitation
+from .models import Company, Membership, Invitation, PasswordResetToken
 from .serializers import (
     UserSerializer, UserRegistrationSerializer,
     CompanySerializer, MembershipSerializer, MembershipUpdateSerializer,
@@ -96,7 +98,7 @@ def change_password(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def logout(request):
     """POST /api/auth/logout/"""
     try:
@@ -106,6 +108,144 @@ def logout(request):
         return Response({'message': 'Logged out successfully.'})
     except Exception as e:
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def request_password_reset(request):
+    """
+    POST /api/auth/password-reset/
+    Body: { "email": "user@example.com" }
+
+    Always returns 200 regardless of whether the email exists (prevents enumeration).
+
+    Without SMTP (DEBUG=True):  the reset link is returned directly in the
+                                response as `reset_link` so you can use it
+                                immediately without any email setup.
+    With SMTP (DEBUG=False):    the link is sent by email and NOT included
+                                in the response.
+    """
+    email = request.data.get('email', '').strip().lower()
+    if not email:
+        return Response({'error': 'Email is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Always return the same message to prevent user enumeration
+    generic_response = Response({
+        'message': 'If an account with that email exists, a reset link has been sent.'
+    })
+
+    try:
+        user = User.objects.get(email=email, is_deleted=False)
+    except User.DoesNotExist:
+        return generic_response
+
+    # Invalidate any existing unused tokens for this user
+    PasswordResetToken.objects.filter(
+        user=user,
+        used_at__isnull=True
+    ).update(expires_at=timezone.now())
+
+    # Create a new token
+    ip = (
+        request.META.get('HTTP_X_FORWARDED_FOR', '').split(',')[0].strip()
+        or request.META.get('REMOTE_ADDR')
+    )
+    reset_token = PasswordResetToken.objects.create(user=user, ip_address=ip or None)
+
+    # Build the reset link (frontend URL)
+    frontend_base = getattr(django_settings, 'FRONTEND_URL', 'http://localhost:5173')
+    reset_link = f"{frontend_base}/reset-password?token={reset_token.token}"
+
+    if django_settings.DEBUG:
+        # No SMTP configured — return the link directly so dev can test immediately.
+        # This branch is never reached in production (DEBUG=False).
+        return Response({
+            'message': 'Reset link generated. Copy it below (dev mode — no email sent).',
+            'reset_link': reset_link,
+            'expires_in_minutes': 60,
+        })
+
+    # Production path — send email
+    try:
+        send_mail(
+            subject='Password Reset Request',
+            message=(
+                f"Hi {user.first_name or user.email},\n\n"
+                f"You requested a password reset. Click the link below to set a new password:\n\n"
+                f"{reset_link}\n\n"
+                f"This link expires in 1 hour.\n\n"
+                f"If you did not request this, you can safely ignore this email."
+            ),
+            from_email=getattr(django_settings, 'DEFAULT_FROM_EMAIL', 'noreply@compliancehub.com'),
+            recipient_list=[user.email],
+            fail_silently=False,
+        )
+    except Exception:
+        # Log but don't reveal the failure to the caller
+        import logging
+        logging.getLogger(__name__).exception('Failed to send password reset email to %s', email)
+
+    return generic_response
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def confirm_password_reset(request):
+    """
+    POST /api/auth/password-reset/confirm/
+    Body: { "token": "...", "new_password": "...", "new_password_confirm": "..." }
+    """
+    token_str = request.data.get('token', '').strip()
+    new_password = request.data.get('new_password', '')
+    new_password_confirm = request.data.get('new_password_confirm', '')
+
+    if not token_str:
+        return Response({'error': 'Token is required.'}, status=status.HTTP_400_BAD_REQUEST)
+    if not new_password or not new_password_confirm:
+        return Response({'error': 'Both password fields are required.'}, status=status.HTTP_400_BAD_REQUEST)
+    if new_password != new_password_confirm:
+        return Response({'error': 'Passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        reset_token = PasswordResetToken.objects.select_related('user').get(token=token_str)
+    except PasswordResetToken.DoesNotExist:
+        return Response({'error': 'Invalid or expired reset token.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not reset_token.is_valid:
+        return Response({'error': 'This reset link has expired or already been used.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    user = reset_token.user
+
+    try:
+        validate_password(new_password, user)
+    except DjangoValidationError as e:
+        return Response({'error': list(e.messages)}, status=status.HTTP_400_BAD_REQUEST)
+
+    with transaction.atomic():
+        user.set_password(new_password)
+        user.save(update_fields=['password'])
+        reset_token.use()
+
+    return Response({'message': 'Password has been reset successfully. You can now log in.'})
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def validate_reset_token(request):
+    """
+    GET /api/auth/password-reset/validate/?token=<token>
+    Returns whether a token is still valid — used by the frontend reset page
+    to show an error before the user even fills the form.
+    """
+    token_str = request.query_params.get('token', '').strip()
+    if not token_str:
+        return Response({'valid': False, 'error': 'Token is required.'})
+
+    try:
+        reset_token = PasswordResetToken.objects.get(token=token_str)
+        return Response({'valid': reset_token.is_valid})
+    except PasswordResetToken.DoesNotExist:
+        return Response({'valid': False})
 
 
 # ─── COMPANY ─────────────────────────────────────────────────────────────────

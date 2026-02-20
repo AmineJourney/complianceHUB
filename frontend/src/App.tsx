@@ -23,6 +23,8 @@ import { AppLayout } from "./components/layout/AppLayout";
 import { Login } from "./features/auth/Login";
 import { Register } from "./features/auth/Register";
 import { AcceptInvite } from "./features/auth/AcceptInvite";
+import { ForgotPassword } from "./features/auth/ForgotPassword";
+import { ResetPassword } from "./features/auth/ResetPassword";
 import { CompanySelector } from "./features/auth/CompanySelector";
 import { Dashboard } from "./features/dashboard/Dashboard";
 import { ControlList } from "./features/controls/ControlList";
@@ -83,6 +85,8 @@ function App() {
           {/* ── Public routes ───────────────────────────────────────────── */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           {/* Invite accept — fully public, works for guests too */}
           <Route path="/invite/:token" element={<AcceptInvite />} />

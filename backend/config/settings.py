@@ -316,3 +316,33 @@ if not DEBUG:
 # File upload settings
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EMAIL CONFIGURATION
+# Add this block anywhere in config/settings.py (e.g. after the JWT section).
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Frontend base URL — used to build password-reset links
+FRONTEND_URL = env('FRONTEND_URL', default='http://localhost:5173')
+
+# ----- Without SMTP (current setup) -----------------------------------------
+# With DEBUG=True the reset link is returned directly in the API response.
+# No email backend config is needed. This is already the default behaviour.
+# Just make sure DEBUG=True in your .env.
+
+# ----- With SMTP (when you're ready) ----------------------------------------
+# Set DEBUG=False and add these to your .env, then uncomment:
+#
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST    = env('EMAIL_HOST', default='smtp.gmail.com')
+# EMAIL_PORT    = env.int('EMAIL_PORT', default=587)
+# EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+# EMAIL_HOST_USER     = env('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+# DEFAULT_FROM_EMAIL  = env('DEFAULT_FROM_EMAIL', default='noreply@yourapp.com')
+
+# Fallback (prints emails to the console — safe default for dev)
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# In production with DEBUG=False, Django's default backend is
+# django.core.mail.backends.smtp.EmailBackend — configure the vars above.

@@ -139,8 +139,12 @@ class Membership(TimeStampedModel, SoftDeleteModel):
                 )
 
 
-def _default_expiry():
+def _default_invite_expiry():
     return timezone.now() + timedelta(days=7)
+
+
+def _default_reset_expiry():
+    return timezone.now() + timedelta(hours=1)
 
 
 class Invitation(TimeStampedModel):
@@ -177,7 +181,7 @@ class Invitation(TimeStampedModel):
         default=secrets.token_urlsafe
     )
 
-    expires_at = models.DateTimeField(default=_default_expiry)
+    expires_at = models.DateTimeField(default=_default_invite_expiry)
 
     accepted_at = models.DateTimeField(null=True, blank=True)
     accepted_by = models.ForeignKey(
@@ -247,6 +251,56 @@ class Invitation(TimeStampedModel):
         self.save()
 
         return membership
+
+
+class PasswordResetToken(TimeStampedModel):
+    """
+    Single-use token for password reset.
+    Expires after 1 hour. used_at is stamped on successful reset (prevents reuse).
+
+    Without SMTP: in DEBUG mode the API returns the reset link directly in the
+                  response so you can paste it into the browser.
+    With SMTP:    set EMAIL_BACKEND + credentials in settings.py and the link
+                  will be emailed automatically instead.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='password_reset_tokens'
+    )
+    token = models.CharField(
+        max_length=64,
+        unique=True,
+        default=secrets.token_urlsafe
+    )
+    expires_at = models.DateTimeField(default=_default_reset_expiry)
+    used_at = models.DateTimeField(null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'password_reset_tokens'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['token']),
+            models.Index(fields=['user', '-created_at']),
+        ]
+
+    def __str__(self):
+        return f"Reset token for {self.user.email}"
+
+    @property
+    def is_expired(self):
+        return timezone.now() > self.expires_at
+
+    @property
+    def is_valid(self):
+        return self.used_at is None and not self.is_expired
+
+    def use(self):
+        """Mark token as consumed so it cannot be reused."""
+        self.used_at = timezone.now()
+        self.save(update_fields=['used_at'])
 
 
 # Permission matrix (kept for reference by permission classes)

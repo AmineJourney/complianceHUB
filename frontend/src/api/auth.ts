@@ -1,4 +1,4 @@
-// src/api/auth.ts - UPDATED VERSION
+// src/api/auth.ts
 import apiClient from "./client";
 import type {
   LoginRequest,
@@ -10,7 +10,8 @@ import type {
 } from "@/types/auth.types";
 
 export const authApi = {
-  // Login - returns JWT tokens and user's companies
+  // ── Auth ──────────────────────────────────────────────────────────────────
+
   login: async (credentials: LoginRequest): Promise<LoginResponse> => {
     const response = await apiClient.post<LoginResponse>(
       "/auth/token/",
@@ -19,35 +20,34 @@ export const authApi = {
     return response.data;
   },
 
-  // Register new user
   register: async (data: RegisterRequest): Promise<User> => {
     const response = await apiClient.post<User>("/auth/register/", data);
     return response.data;
   },
 
-  // Refresh access token
   refreshToken: async (refresh: string): Promise<{ access: string }> => {
     const response = await apiClient.post("/auth/token/refresh/", { refresh });
     return response.data;
   },
 
-  // Get current user details
   getCurrentUser: async (): Promise<User> => {
     const response = await apiClient.get<User>("/auth/me/");
     return response.data;
   },
 
-  // Get user's companies
-  getCompanies: async (): Promise<Company[]> => {
-    const response = await apiClient.get<{
-      count: number;
-      results: Company[];
-    }>("/companies/");
+  logout: async (refreshToken: string): Promise<void> => {
+    await apiClient.post("/auth/logout/", { refresh: refreshToken });
+  },
 
+  // ── Company / membership ──────────────────────────────────────────────────
+
+  getCompanies: async (): Promise<Company[]> => {
+    const response = await apiClient.get<{ count: number; results: Company[] }>(
+      "/companies/",
+    );
     return response.data.results;
   },
 
-  // Get memberships - with optional filter by company
   getMemberships: async (params?: {
     company?: string;
   }): Promise<{ results: Membership[] }> => {
@@ -58,7 +58,6 @@ export const authApi = {
     return response.data;
   },
 
-  // Create company (with automatic owner membership)
   createCompany: async (name: string): Promise<Company> => {
     const response = await apiClient.post<Company>(
       "/companies/create_with_membership/",
@@ -67,8 +66,48 @@ export const authApi = {
     return response.data;
   },
 
-  // Logout - blacklist refresh token
-  logout: async (refreshToken: string): Promise<void> => {
-    await apiClient.post("/auth/logout/", { refresh: refreshToken });
+  // ── Password reset ────────────────────────────────────────────────────────
+
+  /**
+   * POST /api/auth/password-reset/
+   * Always returns 200.
+   * In DEBUG mode the backend also returns `reset_link` — shown on-screen.
+   */
+  requestPasswordReset: async (
+    email: string,
+  ): Promise<{
+    message: string;
+    reset_link?: string; // only present when DEBUG=True
+    expires_in_minutes?: number;
+  }> => {
+    const response = await apiClient.post("/auth/password-reset/", { email });
+    return response.data;
+  },
+
+  /**
+   * GET /api/auth/password-reset/validate/?token=<token>
+   * Returns { valid: boolean } — lets the ResetPassword page show an
+   * error immediately if the link is already expired/used.
+   */
+  validateResetToken: async (token: string): Promise<{ valid: boolean }> => {
+    const response = await apiClient.get(
+      `/auth/password-reset/validate/?token=${token}`,
+    );
+    return response.data;
+  },
+
+  /**
+   * POST /api/auth/password-reset/confirm/
+   */
+  confirmPasswordReset: async (data: {
+    token: string;
+    new_password: string;
+    new_password_confirm: string;
+  }): Promise<{ message: string }> => {
+    const response = await apiClient.post(
+      "/auth/password-reset/confirm/",
+      data,
+    );
+    return response.data;
   },
 };
