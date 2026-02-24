@@ -1,4 +1,4 @@
-// src/features/auth/CompanySelector.tsx - UPDATED VERSION
+// src/features/auth/CompanySelector.tsx
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -24,66 +24,47 @@ export function CompanySelector() {
   const [newCompanyName, setNewCompanyName] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch user's companies
   const { data: companies, isLoading } = useQuery({
     queryKey: ["companies"],
     queryFn: authApi.getCompanies,
   });
 
-  // Select company mutation
+  // ── Select existing company ───────────────────────────────────────────────
   const selectCompanyMutation = useMutation({
     mutationFn: async (companyId: string) => {
-      // Get full company details
-      const allCompanies = await authApi.getCompanies();
+      const [allCompanies, membershipsResponse] = await Promise.all([
+        authApi.getCompanies(),
+        authApi.getMemberships({ company: companyId }),
+      ]);
+
       const selectedCompany = allCompanies.find((c) => c.id === companyId);
-
-      if (!selectedCompany) {
-        throw new Error("Company not found");
-      }
-
-      // Get membership for this company
-      const membershipsResponse = await authApi.getMemberships({
-        company: companyId,
-      });
-
-      if (membershipsResponse.results.length === 0) {
-        throw new Error("No membership found for this company");
-      }
+      if (!selectedCompany) throw new Error("Company not found");
 
       const membership = membershipsResponse.results[0];
+      if (!membership)
+        throw new Error(
+          "No membership found for this company — please contact the company owner",
+        );
 
       return { company: selectedCompany, membership };
     },
     onSuccess: ({ company, membership }) => {
-      // Set company and membership in store
       setCompany(company, membership);
-
-      // Navigate to dashboard
       navigate("/dashboard");
     },
-    onError: (err) => {
-      setError(getErrorMessage(err));
-    },
+    onError: (err) => setError(getErrorMessage(err)),
   });
 
-  // Create company mutation
+  // ── Create new company ────────────────────────────────────────────────────
   const createCompanyMutation = useMutation({
-    mutationFn: authApi.createCompany,
-    onSuccess: async (newCompany) => {
-      // After creating company, get the membership
-      const membershipsResponse = await authApi.getMemberships({
-        company: newCompany.id,
-      });
-
-      if (membershipsResponse.results.length > 0) {
-        const membership = membershipsResponse.results[0];
-        setCompany(newCompany, membership);
-        navigate("/dashboard");
-      }
+    mutationFn: (name: string) => authApi.createCompany(name),
+    onSuccess: ({ company, membership }) => {
+      // Backend returns both company + membership in one response —
+      // set them directly, no second round-trip needed.
+      setCompany(company, membership);
+      navigate("/dashboard");
     },
-    onError: (err) => {
-      setError(getErrorMessage(err));
-    },
+    onError: (err) => setError(getErrorMessage(err)),
   });
 
   const handleSelectCompany = (companyId: string) => {
@@ -94,15 +75,17 @@ export function CompanySelector() {
   const handleCreateCompany = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
-    if (!newCompanyName.trim()) {
+    const name = newCompanyName.trim();
+    if (!name) {
       setError("Company name is required");
       return;
     }
-
-    createCompanyMutation.mutate(newCompanyName.trim());
+    createCompanyMutation.mutate(name);
   };
-  console.log("Companies in selector:", companies);
+
+  const isBusy =
+    selectCompanyMutation.isPending || createCompanyMutation.isPending;
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -122,142 +105,134 @@ export function CompanySelector() {
           </p>
         </div>
 
-        {/* Error Message */}
+        {/* Error */}
         {error && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
             {error}
           </div>
         )}
 
-        {/* Existing Companies */}
+        {/* Existing companies */}
         {!showCreateForm && (
           <div className="space-y-4">
             {companies && companies.length > 0 ? (
               <>
-                <div className="grid gap-4">
+                <div className="grid gap-3">
                   {companies.map((company) => (
                     <Card
                       key={company.id}
-                      className="hover:border-primary transition-colors cursor-pointer"
+                      className="cursor-pointer hover:shadow-md transition-shadow border-2 hover:border-primary/50"
                       onClick={() => handleSelectCompany(company.id)}
                     >
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                              <Building2 className="h-6 w-6 text-primary" />
-                            </div>
-                            <div>
-                              <CardTitle className="text-lg">
-                                {company.name}
-                              </CardTitle>
-                              <CardDescription>
-                                {company.plan && `${company.plan} plan`}
-                              </CardDescription>
-                            </div>
-                          </div>
-                          <Button
-                            size="sm"
-                            disabled={selectCompanyMutation.isPending}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleSelectCompany(company.id);
-                            }}
-                          >
-                            {selectCompanyMutation.isPending &&
-                            selectCompanyMutation.variables === company.id ? (
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                            ) : (
-                              "Select"
-                            )}
-                          </Button>
+                      <CardContent className="flex items-center gap-4 p-4">
+                        <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Building2 className="h-6 w-6 text-primary" />
                         </div>
-                      </CardHeader>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-gray-900 truncate">
+                            {company.name}
+                          </p>
+                          <p className="text-sm text-gray-500 capitalize">
+                            {company.plan} plan
+                          </p>
+                        </div>
+                        {selectCompanyMutation.isPending && (
+                          <Loader2 className="h-5 w-5 animate-spin text-primary flex-shrink-0" />
+                        )}
+                      </CardContent>
                     </Card>
                   ))}
                 </div>
 
-                {/* Create New Company Button */}
-                <Button
-                  variant="outline"
-                  className="w-full"
-                  onClick={() => setShowCreateForm(true)}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Create New Company
-                </Button>
+                <div className="text-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowCreateForm(true)}
+                    className="gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Create another company
+                  </Button>
+                </div>
               </>
             ) : (
-              // No companies - show create form
+              /* No companies yet — show create form directly */
               <Card>
                 <CardHeader>
-                  <CardTitle>No Companies Found</CardTitle>
+                  <CardTitle>Create your first company</CardTitle>
                   <CardDescription>
-                    Create your first company to get started
+                    Set up a company workspace to get started
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button
-                    onClick={() => setShowCreateForm(true)}
-                    className="w-full"
-                  >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create Company
-                  </Button>
+                  <form onSubmit={handleCreateCompany} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="company-name">Company name</Label>
+                      <Input
+                        id="company-name"
+                        value={newCompanyName}
+                        onChange={(e) => setNewCompanyName(e.target.value)}
+                        placeholder="Acme Corp"
+                        disabled={isBusy}
+                        autoFocus
+                      />
+                    </div>
+                    <Button type="submit" className="w-full" disabled={isBusy}>
+                      {createCompanyMutation.isPending ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Creating…
+                        </>
+                      ) : (
+                        "Create Company"
+                      )}
+                    </Button>
+                  </form>
                 </CardContent>
               </Card>
             )}
           </div>
         )}
 
-        {/* Create Company Form */}
+        {/* Create company form (when user already has companies) */}
         {showCreateForm && (
           <Card>
             <CardHeader>
-              <CardTitle>Create New Company</CardTitle>
-              <CardDescription>
-                Enter your company name to get started
-              </CardDescription>
+              <CardTitle>Create a new company</CardTitle>
+              <CardDescription>You'll be set as the owner</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleCreateCompany} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="company-name">Company Name</Label>
+                  <Label htmlFor="new-company-name">Company name</Label>
                   <Input
-                    id="company-name"
-                    placeholder="Acme Corporation"
+                    id="new-company-name"
                     value={newCompanyName}
                     onChange={(e) => setNewCompanyName(e.target.value)}
-                    disabled={createCompanyMutation.isPending}
-                    required
+                    placeholder="Acme Corp"
+                    disabled={isBusy}
+                    autoFocus
                   />
                 </div>
-
-                <div className="flex space-x-2">
+                <div className="flex gap-3">
                   <Button
                     type="button"
                     variant="outline"
+                    className="flex-1"
                     onClick={() => {
                       setShowCreateForm(false);
                       setNewCompanyName("");
                       setError(null);
                     }}
-                    disabled={createCompanyMutation.isPending}
-                    className="flex-1"
+                    disabled={isBusy}
                   >
                     Cancel
                   </Button>
-                  <Button
-                    type="submit"
-                    disabled={
-                      createCompanyMutation.isPending || !newCompanyName.trim()
-                    }
-                    className="flex-1"
-                  >
+                  <Button type="submit" className="flex-1" disabled={isBusy}>
                     {createCompanyMutation.isPending ? (
                       <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Creating...
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Creating…
                       </>
                     ) : (
                       "Create Company"

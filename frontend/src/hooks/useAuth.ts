@@ -1,4 +1,4 @@
-// src/hooks/useAuth.ts - REFACTORED VERSION
+// src/hooks/useAuth.ts
 import { useAuthStore } from "@/stores/authStore";
 import { authApi } from "@/api/auth";
 import { useMutation } from "@tanstack/react-query";
@@ -17,45 +17,40 @@ export function useAuth() {
     logout: logoutStore,
   } = useAuthStore();
 
-  // Login mutation
+  // ── Login ─────────────────────────────────────────────────────────────────
   const loginMutation = useMutation({
     mutationFn: async (credentials: LoginRequest) => {
-      // 1. Get tokens
       const loginResponse = await authApi.login(credentials);
-
-      // 2. Temporarily set tokens so authenticated requests work
+      // Set tokens early so subsequent authenticated requests work
       setAuth(null, loginResponse.access, loginResponse.refresh);
 
-      // 3. Fetch current user details
-      const currentUser = await authApi.getCurrentUser();
+      const [currentUser, companies] = await Promise.all([
+        authApi.getCurrentUser(),
+        authApi.getCompanies(),
+      ]);
 
-      // 4. Fetch user's companies
-      const companies = await authApi.getCompanies();
-      console.log("User's companies:", companies);
-
-      return {
-        tokens: {
-          access: loginResponse.access,
-          refresh: loginResponse.refresh,
-        },
-        user: currentUser,
-        companies,
-      };
+      return { tokens: loginResponse, user: currentUser, companies };
     },
-    onSuccess: ({ tokens, user, companies }) => {
-      // Set auth with complete user data
+    onSuccess: async ({ tokens, user, companies }) => {
       setAuth(user, tokens.access, tokens.refresh);
 
-      // Handle company selection
       if (companies.length === 0) {
-        // No companies - redirect to create company
-        navigate("/create-company");
+        navigate("/select-company");
       } else if (companies.length === 1) {
-        // Single company - auto-select it
-        const singleCompany = companies[0];
-        handleAutoSelectCompany(singleCompany.id);
+        // Auto-select the only company
+        try {
+          const membershipsResponse = await authApi.getMemberships({
+            company: companies[0].id,
+          });
+          const mem = membershipsResponse.results[0];
+          if (!mem) throw new Error("No membership");
+          setCompany(companies[0], mem);
+          navigate("/dashboard");
+        } catch {
+          // Membership fetch failed — let user pick manually
+          navigate("/select-company");
+        }
       } else {
-        // Multiple companies - show selector
         navigate("/select-company");
       }
     },
@@ -64,82 +59,34 @@ export function useAuth() {
     },
   });
 
-  // Auto-select company for single-company users
-  const handleAutoSelectCompany = async (companyId: string) => {
-    try {
-      // Fetch full company details
-      const companies = await authApi.getCompanies();
-      const selectedCompany = companies.find((c) => c.id === companyId);
-
-      if (!selectedCompany) {
-        throw new Error("Company not found");
-      }
-
-      // Fetch membership for this company
-      const memberships = await authApi.getMemberships({ company: companyId });
-
-      if (memberships.results.length === 0) {
-        throw new Error("No membership found for company");
-      }
-
-      const userMembership = memberships.results[0];
-
-      // Set company and membership in store
-      setCompany(selectedCompany, userMembership);
-
-      // Navigate to dashboard
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Auto-select company failed:", error);
-      // Fallback to company selector
-      navigate("/select-company");
-    }
-  };
-
-  // Register mutation
+  // ── Register ──────────────────────────────────────────────────────────────
   const registerMutation = useMutation({
     mutationFn: authApi.register,
-    onSuccess: () => {
-      // Redirect to login after successful registration
-      navigate("/login");
-    },
-    onError: (error) => {
-      console.error("Registration failed:", error);
-    },
+    onSuccess: () => navigate("/login"),
+    onError: (error) => console.error("Registration failed:", error),
   });
 
-  // Logout function
+  // ── Logout ────────────────────────────────────────────────────────────────
   const logoutUser = async () => {
     try {
       const { refreshToken } = useAuthStore.getState();
-
-      if (refreshToken) {
-        // Attempt to blacklist the refresh token on backend
-        await authApi.logout(refreshToken);
-      }
-    } catch (error) {
-      // Log error but don't prevent logout
-      console.error("Logout API call failed:", error);
+      if (refreshToken) await authApi.logout(refreshToken);
+    } catch {
+      // Non-fatal — always clear local state
     } finally {
-      // Always clear local state
       logoutStore();
       navigate("/login");
     }
   };
 
   return {
-    // State
     user,
     company,
     membership,
     isAuthenticated,
-
-    // Actions
     login: loginMutation.mutate,
     register: registerMutation.mutate,
     logout: logoutUser,
-
-    // Status
     isLoading: loginMutation.isPending || registerMutation.isPending,
     error: loginMutation.error || registerMutation.error,
   };

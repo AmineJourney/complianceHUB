@@ -15,6 +15,8 @@ export interface ReferenceControl {
   priority: "critical" | "high" | "medium" | "low";
   is_published: boolean;
   mapped_requirements_count: number;
+  /** Framework codes this reference control is mapped to */
+  frameworks: string[];
   created_at: string;
 }
 
@@ -24,6 +26,9 @@ export interface AppliedControl {
   reference_control: string;
   reference_control_code: string;
   reference_control_name: string;
+  reference_control_description?: string;
+  reference_control_family?: string;
+  reference_control_type?: string;
   department?: string;
   department_name?: string;
   status:
@@ -44,6 +49,8 @@ export interface AppliedControl {
   evidence_count: number;
   compliance_score: number;
   is_overdue: boolean;
+  /** Framework codes satisfied by this applied control — e.g. ["ISO-27001", "TISAX"] */
+  frameworks: string[];
   created_at: string;
 }
 

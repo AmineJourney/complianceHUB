@@ -60,6 +60,8 @@ export interface AppliedControlEvidence {
   linked_by?: string;
   linked_by_email?: string;
   relevance_score: number;
+  /** Frameworks this control satisfies — e.g. ["ISO-27001", "TISAX"] */
+  frameworks: string[];
   created_at: string;
 }
 

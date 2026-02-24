@@ -58,37 +58,34 @@ export const authApi = {
     return response.data;
   },
 
-  createCompany: async (name: string): Promise<Company> => {
-    const response = await apiClient.post<Company>(
-      "/companies/create_with_membership/",
-      { name },
-    );
+  /**
+   * POST /api/companies/create_with_membership/
+   * Backend returns { company, membership } — we return both so the caller
+   * can set the store directly without a second round-trip.
+   */
+  createCompany: async (
+    name: string,
+  ): Promise<{ company: Company; membership: Membership }> => {
+    const response = await apiClient.post<{
+      company: Company;
+      membership: Membership;
+    }>("/companies/create_with_membership/", { name });
     return response.data;
   },
 
   // ── Password reset ────────────────────────────────────────────────────────
 
-  /**
-   * POST /api/auth/password-reset/
-   * Always returns 200.
-   * In DEBUG mode the backend also returns `reset_link` — shown on-screen.
-   */
   requestPasswordReset: async (
     email: string,
   ): Promise<{
     message: string;
-    reset_link?: string; // only present when DEBUG=True
+    reset_link?: string;
     expires_in_minutes?: number;
   }> => {
     const response = await apiClient.post("/auth/password-reset/", { email });
     return response.data;
   },
 
-  /**
-   * GET /api/auth/password-reset/validate/?token=<token>
-   * Returns { valid: boolean } — lets the ResetPassword page show an
-   * error immediately if the link is already expired/used.
-   */
   validateResetToken: async (token: string): Promise<{ valid: boolean }> => {
     const response = await apiClient.get(
       `/auth/password-reset/validate/?token=${token}`,
@@ -96,9 +93,6 @@ export const authApi = {
     return response.data;
   },
 
-  /**
-   * POST /api/auth/password-reset/confirm/
-   */
   confirmPasswordReset: async (data: {
     token: string;
     new_password: string;

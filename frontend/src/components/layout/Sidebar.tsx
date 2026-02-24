@@ -41,7 +41,7 @@ export function Sidebar() {
   const location = useLocation();
   const { sidebarOpen, toggleSidebar } = useUIStore();
   const { company } = useAuthStore();
-  console.log("Company in Sidebar:", company);
+
   return (
     <>
       {/* Mobile backdrop */}
@@ -132,7 +132,7 @@ export function Sidebar() {
         {sidebarOpen && (
           <div className="flex-shrink-0 border-t border-gray-200 p-4">
             <p className="text-xs text-gray-500 text-center">
-              © 2024 ComplianceHUB
+              © 2026 ComplianceHUB
             </p>
           </div>
         )}
