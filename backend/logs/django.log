@@ -1978,3 +1978,251 @@ WARNING 2026-02-24 21:01:37,801 basehttp "GET /api/library/frameworks/f1df91f0-f
 INFO 2026-02-24 21:01:45,939 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
 INFO 2026-02-24 21:01:45,953 middleware GET /api/controls/applied-controls/ | Status: 200
 INFO 2026-02-24 21:01:45,955 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 644
+INFO 2026-02-24 22:02:10,737 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-02-24 22:02:10,803 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-02-24 22:02:10,805 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-24 22:02:10,807 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-02-24 22:02:11,121 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-02-24 22:02:11,242 middleware POST /api/auth/token/refresh/ | Status: 200
+INFO 2026-02-24 22:02:11,244 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 200 582
+INFO 2026-02-24 22:02:11,275 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:11,317 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-24 22:02:11,318 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 351
+INFO 2026-02-24 22:02:11,575 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:11,596 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-24 22:02:11,597 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 644
+INFO 2026-02-24 22:02:12,949 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:13,068 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-02-24 22:02:13,071 basehttp "GET /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 24318
+INFO 2026-02-24 22:02:17,382 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-24 22:02:17,412 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-24 22:02:17,413 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-02-24 22:02:20,018 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:20,039 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-24 22:02:20,040 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-02-24 22:02:20,047 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:20,062 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-24 22:02:20,063 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-02-24 22:02:20,068 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:20,082 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-24 22:02:20,083 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-24 22:02:20,095 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-24 22:02:20,110 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-24 22:02:20,111 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-25 19:33:00,842 autoreload Watching for file changes with StatReloader
+INFO 2026-02-25 19:33:24,307 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:24,655 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-02-25 19:33:24,721 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-02-25 19:33:24,722 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-02-25 19:33:24,723 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-02-25 19:33:24,729 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:24,732 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-02-25 19:33:24,810 middleware POST /api/auth/token/refresh/ | Status: 401
+WARNING 2026-02-25 19:33:24,811 log Unauthorized: /api/auth/token/refresh/
+WARNING 2026-02-25 19:33:24,812 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 401 58
+INFO 2026-02-25 19:33:53,641 basehttp "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:53,644 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-02-25 19:33:54,236 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-25 19:33:54,237 basehttp "POST /api/auth/token/ HTTP/1.1" 200 736
+INFO 2026-02-25 19:33:54,246 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:54,246 basehttp "OPTIONS /api/companies/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:54,250 middleware GET /api/auth/me/ | User: anonymous
+INFO 2026-02-25 19:33:54,251 middleware GET /api/companies/ | User: anonymous
+INFO 2026-02-25 19:33:54,277 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-25 19:33:54,278 basehttp "GET /api/auth/me/ HTTP/1.1" 200 194
+INFO 2026-02-25 19:33:54,346 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-25 19:33:54,347 basehttp "GET /api/companies/ HTTP/1.1" 200 234
+INFO 2026-02-25 19:33:54,357 basehttp "OPTIONS /api/memberships/?company=5a938f9c-568d-406e-ab2c-5267f3a89036 HTTP/1.1" 200 0
+INFO 2026-02-25 19:33:54,359 middleware GET /api/memberships/ | User: anonymous
+INFO 2026-02-25 19:33:54,371 middleware GET /api/memberships/ | Status: 200
+INFO 2026-02-25 19:33:54,373 basehttp "GET /api/memberships/?company=5a938f9c-568d-406e-ab2c-5267f3a89036 HTTP/1.1" 200 457
+INFO 2026-02-25 19:33:54,426 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-02-25 19:33:54,476 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-25 19:33:54,479 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 351
+INFO 2026-02-25 19:34:09,593 middleware POST /api/auth/logout/ | User: anonymous
+INFO 2026-02-25 19:34:09,590 basehttp "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:34:09,610 middleware POST /api/auth/logout/ | Status: 200
+INFO 2026-02-25 19:34:09,611 basehttp "POST /api/auth/logout/ HTTP/1.1" 200 38
+INFO 2026-02-25 19:36:22,334 basehttp "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:22,336 middleware POST /api/auth/register/ | User: anonymous
+INFO 2026-02-25 19:36:22,918 middleware POST /api/auth/register/ | Status: 201
+INFO 2026-02-25 19:36:22,919 basehttp "POST /api/auth/register/ HTTP/1.1" 201 248
+INFO 2026-02-25 19:36:28,461 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-02-25 19:36:29,042 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-02-25 19:36:29,043 basehttp "POST /api/auth/token/ HTTP/1.1" 200 597
+INFO 2026-02-25 19:36:29,051 middleware GET /api/auth/me/ | User: anonymous
+INFO 2026-02-25 19:36:29,051 middleware GET /api/companies/ | User: anonymous
+INFO 2026-02-25 19:36:29,058 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-02-25 19:36:29,059 basehttp "GET /api/auth/me/ HTTP/1.1" 200 198
+INFO 2026-02-25 19:36:29,061 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-25 19:36:29,062 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:29,081 middleware GET /api/companies/ | User: anonymous
+INFO 2026-02-25 19:36:29,089 middleware GET /api/companies/ | Status: 200
+INFO 2026-02-25 19:36:29,090 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:33,440 basehttp "OPTIONS /api/companies/create_with_membership/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:33,445 middleware POST /api/companies/create_with_membership/ | User: anonymous
+INFO 2026-02-25 19:36:33,454 middleware POST /api/companies/create_with_membership/ | Status: 201
+INFO 2026-02-25 19:36:33,455 basehttp "POST /api/companies/create_with_membership/ HTTP/1.1" 201 603
+INFO 2026-02-25 19:36:33,503 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:33,542 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-02-25 19:36:33,543 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-02-25 19:36:45,597 basehttp "OPTIONS /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:45,609 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:45,621 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-25 19:36:45,623 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:46,966 basehttp "OPTIONS /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:46,966 basehttp "OPTIONS /api/evidence/evidence/analytics/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:46,976 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:46,977 middleware GET /api/evidence/evidence/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:47,002 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-02-25 19:36:47,004 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:47,011 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-02-25 19:36:47,013 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-02-25 19:36:47,834 basehttp "OPTIONS /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:47,834 basehttp "OPTIONS /api/risk/risks/summary/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:47,846 middleware GET /api/risk/risks/summary/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:47,846 middleware GET /api/risk/risks/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:47,862 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-02-25 19:36:47,863 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-02-25 19:36:47,874 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-02-25 19:36:47,875 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:48,783 basehttp "OPTIONS /api/compliance/results/overview/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:48,784 basehttp "OPTIONS /api/compliance/adoptions/active/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:48,788 basehttp "OPTIONS /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:48,795 basehttp "OPTIONS /api/compliance/gaps/open/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:48,803 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:48,806 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:48,824 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-25 19:36:48,826 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-02-25 19:36:48,834 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:48,841 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-02-25 19:36:48,842 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-02-25 19:36:48,850 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:48,860 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-25 19:36:48,861 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-25 19:36:48,892 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-02-25 19:36:48,893 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-02-25 19:36:49,738 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:49,759 middleware GET /api/organizations/departments/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:36:49,778 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-25 19:36:49,780 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-25 19:36:50,597 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:50,603 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-25 19:36:50,642 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-25 19:36:50,643 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-02-25 19:36:53,589 basehttp "OPTIONS /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 0
+INFO 2026-02-25 19:36:53,593 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-25 19:36:53,615 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-25 19:36:53,616 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 1892
+INFO 2026-02-25 19:37:04,593 basehttp "OPTIONS /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:04,602 middleware POST /api/compliance/adoptions/adopt_framework/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:04,614 middleware POST /api/compliance/adoptions/adopt_framework/ | Status: 201
+INFO 2026-02-25 19:37:04,615 basehttp "POST /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 201 818
+INFO 2026-02-25 19:37:04,628 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:04,629 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:04,637 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-25 19:37:04,639 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-02-25 19:37:04,639 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-02-25 19:37:04,641 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-02-25 19:37:08,250 basehttp "OPTIONS /api/compliance/results/calculate_all/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:08,261 middleware POST /api/compliance/results/calculate_all/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:08,899 middleware POST /api/compliance/results/calculate_all/ | Status: 201
+INFO 2026-02-25 19:37:08,901 basehttp "POST /api/compliance/results/calculate_all/ HTTP/1.1" 201 118
+INFO 2026-02-25 19:37:08,914 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:08,924 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-02-25 19:37:08,926 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 335
+INFO 2026-02-25 19:37:16,029 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:16,040 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-02-25 19:37:16,042 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-02-25 19:37:17,562 basehttp "OPTIONS /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:17,577 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:17,708 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-02-25 19:37:17,710 basehttp "GET /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 24318
+INFO 2026-02-25 19:37:32,816 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-25 19:37:32,845 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-25 19:37:32,846 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-02-25 19:37:34,159 basehttp "OPTIONS /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:34,159 basehttp "OPTIONS /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:34,159 basehttp "OPTIONS /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:34,165 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | User: anonymous
+INFO 2026-02-25 19:37:34,166 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | User: anonymous
+INFO 2026-02-25 19:37:34,167 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:37:34,571 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | Status: 200
+INFO 2026-02-25 19:37:34,575 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ HTTP/1.1" 200 26465
+INFO 2026-02-25 19:37:34,584 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | Status: 404
+WARNING 2026-02-25 19:37:34,588 log Not Found: /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/
+WARNING 2026-02-25 19:37:34,595 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ HTTP/1.1" 404 22951
+INFO 2026-02-25 19:37:34,661 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:37:34,662 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ HTTP/1.1" 200 16116
+INFO 2026-02-25 19:37:35,613 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | User: anonymous
+INFO 2026-02-25 19:37:35,626 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | Status: 404
+WARNING 2026-02-25 19:37:35,627 log Not Found: /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/
+WARNING 2026-02-25 19:37:35,628 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ HTTP/1.1" 404 22951
+INFO 2026-02-25 19:37:54,788 middleware GET /api/organizations/departments/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:37:54,801 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-25 19:37:54,802 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-25 19:37:57,076 basehttp "OPTIONS /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:57,077 basehttp "OPTIONS /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:57,077 basehttp "OPTIONS /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ HTTP/1.1" 200 0
+INFO 2026-02-25 19:37:57,082 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | User: anonymous
+INFO 2026-02-25 19:37:57,082 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:37:57,083 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | User: anonymous
+INFO 2026-02-25 19:37:57,156 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | Status: 404
+WARNING 2026-02-25 19:37:57,166 log Not Found: /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/
+WARNING 2026-02-25 19:37:57,187 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ HTTP/1.1" 404 22951
+INFO 2026-02-25 19:37:58,061 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:37:58,064 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | Status: 200
+INFO 2026-02-25 19:37:58,066 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ HTTP/1.1" 200 35354
+INFO 2026-02-25 19:37:58,066 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ HTTP/1.1" 200 56434
+INFO 2026-02-25 19:37:58,197 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | User: anonymous
+INFO 2026-02-25 19:37:58,214 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | Status: 404
+WARNING 2026-02-25 19:37:58,214 log Not Found: /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/
+WARNING 2026-02-25 19:37:58,216 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ HTTP/1.1" 404 22951
+INFO 2026-02-25 19:42:57,140 autoreload C:\Users\legion\Desktop\compliancehub\backend\library\views.py changed, reloading.
+INFO 2026-02-25 19:42:58,982 autoreload Watching for file changes with StatReloader
+INFO 2026-02-25 19:43:15,050 autoreload Watching for file changes with StatReloader
+INFO 2026-02-25 19:43:28,342 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | User: anonymous
+INFO 2026-02-25 19:43:28,342 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | User: anonymous
+INFO 2026-02-25 19:43:28,342 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:43:28,497 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | Status: 200
+INFO 2026-02-25 19:43:28,511 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ HTTP/1.1" 200 400
+INFO 2026-02-25 19:43:29,186 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:43:29,190 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ HTTP/1.1" 200 35354
+INFO 2026-02-25 19:43:29,196 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | Status: 200
+INFO 2026-02-25 19:43:29,197 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ HTTP/1.1" 200 56434
+INFO 2026-02-25 19:43:30,812 middleware GET /api/organizations/departments/ | User: anonymous | Company: testing
+INFO 2026-02-25 19:43:30,823 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-02-25 19:43:30,824 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-02-25 19:43:31,830 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-25 19:43:31,854 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-25 19:43:31,856 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-02-25 19:43:33,235 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | User: anonymous
+INFO 2026-02-25 19:43:33,236 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:43:33,236 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | User: anonymous
+INFO 2026-02-25 19:43:33,273 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | Status: 200
+INFO 2026-02-25 19:43:33,280 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ HTTP/1.1" 200 219
+INFO 2026-02-25 19:43:33,506 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:43:33,507 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | Status: 200
+INFO 2026-02-25 19:43:33,508 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ HTTP/1.1" 200 16116
+INFO 2026-02-25 19:43:33,509 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ HTTP/1.1" 200 26465
+INFO 2026-02-25 19:44:02,516 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-02-25 19:44:02,532 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-02-25 19:44:02,533 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-02-25 19:44:03,806 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | User: anonymous
+INFO 2026-02-25 19:44:03,807 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:44:03,807 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | User: anonymous
+INFO 2026-02-25 19:44:03,843 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ | Status: 200
+INFO 2026-02-25 19:44:03,849 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/statistics/ HTTP/1.1" 200 400
+INFO 2026-02-25 19:44:04,334 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:44:04,335 middleware GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ | Status: 200
+INFO 2026-02-25 19:44:04,337 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/requirements_tree/ HTTP/1.1" 200 35354
+INFO 2026-02-25 19:44:04,337 basehttp "GET /api/library/frameworks/da6ec71c-77e8-4123-9e68-0527a3829ea6/ HTTP/1.1" 200 56434
+INFO 2026-02-25 19:44:21,139 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | User: anonymous
+INFO 2026-02-25 19:44:21,140 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | User: anonymous
+INFO 2026-02-25 19:44:21,140 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | User: anonymous
+INFO 2026-02-25 19:44:21,175 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ | Status: 200
+INFO 2026-02-25 19:44:21,182 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/statistics/ HTTP/1.1" 200 219
+INFO 2026-02-25 19:44:21,401 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ | Status: 200
+INFO 2026-02-25 19:44:21,403 middleware GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ | Status: 200
+INFO 2026-02-25 19:44:21,404 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/requirements_tree/ HTTP/1.1" 200 16116
+INFO 2026-02-25 19:44:21,405 basehttp "GET /api/library/frameworks/f1df91f0-f830-4ce2-b121-8b7395a758ca/ HTTP/1.1" 200 26465
