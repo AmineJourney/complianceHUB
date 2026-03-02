@@ -12,6 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
   BookOpen,
+  Activity,
 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 
@@ -21,6 +22,11 @@ const navigation = [
   { name: "Evidence", href: "/evidence", icon: FileText },
   { name: "Risks", href: "/risks", icon: AlertTriangle },
   { name: "Compliance", href: "/compliance", icon: CheckSquare },
+  {
+    name: "Audit Log",
+    href: "/audit",
+    icon: Activity,
+  },
   {
     name: "Departments",
     href: "/organizations/departments",

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'evidence',
     'risk',
     'compliance',
+    'audit'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     
     # Custom middleware
     'core.middleware.TenantMiddleware',
+    'audit.middleware.AuditMiddleware',
     'core.middleware.RequestLoggingMiddleware',
 ]
 

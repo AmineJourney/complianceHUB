@@ -48,6 +48,7 @@ import { DepartmentList } from "./features/organizations/DepartmentList";
 import { Profile } from "./features/profile/Profile";
 import { Settings } from "./features/settings/Settings";
 import { TeamManagement } from "./features/settings/TeamManagement";
+import { AuditLogPage } from "./features/audit/AuditLog";
 import { useState } from "react";
 
 const queryClient = new QueryClient({
@@ -112,27 +113,23 @@ function App() {
           >
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
-
             {/* Controls */}
             <Route path="controls">
               <Route index element={<ControlList />} />
               <Route path="dashboard" element={<ControlDashboard />} />
               <Route path=":id" element={<ControlDetail />} />
             </Route>
-
             {/* Evidence */}
             <Route path="evidence">
               <Route index element={<EvidenceList />} />
               <Route path=":id" element={<EvidenceDetail />} />
             </Route>
-
             {/* Risks */}
             <Route path="risks">
               <Route index element={<RiskRegister />} />
               <Route path="heat-map" element={<RiskHeatMap />} />
               <Route path=":id" element={<RiskDetail />} />
             </Route>
-
             {/* Compliance */}
             <Route path="compliance">
               <Route index element={<ComplianceDashboard />} />
@@ -144,7 +141,6 @@ function App() {
               <Route path="gaps" element={<GapPage />} />
               <Route path="reports" element={<ComplianceReports />} />
             </Route>
-
             {/* Organizations */}
             <Route
               path="organizations/departments"
@@ -154,22 +150,20 @@ function App() {
               path="organizations/departments/tree"
               element={<DepartmentTree />}
             />
-
             {/* Library */}
             <Route path="library/frameworks" element={<FrameworkList />} />
             <Route
               path="library/frameworks/:id"
               element={<FrameworkDetail />}
             />
-
             {/* Profile — FIXED: now inside ProtectedRoute + AppLayout */}
             <Route path="profile" element={<Profile />} />
-
             {/* Settings — FIXED: now inside ProtectedRoute + AppLayout */}
             <Route path="settings" element={<Settings />} />
-
             {/* Team management — FIXED: was dead /settings/users navigate() */}
             <Route path="settings/users" element={<TeamManagement />} />
+            {/* Audit Log */} ← ADD THIS
+            <Route path="audit" element={<AuditLogPage />} />
           </Route>
 
           {/* ── 404 ────────────────────────────────────────────────────────── */}
