@@ -32,10 +32,12 @@ export const controlsApi = {
      */
     adopted_only?: boolean;
   }) => {
+    console.log("Fetching reference controls with params:", params);
     const response = await apiClient.get<PaginatedResponse<ReferenceControl>>(
       "/controls/reference-controls/",
       { params },
     );
+    console.log("Received reference controls response:", response.data.results);
     return response.data;
   },
 

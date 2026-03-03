@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useMemo } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { controlsApi } from "../../api/controls";
 import {
   Dialog,
@@ -12,12 +13,10 @@ import {
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Badge } from "../../components/ui/badge";
-import { LoadingSpinner } from "../../components/common/LoadingSpinner";
 import { Search, Shield, AlertCircle } from "lucide-react";
 import { getErrorMessage } from "../../api/client";
 import type { ReferenceControl } from "../../types/control.types";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
+import { VirtualInfiniteList } from "../../components/common/VirtualInfiniteList";
 
 interface ApplyControlDialogProps {
   open: boolean;
@@ -25,16 +24,12 @@ interface ApplyControlDialogProps {
   onSuccess: () => void;
 }
 
-// ─── Style maps ───────────────────────────────────────────────────────────────
-
 const PRIORITY_STYLES: Record<string, string> = {
   critical: "bg-red-100 text-red-700",
   high: "bg-orange-100 text-orange-700",
   medium: "bg-yellow-100 text-yellow-700",
   low: "bg-gray-100 text-gray-600",
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export function ApplyControlDialog({
   open,
@@ -46,20 +41,22 @@ export function ApplyControlDialog({
   const [selectedControl, setSelectedControl] =
     useState<ReferenceControl | null>(null);
 
-  // Single query — the backend adopted_only=true filter scopes results to
-  // the frameworks this company has adopted (any status except "suspended").
-  // Framework tabs are derived from the frameworks field on each control,
-  // so we never need to call the adoptions endpoint separately.
-  const { data: controlsData, isLoading } = useQuery({
-    queryKey: ["reference-controls-adopted", search],
-    queryFn: () =>
-      controlsApi.getReferenceControls({
-        search: search || undefined,
-        page_size: 500,
-        adopted_only: true,
-      }),
-    enabled: open,
-  });
+  // ── Infinite query for paginated controls ─────────────────────────────
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
+    useInfiniteQuery({
+      queryKey: ["reference-controls-adopted", search],
+      queryFn: ({ pageParam = 1 }: { pageParam?: number }) =>
+        controlsApi.getReferenceControls({
+          page: pageParam,
+          page_size: 25,
+          search: search || undefined,
+          adopted_only: true,
+        }),
+      getNextPageParam: (lastPage: any, pages: any[]) =>
+        lastPage.next ? pages.length + 1 : undefined,
+      enabled: open,
+      initialPageParam: 1,
+    });
 
   const applyMutation = useMutation({
     mutationFn: (controlId: string) =>
@@ -70,22 +67,28 @@ export function ApplyControlDialog({
     },
   });
 
-  // Derive unique framework codes from the returned controls.
-  // This is guaranteed to reflect exactly what the backend filtered to.
+  // ── Flatten all pages ────────────────────────────────────────────────
+  const allControls = useMemo(
+    () => data?.pages.flatMap((p: any) => p.results) ?? [],
+    [data],
+  );
+
+  // ── Framework tabs ─────────────────────────────────────────────────
   const frameworkTabs = useMemo(() => {
     const codes = new Set<string>();
-    (controlsData?.results ?? []).forEach((c) => {
-      (c.frameworks ?? []).forEach((fw) => codes.add(fw));
-    });
+    allControls.forEach((c) =>
+      (c.frameworks ?? []).forEach((fw: any) => codes.add(fw)),
+    );
     return Array.from(codes).sort();
-  }, [controlsData]);
+  }, [allControls]);
 
-  // Filter the visible list by whichever tab is active
+  // ── Filtered controls by active framework ───────────────────────────
   const visibleControls = useMemo(() => {
-    const all = controlsData?.results ?? [];
-    if (activeFramework === "all") return all;
-    return all.filter((c) => (c.frameworks ?? []).includes(activeFramework));
-  }, [controlsData, activeFramework]);
+    if (activeFramework === "all") return allControls;
+    return allControls.filter((c) =>
+      (c.frameworks ?? []).includes(activeFramework),
+    );
+  }, [allControls, activeFramework]);
 
   const handleApply = () => {
     if (selectedControl) applyMutation.mutate(selectedControl.id);
@@ -102,7 +105,7 @@ export function ApplyControlDialog({
     onClose();
   };
 
-  const noControls = !isLoading && (controlsData?.results ?? []).length === 0;
+  const noControls = !isLoading && visibleControls.length === 0;
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -115,7 +118,6 @@ export function ApplyControlDialog({
         </DialogHeader>
 
         <div className="space-y-3 flex-1 overflow-hidden flex flex-col">
-          {/* ── No controls / no adoptions notice ───────────────────────── */}
           {noControls && (
             <div className="flex items-start gap-3 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
               <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0 text-amber-600" />
@@ -130,29 +132,27 @@ export function ApplyControlDialog({
             </div>
           )}
 
-          {/* ── Framework tabs ───────────────────────────────────────────── */}
           {frameworkTabs.length > 0 && (
             <div className="flex gap-1.5 flex-wrap">
-              {/* All tab */}
               <button
                 onClick={() => {
                   setActiveFramework("all");
                   setSelectedControl(null);
                 }}
-                className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                className={`px-3 py-1 rounded-full text-xs font-medium border ${
                   activeFramework === "all"
                     ? "bg-primary text-white border-primary"
                     : "bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary"
                 }`}
               >
-                All ({controlsData?.results?.length ?? 0})
+                All ({visibleControls.length})
               </button>
 
-              {/* One tab per adopted framework */}
               {frameworkTabs.map((code) => {
-                const count = (controlsData?.results ?? []).filter((c) =>
+                const count = visibleControls.filter((c) =>
                   (c.frameworks ?? []).includes(code),
                 ).length;
+
                 return (
                   <button
                     key={code}
@@ -160,7 +160,7 @@ export function ApplyControlDialog({
                       setActiveFramework(code);
                       setSelectedControl(null);
                     }}
-                    className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+                    className={`px-3 py-1 rounded-full text-xs font-medium border ${
                       activeFramework === code
                         ? "bg-primary text-white border-primary"
                         : "bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary"
@@ -173,7 +173,6 @@ export function ApplyControlDialog({
             </div>
           )}
 
-          {/* ── Search ───────────────────────────────────────────────────── */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <Input
@@ -187,103 +186,96 @@ export function ApplyControlDialog({
             />
           </div>
 
-          {/* ── Mutation error ───────────────────────────────────────────── */}
           {applyMutation.error && (
             <div className="p-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
               {getErrorMessage(applyMutation.error)}
             </div>
           )}
 
-          {/* ── Controls list ─────────────────────────────────────────────── */}
-          <div className="flex-1 overflow-y-auto border rounded-lg">
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : visibleControls.length === 0 ? (
-              <div className="text-center py-12 text-gray-500">
-                <Shield className="h-8 w-8 mx-auto mb-2 opacity-30" />
-                <p className="font-medium">No controls found</p>
-                {search && (
-                  <p className="text-sm mt-1">Try a different search term.</p>
-                )}
-              </div>
-            ) : (
-              <div className="divide-y">
-                {visibleControls.map((control) => {
-                  const isSelected = selectedControl?.id === control.id;
-                  const frameworks: string[] = control.frameworks ?? [];
+          {/* ── Virtual Infinite List ──────────────────────────────── */}
+          <div className="flex-1 border rounded-lg" style={{ height: "200px" }}>
+            <VirtualInfiniteList
+              pages={data?.pages}
+              fetchNextPage={fetchNextPage}
+              hasNextPage={!!hasNextPage}
+              isFetchingNextPage={isFetchingNextPage}
+              estimateSize={120}
+              height="100%"
+              isLoading={isLoading}
+              emptyState={
+                <div className="text-center py-12 text-gray-500">
+                  <Shield className="h-8 w-8 mx-auto mb-2 opacity-30" />a
+                  <p className="font-medium">No controls found</p>
+                </div>
+              }
+              renderItem={(control: ReferenceControl) => {
+                const isSelected = selectedControl?.id === control.id;
+                const frameworks = control.frameworks ?? [];
 
-                  return (
-                    <button
-                      key={control.id}
-                      onClick={() => setSelectedControl(control)}
-                      className={`w-full p-4 text-left transition-colors ${
-                        isSelected
-                          ? "bg-blue-50 border-l-4 border-primary"
-                          : "hover:bg-gray-50"
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        {/* Icon */}
-                        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <Shield className="h-4 w-4 text-primary" />
-                        </div>
+                return (
+                  <button
+                    key={control.id}
+                    onClick={() => setSelectedControl(control)}
+                    className={`w-full p-4 text-left transition-colors ${
+                      isSelected
+                        ? "bg-blue-50 border-l-4 border-primary"
+                        : "hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Shield className="h-4 w-4 text-primary" />
+                      </div>
 
-                        {/* Body */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between gap-2">
-                            <div className="min-w-0">
-                              {/* Code + name */}
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <span className="font-mono text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
-                                  {control.code}
-                                </span>
-                                <p className="font-medium text-sm text-gray-900">
-                                  {control.name}
-                                </p>
-                              </div>
-
-                              {/* Description */}
-                              {control.description && (
-                                <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                                  {control.description}
-                                </p>
-                              )}
-
-                              {/* Framework pills — only on "All" tab */}
-                              {activeFramework === "all" &&
-                                frameworks.length > 0 && (
-                                  <div className="flex gap-1 mt-1.5 flex-wrap">
-                                    {frameworks.map((fw) => (
-                                      <span
-                                        key={fw}
-                                        className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded border border-blue-100"
-                                      >
-                                        {fw}
-                                      </span>
-                                    ))}
-                                  </div>
-                                )}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="font-mono text-xs text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
+                                {control.code}
+                              </span>
+                              <p className="font-medium text-sm text-gray-900">
+                                {control.name}
+                              </p>
                             </div>
 
-                            {/* Priority badge */}
-                            <Badge
-                              className={`text-xs flex-shrink-0 ${
-                                PRIORITY_STYLES[control.priority] ?? ""
-                              }`}
-                            >
-                              {control.priority}
-                            </Badge>
+                            {control.description && (
+                              <p className="text-xs text-gray-500 mt-1 line-clamp-2">
+                                {control.description}
+                              </p>
+                            )}
+
+                            {activeFramework === "all" &&
+                              frameworks.length > 0 && (
+                                <div className="flex gap-1 mt-1.5 flex-wrap">
+                                  {frameworks.map((fw: any) => (
+                                    <span
+                                      key={fw}
+                                      className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded border border-blue-100"
+                                    >
+                                      {fw}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                           </div>
+
+                          <Badge
+                            className={`text-xs flex-shrink-0 ${
+                              PRIORITY_STYLES[control.priority] ?? ""
+                            }`}
+                          >
+                            {control.priority}
+                          </Badge>
                         </div>
                       </div>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+                    </div>
+                  </button>
+                );
+              }}
+            />
           </div>
 
-          {/* ── Selection summary ────────────────────────────────────────── */}
           {selectedControl && (
             <div className="p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-800">
               Selected:{" "}
