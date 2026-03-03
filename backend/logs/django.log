@@ -4181,3 +4181,621 @@ INFO 2026-03-02 15:13:12,141 basehttp "GET /api/compliance/adoptions/expiring_so
 INFO 2026-03-02 15:13:12,148 middleware GET /api/compliance/gaps/open/ | Status: 200
 INFO 2026-03-02 15:13:12,149 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
 INFO 2026-03-02 15:14:14,666 autoreload Watching for file changes with StatReloader
+INFO 2026-03-02 15:14:55,246 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:55,250 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:55,259 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:55,268 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:55,285 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-02 15:14:55,299 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-02 15:14:55,299 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-02 15:14:55,299 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-02 15:14:55,301 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-02 15:14:55,302 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-02 15:14:55,315 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-02 15:14:55,317 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-02 15:14:56,818 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:56,851 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-02 15:14:56,852 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-02 15:14:57,425 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:57,433 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-02 15:14:57,434 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-02 15:14:57,925 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:57,925 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:57,940 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-02 15:14:57,942 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-02 15:14:57,952 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-02 15:14:57,953 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-02 15:14:58,431 middleware GET /api/risk/risks/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:58,432 middleware GET /api/risk/risks/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:58,448 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-02 15:14:58,448 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-02 15:14:58,449 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-02 15:14:58,450 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-02 15:14:59,610 middleware GET /api/audit/logs/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:59,610 middleware GET /api/audit/logs/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:14:59,629 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-02 15:14:59,630 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 52
+INFO 2026-03-02 15:14:59,631 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-02 15:14:59,632 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 70
+INFO 2026-03-02 15:15:01,682 middleware GET /api/organizations/departments/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:01,692 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-03-02 15:15:01,692 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-03-02 15:15:02,287 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-02 15:15:02,319 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-02 15:15:02,321 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-03-02 15:15:07,409 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:07,507 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-02 15:15:07,508 basehttp "GET /api/controls/reference-controls/?page_size=50 HTTP/1.1" 200 24318
+INFO 2026-03-02 15:15:09,324 middleware POST /api/controls/applied-controls/apply_control/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:09,343 middleware POST /api/controls/applied-controls/apply_control/ | Status: 201
+INFO 2026-03-02 15:15:09,344 basehttp "POST /api/controls/applied-controls/apply_control/ HTTP/1.1" 201 935
+INFO 2026-03-02 15:15:09,420 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:09,434 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-02 15:15:09,435 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 360
+INFO 2026-03-02 15:15:24,947 basehttp "OPTIONS /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ HTTP/1.1" 200 0
+INFO 2026-03-02 15:15:24,958 middleware GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:24,975 middleware GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ | Status: 200
+INFO 2026-03-02 15:15:24,975 basehttp "GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ HTTP/1.1" 200 935
+INFO 2026-03-02 15:15:24,998 basehttp "OPTIONS /api/evidence/control-evidence-links/?applied_control=b15f5d18-ee90-491d-84d3-923f1a636dc7 HTTP/1.1" 200 0
+INFO 2026-03-02 15:15:25,007 middleware GET /api/evidence/control-evidence-links/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:25,017 middleware GET /api/evidence/control-evidence-links/ | Status: 200
+INFO 2026-03-02 15:15:25,018 basehttp "GET /api/evidence/control-evidence-links/?applied_control=b15f5d18-ee90-491d-84d3-923f1a636dc7 HTTP/1.1" 200 52
+INFO 2026-03-02 15:15:51,428 middleware POST /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:51,444 middleware POST /api/evidence/evidence/ | Status: 201
+INFO 2026-03-02 15:15:51,446 basehttp "POST /api/evidence/evidence/ HTTP/1.1" 201 1151
+INFO 2026-03-02 15:15:51,458 middleware POST /api/evidence/control-evidence-links/bulk_link/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:51,474 middleware POST /api/evidence/control-evidence-links/bulk_link/ | Status: 201
+INFO 2026-03-02 15:15:51,475 basehttp "POST /api/evidence/control-evidence-links/bulk_link/ HTTP/1.1" 201 56
+INFO 2026-03-02 15:15:51,484 middleware GET /api/evidence/control-evidence-links/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:51,484 middleware GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:51,540 middleware GET /api/evidence/control-evidence-links/ | Status: 200
+INFO 2026-03-02 15:15:51,541 basehttp "GET /api/evidence/control-evidence-links/?applied_control=b15f5d18-ee90-491d-84d3-923f1a636dc7 HTTP/1.1" 200 665
+INFO 2026-03-02 15:15:51,550 middleware GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ | Status: 200
+INFO 2026-03-02 15:15:51,551 basehttp "GET /api/controls/applied-controls/b15f5d18-ee90-491d-84d3-923f1a636dc7/ HTTP/1.1" 200 935
+INFO 2026-03-02 15:15:51,559 basehttp "OPTIONS /api/evidence/evidence/e5aa69b1-4dfc-4c59-812d-7724cdf4b35c/ HTTP/1.1" 200 0
+INFO 2026-03-02 15:15:51,564 middleware GET /api/evidence/evidence/e5aa69b1-4dfc-4c59-812d-7724cdf4b35c/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:51,574 middleware GET /api/evidence/evidence/e5aa69b1-4dfc-4c59-812d-7724cdf4b35c/ | Status: 200
+INFO 2026-03-02 15:15:51,575 basehttp "GET /api/evidence/evidence/e5aa69b1-4dfc-4c59-812d-7724cdf4b35c/ HTTP/1.1" 200 1151
+INFO 2026-03-02 15:15:54,557 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:54,565 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-02 15:15:54,566 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 360
+INFO 2026-03-02 15:15:58,309 middleware GET /api/audit/logs/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-02 15:15:58,318 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-02 15:15:58,319 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 1263
+INFO 2026-03-03 10:09:49,190 autoreload Watching for file changes with StatReloader
+INFO 2026-03-03 10:10:13,007 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:13,348 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-03-03 10:10:13,394 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-03-03 10:10:13,394 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-03-03 10:10:13,395 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-03-03 10:10:13,399 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:13,401 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-03-03 10:10:13,568 middleware POST /api/auth/token/refresh/ | Status: 401
+WARNING 2026-03-03 10:10:13,569 log Unauthorized: /api/auth/token/refresh/
+WARNING 2026-03-03 10:10:13,570 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 401 58
+INFO 2026-03-03 10:10:20,471 basehttp "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:20,472 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-03-03 10:10:20,896 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-03-03 10:10:20,897 basehttp "POST /api/auth/token/ HTTP/1.1" 200 736
+INFO 2026-03-03 10:10:20,904 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:20,904 basehttp "OPTIONS /api/companies/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:20,908 middleware GET /api/auth/me/ | User: anonymous
+INFO 2026-03-03 10:10:20,909 middleware GET /api/companies/ | User: anonymous
+INFO 2026-03-03 10:10:20,929 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-03-03 10:10:20,929 basehttp "GET /api/auth/me/ HTTP/1.1" 200 194
+INFO 2026-03-03 10:10:20,984 middleware GET /api/companies/ | Status: 200
+INFO 2026-03-03 10:10:20,985 basehttp "GET /api/companies/ HTTP/1.1" 200 234
+INFO 2026-03-03 10:10:20,991 basehttp "OPTIONS /api/memberships/?company=5a938f9c-568d-406e-ab2c-5267f3a89036 HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:20,995 middleware GET /api/memberships/ | User: anonymous
+INFO 2026-03-03 10:10:21,004 middleware GET /api/memberships/ | Status: 200
+INFO 2026-03-03 10:10:21,005 basehttp "GET /api/memberships/?company=5a938f9c-568d-406e-ab2c-5267f3a89036 HTTP/1.1" 200 457
+INFO 2026-03-03 10:10:21,043 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:10:21,086 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 10:10:21,087 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 282
+INFO 2026-03-03 10:10:29,766 basehttp "OPTIONS /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-03 10:10:29,778 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:10:29,803 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:10:29,804 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 360
+INFO 2026-03-03 10:19:04,273 autoreload C:\Users\legion\Desktop\compliancehub\backend\controls\serializers.py changed, reloading.
+INFO 2026-03-03 10:19:05,693 autoreload Watching for file changes with StatReloader
+INFO 2026-03-03 10:19:50,739 autoreload C:\Users\legion\Desktop\compliancehub\backend\controls\views.py changed, reloading.
+INFO 2026-03-03 10:19:51,881 autoreload Watching for file changes with StatReloader
+INFO 2026-03-03 10:28:45,261 autoreload C:\Users\legion\Desktop\compliancehub\backend\controls\views.py changed, reloading.
+INFO 2026-03-03 10:28:46,409 autoreload Watching for file changes with StatReloader
+INFO 2026-03-03 10:32:01,361 autoreload Watching for file changes with StatReloader
+INFO 2026-03-03 10:32:27,139 middleware GET /api/controls/applied-controls/ | User: anonymous
+INFO 2026-03-03 10:32:27,141 middleware GET /api/controls/applied-controls/ | Status: 401
+WARNING 2026-03-03 10:32:27,143 log Unauthorized: /api/controls/applied-controls/
+WARNING 2026-03-03 10:32:27,144 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 401 51
+INFO 2026-03-03 10:32:27,453 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-03-03 10:32:27,529 middleware POST /api/auth/token/refresh/ | Status: 200
+INFO 2026-03-03 10:32:27,532 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 200 582
+INFO 2026-03-03 10:32:27,547 middleware GET /api/controls/applied-controls/ | User: anonymous
+INFO 2026-03-03 10:32:27,550 middleware GET /api/controls/applied-controls/ | Status: 401
+WARNING 2026-03-03 10:32:27,550 log Unauthorized: /api/controls/applied-controls/
+WARNING 2026-03-03 10:32:27,551 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 401 51
+INFO 2026-03-03 10:32:28,181 middleware GET /api/controls/applied-controls/ | User: anonymous
+INFO 2026-03-03 10:32:28,184 middleware GET /api/controls/applied-controls/ | Status: 401
+WARNING 2026-03-03 10:32:28,185 log Unauthorized: /api/controls/applied-controls/
+WARNING 2026-03-03 10:32:28,187 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 401 51
+INFO 2026-03-03 10:32:28,199 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-03-03 10:32:28,203 middleware POST /api/auth/token/refresh/ | Status: 401
+WARNING 2026-03-03 10:32:28,204 log Unauthorized: /api/auth/token/refresh/
+WARNING 2026-03-03 10:32:28,205 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 401 58
+INFO 2026-03-03 10:32:33,553 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-03-03 10:32:33,929 middleware POST /api/auth/token/ | Status: 401
+WARNING 2026-03-03 10:32:33,931 log Unauthorized: /api/auth/token/
+WARNING 2026-03-03 10:32:33,931 basehttp "POST /api/auth/token/ HTTP/1.1" 401 63
+INFO 2026-03-03 10:32:58,708 basehttp "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:32:58,709 middleware POST /api/auth/register/ | User: anonymous
+INFO 2026-03-03 10:32:59,102 middleware POST /api/auth/register/ | Status: 201
+INFO 2026-03-03 10:32:59,103 basehttp "POST /api/auth/register/ HTTP/1.1" 201 245
+INFO 2026-03-03 10:33:04,308 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-03-03 10:33:04,670 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-03-03 10:33:04,671 basehttp "POST /api/auth/token/ HTTP/1.1" 200 597
+INFO 2026-03-03 10:33:04,676 middleware GET /api/auth/me/ | User: anonymous
+INFO 2026-03-03 10:33:04,677 middleware GET /api/companies/ | User: anonymous
+INFO 2026-03-03 10:33:04,680 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-03-03 10:33:04,681 basehttp "GET /api/auth/me/ HTTP/1.1" 200 195
+INFO 2026-03-03 10:33:04,747 middleware GET /api/companies/ | Status: 200
+INFO 2026-03-03 10:33:04,748 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-03-03 10:33:04,771 middleware GET /api/companies/ | User: anonymous
+INFO 2026-03-03 10:33:04,779 middleware GET /api/companies/ | Status: 200
+INFO 2026-03-03 10:33:04,781 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-03-03 10:33:07,163 basehttp "OPTIONS /api/companies/create_with_membership/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:07,165 middleware POST /api/companies/create_with_membership/ | User: anonymous
+INFO 2026-03-03 10:33:07,194 middleware POST /api/companies/create_with_membership/ | Status: 201
+INFO 2026-03-03 10:33:07,195 basehttp "POST /api/companies/create_with_membership/ HTTP/1.1" 201 621
+INFO 2026-03-03 10:33:07,249 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:07,288 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 10:33:07,289 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-03 10:33:09,246 basehttp "OPTIONS /api/evidence/evidence/analytics/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:09,246 basehttp "OPTIONS /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:09,256 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:09,257 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:09,281 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-03 10:33:09,283 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:33:09,295 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-03 10:33:09,296 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-03 10:33:09,787 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:09,808 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:33:09,809 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:33:10,959 basehttp "OPTIONS /api/controls/reference-controls/?page_size=500 HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:10,972 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:11,245 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:33:11,249 basehttp "GET /api/controls/reference-controls/?page_size=500 HTTP/1.1" 200 26019
+INFO 2026-03-03 10:33:20,818 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:20,820 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:33:20,844 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:33:20,846 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-03-03 10:33:22,224 basehttp "OPTIONS /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:22,224 basehttp "OPTIONS /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:22,229 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ | User: anonymous
+INFO 2026-03-03 10:33:22,229 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ | User: anonymous
+INFO 2026-03-03 10:33:22,230 basehttp "OPTIONS /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:22,547 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ | User: anonymous
+INFO 2026-03-03 10:33:22,685 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ | Status: 200
+INFO 2026-03-03 10:33:22,697 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ HTTP/1.1" 200 400
+INFO 2026-03-03 10:33:23,187 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ | Status: 200
+INFO 2026-03-03 10:33:23,189 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ | Status: 200
+INFO 2026-03-03 10:33:23,191 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ HTTP/1.1" 200 56434
+INFO 2026-03-03 10:33:23,192 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ HTTP/1.1" 200 35354
+INFO 2026-03-03 10:33:30,714 basehttp "OPTIONS /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:30,714 basehttp "OPTIONS /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/statistics/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:30,714 basehttp "OPTIONS /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/requirements_tree/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:30,720 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/requirements_tree/ | User: anonymous
+INFO 2026-03-03 10:33:30,721 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/ | User: anonymous
+INFO 2026-03-03 10:33:30,721 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/statistics/ | User: anonymous
+INFO 2026-03-03 10:33:30,771 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/statistics/ | Status: 200
+INFO 2026-03-03 10:33:30,782 basehttp "GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/statistics/ HTTP/1.1" 200 219
+INFO 2026-03-03 10:33:31,082 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/requirements_tree/ | Status: 200
+INFO 2026-03-03 10:33:31,084 middleware GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/ | Status: 200
+INFO 2026-03-03 10:33:31,085 basehttp "GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/requirements_tree/ HTTP/1.1" 200 16116
+INFO 2026-03-03 10:33:31,085 basehttp "GET /api/library/frameworks/1153868d-28ca-47ab-b1af-890b2d90e473/ HTTP/1.1" 200 26465
+INFO 2026-03-03 10:33:37,907 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:37,923 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 10:33:37,924 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-03 10:33:41,017 basehttp "OPTIONS /api/compliance/gaps/open/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:41,017 basehttp "OPTIONS /api/compliance/results/overview/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:41,018 basehttp "OPTIONS /api/compliance/adoptions/active/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:41,021 basehttp "OPTIONS /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:41,033 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:41,034 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:41,050 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:41,051 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:33:41,057 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-03-03 10:33:41,066 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:41,066 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:33:41,071 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:33:41,072 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:33:41,073 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:33:41,081 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 10:33:41,082 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:33:47,548 basehttp "OPTIONS /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:47,554 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:33:47,573 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:33:47,575 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 1892
+INFO 2026-03-03 10:33:50,699 basehttp "OPTIONS /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:50,706 middleware POST /api/compliance/adoptions/adopt_framework/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:50,749 middleware POST /api/compliance/adoptions/adopt_framework/ | Status: 201
+INFO 2026-03-03 10:33:50,751 basehttp "POST /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 201 804
+INFO 2026-03-03 10:33:50,763 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:50,763 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:50,769 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:33:50,770 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:33:50,771 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-03-03 10:33:50,772 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:33:55,331 basehttp "OPTIONS /api/compliance/results/calculate_all/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:33:55,336 middleware POST /api/compliance/results/calculate_all/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:55,968 middleware POST /api/compliance/results/calculate_all/ | Status: 201
+INFO 2026-03-03 10:33:55,969 basehttp "POST /api/compliance/results/calculate_all/ HTTP/1.1" 201 116
+INFO 2026-03-03 10:33:55,978 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:55,987 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:33:55,988 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 340
+INFO 2026-03-03 10:33:59,854 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:33:59,863 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:33:59,864 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:34:01,110 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:34:01,398 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:34:01,399 basehttp "GET /api/controls/reference-controls/?page_size=500 HTTP/1.1" 200 26019
+INFO 2026-03-03 10:35:47,729 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:35:47,962 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:35:47,964 basehttp "GET /api/controls/reference-controls/?page_size=500 HTTP/1.1" 200 26019
+INFO 2026-03-03 10:55:13,918 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:55:13,928 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:55:13,950 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:55:13,951 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:55:14,296 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:55:14,296 basehttp "GET /api/controls/reference-controls/?page_size=500 HTTP/1.1" 200 26019
+INFO 2026-03-03 10:55:45,409 basehttp "OPTIONS /api/controls/reference-controls/?page_size=500&adopted_only=true HTTP/1.1" 200 0
+INFO 2026-03-03 10:55:45,415 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:55:45,743 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:55:45,745 basehttp "GET /api/controls/reference-controls/?page_size=500&adopted_only=true HTTP/1.1" 200 26037
+INFO 2026-03-03 10:55:53,969 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:55:54,001 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:55:54,003 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:55:55,208 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:55:55,549 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:55:55,551 basehttp "GET /api/controls/reference-controls/?page_size=500&adopted_only=true HTTP/1.1" 200 26037
+INFO 2026-03-03 10:56:09,965 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:09,967 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:09,984 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:56:09,985 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 340
+INFO 2026-03-03 10:56:09,991 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:56:09,992 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:09,993 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:10,005 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 10:56:10,007 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:10,036 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:10,057 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:56:10,060 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:11,545 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:56:11,579 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:56:11,580 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 1892
+INFO 2026-03-03 10:56:14,626 middleware POST /api/compliance/adoptions/adopt_framework/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:14,636 middleware POST /api/compliance/adoptions/adopt_framework/ | Status: 400
+WARNING 2026-03-03 10:56:14,637 log Bad Request: /api/compliance/adoptions/adopt_framework/
+WARNING 2026-03-03 10:56:14,638 basehttp "POST /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 400 37
+INFO 2026-03-03 10:56:27,667 middleware POST /api/compliance/adoptions/adopt_framework/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:27,690 middleware POST /api/compliance/adoptions/adopt_framework/ | Status: 201
+INFO 2026-03-03 10:56:27,690 basehttp "POST /api/compliance/adoptions/adopt_framework/ HTTP/1.1" 201 799
+INFO 2026-03-03 10:56:27,702 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:27,703 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:27,712 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:56:27,713 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:27,716 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:56:27,717 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 340
+INFO 2026-03-03 10:56:29,082 middleware POST /api/compliance/results/calculate_all/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:30,374 middleware POST /api/compliance/results/calculate_all/ | Status: 201
+INFO 2026-03-03 10:56:30,375 basehttp "POST /api/compliance/results/calculate_all/ HTTP/1.1" 201 170
+INFO 2026-03-03 10:56:30,386 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:30,397 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:56:30,398 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 10:56:36,227 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:36,228 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:36,229 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:36,258 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:56:36,268 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:56:36,270 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 10:56:36,278 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:56:36,271 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:36,285 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:36,447 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:36,481 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 10:56:36,483 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:56:39,572 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:39,587 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:56:39,588 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:56:41,072 middleware GET /api/controls/reference-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:41,319 middleware GET /api/controls/reference-controls/ | Status: 200
+INFO 2026-03-03 10:56:41,320 basehttp "GET /api/controls/reference-controls/?page_size=500&adopted_only=true HTTP/1.1" 200 26037
+INFO 2026-03-03 10:56:49,433 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:49,434 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:49,451 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-03 10:56:49,453 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:56:49,461 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-03 10:56:49,463 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-03 10:56:51,817 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:51,832 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 10:56:51,833 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-03 10:56:57,915 basehttp "OPTIONS /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-03 10:56:57,919 basehttp "OPTIONS /api/risk/risks/summary/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:56:57,924 middleware GET /api/risk/risks/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:57,933 middleware GET /api/risk/risks/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:56:57,944 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-03 10:56:57,944 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-03 10:56:57,945 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:56:57,946 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-03 10:57:03,028 basehttp "OPTIONS /api/compliance/results/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a&is_current=true&page_size=1 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:03,028 basehttp "OPTIONS /api/compliance/results/trends/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a&months=12 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:03,036 middleware GET /api/compliance/results/trends/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:03,037 middleware GET /api/compliance/results/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:03,052 middleware GET /api/compliance/results/trends/ | Status: 200
+INFO 2026-03-03 10:57:03,054 middleware GET /api/compliance/results/ | Status: 200
+INFO 2026-03-03 10:57:03,054 basehttp "GET /api/compliance/results/trends/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a&months=12 HTTP/1.1" 200 167
+INFO 2026-03-03 10:57:03,055 basehttp "GET /api/compliance/results/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a&is_current=true&page_size=1 HTTP/1.1" 200 357
+INFO 2026-03-03 10:57:04,565 basehttp "OPTIONS /api/compliance/results/gap_analysis/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:04,569 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:04,573 middleware GET /api/compliance/results/gap_analysis/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:04,578 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:57:04,581 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:04,584 middleware GET /api/compliance/results/gap_analysis/ | Status: 200
+INFO 2026-03-03 10:57:04,585 basehttp "GET /api/compliance/results/gap_analysis/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a HTTP/1.1" 200 22970
+INFO 2026-03-03 10:57:15,971 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:15,971 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:15,973 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:15,976 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:15,998 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:57:16,001 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:57:16,001 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:57:16,002 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 10:57:16,004 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 10:57:16,004 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:16,005 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:16,007 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:18,864 basehttp "OPTIONS /api/compliance/results/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&is_current=true&page_size=1 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:18,865 basehttp "OPTIONS /api/compliance/results/trends/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&months=12 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:18,871 middleware GET /api/compliance/results/trends/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:18,871 middleware GET /api/compliance/results/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:18,882 middleware GET /api/compliance/results/trends/ | Status: 200
+INFO 2026-03-03 10:57:18,882 basehttp "GET /api/compliance/results/trends/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&months=12 HTTP/1.1" 200 84
+INFO 2026-03-03 10:57:18,889 middleware GET /api/compliance/results/ | Status: 200
+INFO 2026-03-03 10:57:18,890 basehttp "GET /api/compliance/results/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&is_current=true&page_size=1 HTTP/1.1" 200 352
+INFO 2026-03-03 10:57:22,312 basehttp "OPTIONS /api/compliance/results/gap_analysis/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:22,315 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:22,319 middleware GET /api/compliance/results/gap_analysis/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:22,324 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:57:22,326 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:22,329 middleware GET /api/compliance/results/gap_analysis/ | Status: 200
+INFO 2026-03-03 10:57:22,330 basehttp "GET /api/compliance/results/gap_analysis/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 18785
+INFO 2026-03-03 10:57:42,271 basehttp "OPTIONS /api/compliance/results/recommendations/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 0
+INFO 2026-03-03 10:57:42,277 middleware GET /api/compliance/results/recommendations/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:42,294 middleware GET /api/compliance/results/recommendations/ | Status: 200
+INFO 2026-03-03 10:57:42,295 basehttp "GET /api/compliance/results/recommendations/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 4512
+INFO 2026-03-03 10:57:49,840 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:49,849 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 10:57:49,851 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:57:54,192 middleware GET /api/compliance/results/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:54,195 middleware GET /api/compliance/results/trends/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:54,223 middleware GET /api/compliance/results/trends/ | Status: 200
+INFO 2026-03-03 10:57:54,225 basehttp "GET /api/compliance/results/trends/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&months=12 HTTP/1.1" 200 84
+INFO 2026-03-03 10:57:54,229 middleware GET /api/compliance/results/ | Status: 200
+INFO 2026-03-03 10:57:54,230 basehttp "GET /api/compliance/results/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&is_current=true&page_size=1 HTTP/1.1" 200 352
+INFO 2026-03-03 10:57:57,170 middleware GET /api/compliance/results/gap_analysis/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:57,171 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:57:57,179 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:57:57,182 middleware GET /api/compliance/results/gap_analysis/ | Status: 200
+INFO 2026-03-03 10:57:57,183 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:57:57,183 basehttp "GET /api/compliance/results/gap_analysis/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 18785
+INFO 2026-03-03 10:58:29,321 basehttp "OPTIONS /api/compliance/results/calculate/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:58:29,327 middleware POST /api/compliance/results/calculate/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:29,826 middleware POST /api/compliance/results/calculate/ | Status: 201
+INFO 2026-03-03 10:58:29,827 basehttp "POST /api/compliance/results/calculate/ HTTP/1.1" 201 19544
+INFO 2026-03-03 10:58:29,840 middleware GET /api/compliance/results/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:29,842 middleware GET /api/compliance/results/trends/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:29,855 middleware GET /api/compliance/results/trends/ | Status: 200
+INFO 2026-03-03 10:58:29,856 middleware GET /api/compliance/results/ | Status: 200
+INFO 2026-03-03 10:58:29,857 basehttp "GET /api/compliance/results/trends/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&months=12 HTTP/1.1" 200 167
+INFO 2026-03-03 10:58:29,858 basehttp "GET /api/compliance/results/?framework=1153868d-28ca-47ab-b1af-890b2d90e473&is_current=true&page_size=1 HTTP/1.1" 200 352
+INFO 2026-03-03 10:58:30,853 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:58:30,854 basehttp "OPTIONS /api/compliance/reports/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:58:30,865 middleware GET /api/compliance/reports/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:30,883 middleware GET /api/compliance/reports/ | Status: 200
+INFO 2026-03-03 10:58:30,884 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:58:30,885 basehttp "GET /api/compliance/reports/ HTTP/1.1" 200 52
+INFO 2026-03-03 10:58:30,886 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 1892
+INFO 2026-03-03 10:58:37,434 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:37,435 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:37,449 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-03 10:58:37,452 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:58:37,462 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-03 10:58:37,463 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-03 10:58:38,228 middleware GET /api/risk/risks/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:38,229 middleware GET /api/risk/risks/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:38,245 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-03 10:58:38,245 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-03 10:58:38,247 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 10:58:38,248 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-03 10:58:51,651 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-03-03 10:58:51,660 middleware GET /api/organizations/departments/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:58:51,668 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-03-03 10:58:51,669 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-03-03 10:58:58,400 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ | User: anonymous
+INFO 2026-03-03 10:58:58,401 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ | User: anonymous
+INFO 2026-03-03 10:58:58,402 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ | User: anonymous
+INFO 2026-03-03 10:58:58,511 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ | Status: 200
+INFO 2026-03-03 10:58:58,519 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/statistics/ HTTP/1.1" 200 400
+INFO 2026-03-03 10:58:59,208 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ | Status: 200
+INFO 2026-03-03 10:58:59,210 middleware GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ | Status: 200
+INFO 2026-03-03 10:58:59,211 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ HTTP/1.1" 200 35354
+INFO 2026-03-03 10:58:59,212 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/ HTTP/1.1" 200 56434
+INFO 2026-03-03 10:59:07,158 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:59:07,172 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:59:07,173 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-03-03 10:59:08,653 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:08,653 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:08,655 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:08,657 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:08,670 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:59:08,672 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 10:59:08,673 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 10:59:08,678 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:59:08,678 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 10:59:08,680 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 10:59:08,680 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:59:08,682 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:59:10,288 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 10:59:10,306 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 10:59:10,308 basehttp "GET /api/library/frameworks/?is_published=true&page_size=100 HTTP/1.1" 200 1892
+INFO 2026-03-03 10:59:15,479 middleware GET /api/compliance/results/gap_analysis/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:15,480 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:15,487 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:59:15,489 middleware GET /api/compliance/results/gap_analysis/ | Status: 200
+INFO 2026-03-03 10:59:15,490 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:59:15,491 basehttp "GET /api/compliance/results/gap_analysis/?framework=1153868d-28ca-47ab-b1af-890b2d90e473 HTTP/1.1" 200 18785
+INFO 2026-03-03 10:59:19,496 middleware GET /api/compliance/results/gap_analysis/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:19,497 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 10:59:19,505 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 10:59:19,508 middleware GET /api/compliance/results/gap_analysis/ | Status: 200
+INFO 2026-03-03 10:59:19,508 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 10:59:19,509 basehttp "GET /api/compliance/results/gap_analysis/?framework=fefea0a5-6be0-40ad-bad1-d82df6ef467a HTTP/1.1" 200 22970
+INFO 2026-03-03 11:00:52,563 basehttp "OPTIONS /api/audit/logs/summary/ HTTP/1.1" 200 0
+INFO 2026-03-03 11:00:52,564 basehttp "OPTIONS /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 0
+INFO 2026-03-03 11:00:52,593 middleware GET /api/audit/logs/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:00:52,595 middleware GET /api/audit/logs/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:00:52,616 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-03 11:00:52,618 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 355
+INFO 2026-03-03 11:00:52,625 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-03 11:00:52,626 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 2930
+INFO 2026-03-03 11:02:15,727 middleware GET /api/audit/logs/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:02:15,731 middleware GET /api/audit/logs/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:02:15,755 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-03 11:02:15,764 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-03 11:02:15,765 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 355
+INFO 2026-03-03 11:02:15,766 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 2930
+INFO 2026-03-03 11:02:55,729 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:02:55,910 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:02:55,910 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:02:55,911 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:03:07,470 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:07,631 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:07,632 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:07,633 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:03:10,500 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:10,552 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:10,552 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:10,553 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:03:14,459 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:14,534 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:14,535 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:14,536 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:03:17,362 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:17,410 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:17,411 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:17,412 basehttp "GET /api/audit/logs/export_csv/?format=json HTTP/1.1" 401 58
+INFO 2026-03-03 11:03:19,304 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:19,462 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:19,463 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:19,464 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:03:20,821 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:20,883 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:20,884 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:20,886 basehttp "GET /api/audit/logs/export_csv/?format=api HTTP/1.1" 401 5544
+INFO 2026-03-03 11:03:24,023 middleware GET /api/audit/logs/ | User: anonymous
+INFO 2026-03-03 11:03:24,076 middleware GET /api/audit/logs/ | Status: 401
+WARNING 2026-03-03 11:03:24,077 log Unauthorized: /api/audit/logs/
+WARNING 2026-03-03 11:03:24,078 basehttp "GET /api/audit/logs/?format=api HTTP/1.1" 401 5388
+INFO 2026-03-03 11:03:26,170 middleware GET /api/audit/ | User: anonymous
+INFO 2026-03-03 11:03:26,223 middleware GET /api/audit/ | Status: 401
+WARNING 2026-03-03 11:03:26,224 log Unauthorized: /api/audit/
+WARNING 2026-03-03 11:03:26,224 basehttp "GET /api/audit/?format=api HTTP/1.1" 401 5213
+INFO 2026-03-03 11:03:27,229 middleware GET /api/ | User: anonymous
+INFO 2026-03-03 11:03:27,282 middleware GET /api/ | Status: 401
+WARNING 2026-03-03 11:03:27,282 log Unauthorized: /api/
+WARNING 2026-03-03 11:03:27,283 basehttp "GET /api/?format=api HTTP/1.1" 401 5075
+INFO 2026-03-03 11:03:31,643 middleware GET /api/audit/ | User: anonymous
+INFO 2026-03-03 11:03:31,702 middleware GET /api/audit/ | Status: 401
+WARNING 2026-03-03 11:03:31,703 log Unauthorized: /api/audit/
+WARNING 2026-03-03 11:03:31,704 basehttp "GET /api/audit/?format=api HTTP/1.1" 401 5213
+INFO 2026-03-03 11:03:32,424 middleware GET /api/audit/logs/ | User: anonymous
+INFO 2026-03-03 11:03:32,479 middleware GET /api/audit/logs/ | Status: 401
+WARNING 2026-03-03 11:03:32,480 log Unauthorized: /api/audit/logs/
+WARNING 2026-03-03 11:03:32,481 basehttp "GET /api/audit/logs/?format=api HTTP/1.1" 401 5388
+INFO 2026-03-03 11:03:34,147 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:34,210 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:34,211 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:34,212 basehttp "GET /api/audit/logs/export_csv/?format=api HTTP/1.1" 401 5544
+INFO 2026-03-03 11:03:34,809 middleware GET /api/audit/logs/export_csv/ | User: anonymous
+INFO 2026-03-03 11:03:34,869 middleware GET /api/audit/logs/export_csv/ | Status: 401
+WARNING 2026-03-03 11:03:34,870 log Unauthorized: /api/audit/logs/export_csv/
+WARNING 2026-03-03 11:03:34,871 basehttp "GET /api/audit/logs/export_csv/ HTTP/1.1" 401 5478
+INFO 2026-03-03 11:04:36,909 middleware GET /api/organizations/departments/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:04:36,919 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-03-03 11:04:36,920 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-03-03 11:04:38,040 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 11:04:38,059 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 11:04:38,060 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-03-03 11:05:24,061 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-03 11:05:24,075 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-03 11:05:24,076 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 1892
+INFO 2026-03-03 11:06:07,661 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:07,675 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-03 11:06:07,676 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 11:06:07,735 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:07,761 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-03 11:06:07,762 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-03 11:06:08,902 middleware GET /api/risk/risks/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:08,902 middleware GET /api/risk/risks/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:08,909 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-03 11:06:08,910 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-03 11:06:08,918 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-03 11:06:08,919 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 11:06:09,418 middleware GET /api/audit/logs/summary/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:09,421 middleware GET /api/audit/logs/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:09,431 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-03 11:06:09,433 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 2930
+INFO 2026-03-03 11:06:09,437 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-03 11:06:09,438 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 355
+INFO 2026-03-03 11:06:16,894 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:16,922 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 11:06:16,923 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-03 11:06:30,312 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:30,314 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:30,323 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 11:06:30,326 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:06:30,335 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:30,335 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 11:06:30,340 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 11:06:30,346 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:06:30,353 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 11:06:30,353 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:06:30,363 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 11:06:30,364 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:25:59,329 middleware GET /api/compliance/gaps/open/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:25:59,332 middleware GET /api/compliance/results/overview/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:25:59,337 middleware GET /api/compliance/adoptions/active/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:25:59,337 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:25:59,355 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-03 11:25:59,355 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-03 11:25:59,356 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:25:59,357 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:25:59,362 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-03 11:25:59,362 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-03 11:25:59,363 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 592
+INFO 2026-03-03 11:25:59,364 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-03 11:26:02,185 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:26:02,224 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 11:26:02,225 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177
+INFO 2026-03-03 11:26:07,154 middleware GET /api/controls/applied-controls/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:26:07,169 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-03 11:26:07,170 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 11:26:10,824 middleware GET /api/evidence/evidence/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:26:10,825 middleware GET /api/evidence/evidence/analytics/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:26:10,839 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-03 11:26:10,841 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-03 11:26:10,850 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-03 11:26:10,850 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-03 11:26:34,829 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-03-03 11:26:35,203 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous | Company: RAMAQs consulting
+INFO 2026-03-03 11:26:35,228 middleware GET /api/controls/applied-controls/dashboard/ | Status: 200
+INFO 2026-03-03 11:26:35,228 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 177

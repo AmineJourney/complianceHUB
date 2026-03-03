@@ -15,8 +15,10 @@ export interface ReferenceControl {
   priority: "critical" | "high" | "medium" | "low";
   is_published: boolean;
   mapped_requirements_count: number;
-  /** Framework codes this reference control is mapped to */
+  /** Framework codes this control maps to — e.g. ["ISO27001-2022", "TISAX-6.0.2"] */
   frameworks: string[];
+  /** StoredLibrary names this control belongs to — e.g. ["ISO Standards", "TISAX"] */
+  library_names: string[];
   created_at: string;
 }
 
@@ -49,7 +51,7 @@ export interface AppliedControl {
   evidence_count: number;
   compliance_score: number;
   is_overdue: boolean;
-  /** Framework codes satisfied by this applied control — e.g. ["ISO-27001", "TISAX"] */
+  /** Framework codes satisfied by this applied control — e.g. ["ISO27001-2022", "TISAX"] */
   frameworks: string[];
   created_at: string;
 }

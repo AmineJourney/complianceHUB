@@ -13,7 +13,8 @@ interface PaginatedResponse<T> {
 }
 
 export const controlsApi = {
-  // Reference Controls
+  // ─── Reference Controls ───────────────────────────────────────────────────
+
   getReferenceControls: async (params?: {
     page?: number;
     page_size?: number;
@@ -21,6 +22,15 @@ export const controlsApi = {
     control_family?: string;
     control_type?: string;
     priority?: string;
+    /** Filter by framework code e.g. "ISO27001-2022" */
+    framework?: string;
+    /** Filter by StoredLibrary name e.g. "TISAX" */
+    library?: string;
+    /**
+     * When true, scope results to frameworks the current company has adopted
+     * (any adoption_status except "suspended"). Used by ApplyControlDialog.
+     */
+    adopted_only?: boolean;
   }) => {
     const response = await apiClient.get<PaginatedResponse<ReferenceControl>>(
       "/controls/reference-controls/",
@@ -36,7 +46,8 @@ export const controlsApi = {
     return response.data;
   },
 
-  // Applied Controls
+  // ─── Applied Controls ─────────────────────────────────────────────────────
+
   getAppliedControls: async (params?: {
     page?: number;
     page_size?: number;

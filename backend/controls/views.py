@@ -36,6 +36,23 @@ class ReferenceControlViewSet(viewsets.ModelViewSet):
         qs = super().get_queryset().filter(is_deleted=False)
         if not self.request.user.is_staff:
             qs = qs.filter(is_published=True)
+
+        # Filter by framework code — e.g. ?framework=ISO27001-2022
+        framework = self.request.query_params.get("framework")
+        if framework:
+            qs = qs.filter(
+                requirement_mappings__requirement__framework__code=framework,
+                requirement_mappings__is_deleted=False,
+            ).distinct()
+
+        # Filter by StoredLibrary name — e.g. ?library=TISAX
+        library = self.request.query_params.get("library")
+        if library:
+            qs = qs.filter(
+                requirement_mappings__requirement__framework__loaded_library__stored_library__name=library,
+                requirement_mappings__is_deleted=False,
+            ).distinct()
+
         return qs
 
     def get_serializer_class(self):
@@ -115,7 +132,6 @@ class AppliedControlViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Resolve reference control
         try:
             reference_control = ReferenceControl.objects.get(
                 id=reference_control_id,
@@ -128,7 +144,6 @@ class AppliedControlViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-        # Resolve optional department
         department = None
         if department_id:
             from organizations.models import Department
@@ -143,7 +158,6 @@ class AppliedControlViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_404_NOT_FOUND
                 )
 
-        # Resolve optional control owner
         control_owner = None
         if control_owner_id:
             from core.models import User
@@ -155,10 +169,6 @@ class AppliedControlViewSet(viewsets.ModelViewSet):
                     status=status.HTTP_404_NOT_FOUND
                 )
 
-        # ✅ FIX: Pass only the resolved model instances — NOT **request.data.
-        # Passing **request.data caused a 500 because it included
-        # 'reference_control' as a UUID string, conflicting with the already
-        # resolved instance passed as a keyword argument.
         applied_control = ControlApplicationService.apply_control(
             company=request.tenant,
             reference_control=reference_control,
