@@ -17,9 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# -------------------------------
 # Ensure logging folder exists
-# -------------------------------
 log_file_path = os.environ.get('LOG_FILE', 'logs/django.log')
 log_dir = os.path.dirname(log_file_path)
 if not os.path.exists(log_dir):
@@ -38,16 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    
+
     # Third-party apps
     'rest_framework',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist', 
+    'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     'corsheaders',
     'drf_spectacular',
-    
+
     # Local apps
     'core',
     'organizations',
@@ -56,7 +53,7 @@ INSTALLED_APPS = [
     'evidence',
     'risk',
     'compliance',
-    'audit'
+    'audit',
 ]
 
 MIDDLEWARE = [
@@ -68,14 +65,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    # Custom middleware
-    'core.middleware.TenantMiddleware',
+
+    # FIX #2: TenantMiddleware removed — tenant context is now set by
+    # core.authentication.TenantJWTAuthentication during the DRF auth pass,
+    # eliminating the previous double-JWT-validation.
     'audit.middleware.AuditMiddleware',
     'core.middleware.RequestLoggingMiddleware',
 ]
-
-
 
 ROOT_URLCONF = 'config.urls'
 
@@ -154,7 +150,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # REST Framework configuration
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # FIX #2: replaces plain JWTAuthentication — sets request.tenant,
+        # request.membership, and request.user_role in a single auth pass.
+        'core.authentication.TenantJWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -174,23 +172,23 @@ REST_FRAMEWORK = {
 
 # JWT Configuration
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # 1 hour
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),     # 7 days
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': True,
-    
+
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
     'VERIFYING_KEY': None,
     'AUDIENCE': None,
     'ISSUER': None,
-    
+
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
-    
+
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
@@ -201,7 +199,6 @@ CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
     'http://localhost:8000',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-
 ])
 
 CORS_ALLOW_HEADERS = [
@@ -214,33 +211,10 @@ CORS_ALLOW_HEADERS = [
     'user-agent',
     'x-csrftoken',
     'x-requested-with',
-    'x-company-id',  # ← Custom header for tenant selection
+    'x-company-id',  # custom header for tenant selection
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-
-# Custom user model
-AUTH_USER_MODEL = 'core.User'
-
-# Password validation
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 8,
-        }
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 
 # API Documentation (drf-spectacular)
 SPECTACULAR_SETTINGS = {
@@ -263,11 +237,6 @@ LOGGING = {
         'simple': {
             'format': '{levelname} {message}',
             'style': '{',
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
         },
     },
     'handlers': {
@@ -316,35 +285,8 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
 
 # File upload settings
-FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
-DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
-
-# ─────────────────────────────────────────────────────────────────────────────
-# EMAIL CONFIGURATION
-# Add this block anywhere in config/settings.py (e.g. after the JWT section).
-# ─────────────────────────────────────────────────────────────────────────────
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760   # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760   # 10MB
 
 # Frontend base URL — used to build password-reset links
 FRONTEND_URL = env('FRONTEND_URL', default='http://localhost:5173')
-
-# ----- Without SMTP (current setup) -----------------------------------------
-# With DEBUG=True the reset link is returned directly in the API response.
-# No email backend config is needed. This is already the default behaviour.
-# Just make sure DEBUG=True in your .env.
-
-# ----- With SMTP (when you're ready) ----------------------------------------
-# Set DEBUG=False and add these to your .env, then uncomment:
-#
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST    = env('EMAIL_HOST', default='smtp.gmail.com')
-# EMAIL_PORT    = env.int('EMAIL_PORT', default=587)
-# EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-# EMAIL_HOST_USER     = env('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-# DEFAULT_FROM_EMAIL  = env('DEFAULT_FROM_EMAIL', default='noreply@yourapp.com')
-
-# Fallback (prints emails to the console — safe default for dev)
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# In production with DEBUG=False, Django's default backend is
-# django.core.mail.backends.smtp.EmailBackend — configure the vars above.

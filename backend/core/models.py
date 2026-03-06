@@ -1,14 +1,15 @@
+# core/models.py
 import uuid
 import secrets
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-from django.core.exceptions import ValidationError
-from django.utils import timezone
 from datetime import timedelta
+
+from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
+from django.db import models
+from django.utils import timezone
 
 
 class TimeStampedModel(models.Model):
-    """Abstract base model with timestamps"""
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -17,20 +18,19 @@ class TimeStampedModel(models.Model):
 
 
 class SoftDeleteModel(models.Model):
-    """Abstract base model with soft delete"""
     is_deleted = models.BooleanField(default=False, db_index=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         abstract = True
 
-    def delete(self, using=None, keep_parents=False, hard=False):
-        if hard:
-            super().delete(using=using, keep_parents=keep_parents)
-        else:
-            self.is_deleted = True
-            self.deleted_at = timezone.now()
-            self.save()
+    def delete(self, using=None, keep_parents=False):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save(update_fields=['is_deleted', 'deleted_at'])
+
+    def hard_delete(self):
+        super().delete()
 
 
 class Company(TimeStampedModel, SoftDeleteModel):
@@ -42,11 +42,11 @@ class Company(TimeStampedModel, SoftDeleteModel):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     plan = models.CharField(max_length=20, choices=PLAN_CHOICES, default='free')
     is_active = models.BooleanField(default=True, db_index=True)
     max_users = models.IntegerField(default=5)
-    max_storage_mb = models.IntegerField(default=1000)
+    max_storage_mb = models.IntegerField(default=1024)
 
     class Meta:
         db_table = 'companies'
@@ -73,6 +73,18 @@ class User(AbstractUser, TimeStampedModel, SoftDeleteModel):
     email_verified = models.BooleanField(default=False)
     email_verification_token = models.CharField(max_length=255, blank=True)
     last_login_ip = models.GenericIPAddressField(null=True, blank=True)
+
+    # FIX #5: persists notification + appearance preferences server-side
+    preferences = models.JSONField(
+        default=dict,
+        blank=True,
+        help_text=(
+            'User-level notification and appearance preferences. '
+            'Shape: {email_notifications, desktop_notifications, '
+            'compliance_alerts, risk_alerts, evidence_reminders, '
+            'theme, language}'
+        ),
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
@@ -221,7 +233,6 @@ class Invitation(TimeStampedModel):
         if self.email and self.email.lower() != user.email.lower():
             raise ValidationError('This invitation was issued for a different email address.')
 
-        # Check if membership already exists
         membership, created = Membership.objects.get_or_create(
             user=user,
             company=self.company,

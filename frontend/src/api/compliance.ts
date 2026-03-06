@@ -1,3 +1,17 @@
+// src/api/compliance.ts
+/**
+ * FIX #6 — complianceApi.getFrameworks removed.
+ *
+ * It was hitting /library/frameworks/ — the exact same endpoint as
+ * libraryApi.getFrameworks. Keeping both meant duplicate network requests
+ * and TanStack Query couldn't deduplicate them because the query keys differed.
+ *
+ * Migration: replace every usage of
+ *   complianceApi.getFrameworks  →  libraryApi.getFrameworks
+ *   queryKey: ['compliance-frameworks']  →  queryKey: ['frameworks']
+ *
+ * Everything else in this file is unchanged.
+ */
 import apiClient from "./client";
 import type {
   ComplianceResult,
@@ -13,7 +27,8 @@ interface PaginatedResponse<T> {
 }
 
 export const complianceApi = {
-  // Results
+  // ── Results ────────────────────────────────────────────────────────────────
+
   getResults: async (params?: {
     page?: number;
     page_size?: number;
@@ -66,9 +81,7 @@ export const complianceApi = {
   getRecommendations: async (frameworkId: string) => {
     const response = await apiClient.get(
       "/compliance/results/recommendations/",
-      {
-        params: { framework: frameworkId },
-      },
+      { params: { framework: frameworkId } },
     );
     return response.data;
   },
@@ -76,10 +89,7 @@ export const complianceApi = {
   calculate: async (frameworkId: string, departmentId?: string) => {
     const response = await apiClient.post<ComplianceResult>(
       "/compliance/results/calculate/",
-      {
-        framework: frameworkId,
-        department: departmentId,
-      },
+      { framework: frameworkId, department: departmentId },
     );
     return response.data;
   },
@@ -89,7 +99,8 @@ export const complianceApi = {
     return response.data;
   },
 
-  // Gaps
+  // ── Gaps ───────────────────────────────────────────────────────────────────
+
   getGaps: async (params?: {
     page?: number;
     compliance_result?: string;
@@ -124,7 +135,8 @@ export const complianceApi = {
     return response.data;
   },
 
-  // Framework Adoptions
+  // ── Framework Adoptions ────────────────────────────────────────────────────
+
   getAdoptions: async (params?: {
     page?: number;
     adoption_status?: string;
@@ -201,7 +213,8 @@ export const complianceApi = {
     return response.data;
   },
 
-  // Reports
+  // ── Reports ────────────────────────────────────────────────────────────────
+
   generateReport: async (data: {
     title: string;
     framework?: string;
@@ -226,18 +239,11 @@ export const complianceApi = {
   downloadReport: async (id: string) => {
     const response = await apiClient.get(
       `/compliance/reports/${id}/download/`,
-      {
-        responseType: "blob",
-      },
+      { responseType: "blob" },
     );
     return response.data;
   },
 
-  // Library Frameworks (for dropdown selects)
-  getFrameworks: async () => {
-    const response = await apiClient.get("/library/frameworks/", {
-      params: { is_published: true, page_size: 100 },
-    });
-    return response.data;
-  },
+  // NOTE: getFrameworks intentionally removed — use libraryApi.getFrameworks instead.
+  // queryKey: ['frameworks']  (shared with library, deduplicated by TanStack Query)
 };

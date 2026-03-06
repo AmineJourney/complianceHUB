@@ -15,10 +15,11 @@ urlpatterns = [
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/register/', views.register, name='register'),
     path('auth/logout/', views.logout, name='logout'),
-
-    # ✅ FIXED: single path handling both GET and PATCH via the view itself
     path('auth/me/', views.current_user, name='current_user'),
     path('auth/change-password/', views.change_password, name='change_password'),
+
+    # FIX #5: user preferences endpoint (load/save notification + appearance settings)
+    path('auth/preferences/', views.user_preferences, name='user_preferences'),
 
     # Password reset (no auth required)
     path('auth/password-reset/', views.request_password_reset, name='password_reset_request'),

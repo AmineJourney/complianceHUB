@@ -1,5 +1,6 @@
 # core/views.py
-from rest_framework import status, viewsets
+import logging
+from rest_framework import status, viewsets, serializers as drf_serializers
 from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -23,6 +24,7 @@ from .serializers import (
 from .permissions import IsTenantMember, IsOwnerOrAdmin
 
 User = get_user_model()
+logger = logging.getLogger(__name__)
 
 
 # ─── AUTH ────────────────────────────────────────────────────────────────────
@@ -63,7 +65,10 @@ def current_user(request):
             if field == 'email':
                 new_email = request.data['email']
                 if User.objects.exclude(id=user.id).filter(email=new_email).exists():
-                    return Response({'error': 'Email already in use'}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response(
+                        {'error': 'Email already in use'},
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
             setattr(user, field, request.data[field])
     user.save()
     return Response(UserSerializer(user).data)
@@ -79,13 +84,22 @@ def change_password(request):
     new_password_confirm = request.data.get('new_password_confirm')
 
     if not old_password or not new_password or not new_password_confirm:
-        return Response({'error': 'All password fields are required.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'error': 'All password fields are required.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
     if not user.check_password(old_password):
-        return Response({'error': 'Current password is incorrect.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'error': 'Current password is incorrect.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
     if new_password != new_password_confirm:
-        return Response({'error': 'New passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'error': 'New passwords do not match.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
     try:
         validate_password(new_password, user)
@@ -157,15 +171,13 @@ def request_password_reset(request):
     reset_link = f"{frontend_base}/reset-password?token={reset_token.token}"
 
     if django_settings.DEBUG:
-        # No SMTP configured — return the link directly so dev can test immediately.
-        # This branch is never reached in production (DEBUG=False).
         return Response({
             'message': 'Reset link generated. Copy it below (dev mode — no email sent).',
             'reset_link': reset_link,
             'expires_in_minutes': 60,
         })
 
-    # Production path — send email
+    # Production — send email
     try:
         send_mail(
             subject='Password Reset Request',
@@ -181,9 +193,7 @@ def request_password_reset(request):
             fail_silently=False,
         )
     except Exception:
-        # Log but don't reveal the failure to the caller
-        import logging
-        logging.getLogger(__name__).exception('Failed to send password reset email to %s', email)
+        logger.exception('Failed to send password reset email to %s', email)
 
     return generic_response
 
@@ -212,7 +222,10 @@ def confirm_password_reset(request):
         return Response({'error': 'Invalid or expired reset token.'}, status=status.HTTP_400_BAD_REQUEST)
 
     if not reset_token.is_valid:
-        return Response({'error': 'This reset link has expired or already been used.'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {'error': 'This reset link has expired or already been used.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
     user = reset_token.user
 
@@ -234,8 +247,7 @@ def confirm_password_reset(request):
 def validate_reset_token(request):
     """
     GET /api/auth/password-reset/validate/?token=<token>
-    Returns whether a token is still valid — used by the frontend reset page
-    to show an error before the user even fills the form.
+    Returns whether a token is still valid.
     """
     token_str = request.query_params.get('token', '').strip()
     if not token_str:
@@ -246,6 +258,53 @@ def validate_reset_token(request):
         return Response({'valid': reset_token.is_valid})
     except PasswordResetToken.DoesNotExist:
         return Response({'valid': False})
+
+
+# ─── USER PREFERENCES ────────────────────────────────────────────────────────
+
+_DEFAULT_PREFERENCES = {
+    "email_notifications":   True,
+    "desktop_notifications": False,
+    "compliance_alerts":     True,
+    "risk_alerts":           True,
+    "evidence_reminders":    True,
+    "theme":                 "light",
+    "language":              "en",
+}
+
+
+class _UserPreferencesSerializer(drf_serializers.Serializer):
+    email_notifications   = drf_serializers.BooleanField(required=False)
+    desktop_notifications = drf_serializers.BooleanField(required=False)
+    compliance_alerts     = drf_serializers.BooleanField(required=False)
+    risk_alerts           = drf_serializers.BooleanField(required=False)
+    evidence_reminders    = drf_serializers.BooleanField(required=False)
+    theme                 = drf_serializers.ChoiceField(
+                                choices=['light', 'dark', 'system'], required=False)
+    language              = drf_serializers.CharField(max_length=10, required=False)
+
+
+@api_view(['GET', 'PATCH'])
+@permission_classes([IsAuthenticated])
+def user_preferences(request):
+    """
+    GET  /api/auth/preferences/  → returns current preferences (merged over defaults)
+    PATCH /api/auth/preferences/ → partial merge of provided keys into stored preferences
+    """
+    user = request.user
+    current = {**_DEFAULT_PREFERENCES, **(user.preferences or {})}
+
+    if request.method == 'GET':
+        return Response(current)
+
+    serializer = _UserPreferencesSerializer(data=request.data, partial=True)
+    if not serializer.is_valid():
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    updated = {**current, **serializer.validated_data}
+    user.preferences = updated
+    user.save(update_fields=['preferences'])
+    return Response(updated)
 
 
 # ─── COMPANY ─────────────────────────────────────────────────────────────────
@@ -283,7 +342,10 @@ class CompanyViewSet(viewsets.ModelViewSet):
             )
 
         return Response(
-            {'company': CompanySerializer(company).data, 'membership': MembershipSerializer(membership).data},
+            {
+                'company': CompanySerializer(company).data,
+                'membership': MembershipSerializer(membership).data,
+            },
             status=status.HTTP_201_CREATED
         )
 
@@ -292,18 +354,16 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
 class MembershipViewSet(viewsets.ModelViewSet):
     """
-    Full CRUD membership management.
-    - GET  /memberships/                     → own memberships (across all companies)
-    - GET  /memberships/?company=<id>        → own membership for a company
-    - GET  /memberships/company_members/     → all members of the current tenant (requires X-Company-ID)
-    - PATCH /memberships/<id>/               → change a member's role (owner/admin only)
-    - DELETE /memberships/<id>/              → remove a member (owner/admin only)
+    - GET  /memberships/                  → own memberships (across all companies)
+    - GET  /memberships/?company=<id>     → own membership for a specific company
+    - GET  /memberships/company_members/  → all members of the current tenant
+    - PATCH /memberships/<id>/            → change a member's role (owner/admin only)
+    - DELETE /memberships/<id>/           → remove a member (owner/admin only)
     """
     serializer_class = MembershipSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Default: return caller's own memberships
         queryset = Membership.objects.filter(
             user=self.request.user,
             is_deleted=False
@@ -322,13 +382,12 @@ class MembershipViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='company_members')
     def company_members(self, request):
-        """
-        GET /api/memberships/company_members/
-        Returns all active members of the current tenant.
-        Requires X-Company-ID header.
-        """
+        """GET /api/memberships/company_members/ — all members of the current tenant."""
         if not hasattr(request, 'tenant') or not request.tenant:
-            return Response({'error': 'Company context required.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Company context required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         members = Membership.objects.filter(
             company=request.tenant,
@@ -342,19 +401,28 @@ class MembershipViewSet(viewsets.ModelViewSet):
         """PATCH /api/memberships/<id>/ — change role"""
         instance = self.get_object()
 
-        # Only owner/admin of the same company can change roles
         if not hasattr(request, 'tenant') or request.tenant != instance.company:
-            return Response({'error': 'You can only manage members of your current company.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'You can only manage members of your current company.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         if not hasattr(request, 'membership') or request.membership.role not in ('owner', 'admin'):
-            return Response({'error': 'Only owners and admins can change member roles.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners and admins can change member roles.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
-        # Admins cannot promote to owner
         new_role = request.data.get('role')
         if new_role == 'owner' and request.membership.role != 'owner':
-            return Response({'error': 'Only owners can grant the owner role.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners can grant the owner role.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
-        serializer = MembershipUpdateSerializer(instance, data=request.data, partial=True, context={'request': request})
+        serializer = MembershipUpdateSerializer(
+            instance, data=request.data, partial=True, context={'request': request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(MembershipSerializer(instance).data)
@@ -365,22 +433,32 @@ class MembershipViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
 
         if not hasattr(request, 'tenant') or request.tenant != instance.company:
-            return Response({'error': 'You can only manage members of your current company.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'You can only manage members of your current company.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         if not hasattr(request, 'membership') or request.membership.role not in ('owner', 'admin'):
-            return Response({'error': 'Only owners and admins can remove members.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners and admins can remove members.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
-        # Cannot remove yourself
         if instance.user == request.user:
-            return Response({'error': 'You cannot remove yourself. Transfer ownership first.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'You cannot remove yourself. Transfer ownership first.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-        # Cannot remove the last owner
         if instance.role == 'owner':
             owner_count = Membership.objects.filter(
                 company=instance.company, role='owner', is_deleted=False
             ).count()
             if owner_count <= 1:
-                return Response({'error': 'Cannot remove the last owner of a company.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {'error': 'Cannot remove the last owner of a company.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
 
         instance.delete()  # soft delete
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -418,10 +496,16 @@ class InvitationViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         """POST /api/invitations/ — create a shareable invite link"""
         if not hasattr(request, 'tenant') or not request.tenant:
-            return Response({'error': 'Company context required.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Company context required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
         if not hasattr(request, 'membership') or request.membership.role not in ('owner', 'admin'):
-            return Response({'error': 'Only owners and admins can create invitations.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners and admins can create invitations.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         serializer = InvitationCreateSerializer(data=request.data, context={'request': request})
         if not serializer.is_valid():
@@ -432,17 +516,17 @@ class InvitationViewSet(viewsets.ModelViewSet):
             invited_by=request.user
         )
 
-        return Response(
-            InvitationSerializer(invitation).data,
-            status=status.HTTP_201_CREATED
-        )
+        return Response(InvitationSerializer(invitation).data, status=status.HTTP_201_CREATED)
 
     def destroy(self, request, *args, **kwargs):
         """DELETE /api/invitations/<id>/ — revoke"""
         invitation = self.get_object()
 
         if request.membership.role not in ('owner', 'admin'):
-            return Response({'error': 'Only owners and admins can revoke invitations.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners and admins can revoke invitations.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         invitation.is_revoked = True
         invitation.save()
@@ -453,7 +537,10 @@ class InvitationViewSet(viewsets.ModelViewSet):
         """POST /api/invitations/<id>/revoke/"""
         invitation = self.get_object()
         if request.membership.role not in ('owner', 'admin'):
-            return Response({'error': 'Only owners and admins can revoke invitations.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(
+                {'error': 'Only owners and admins can revoke invitations.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
         invitation.is_revoked = True
         invitation.save()
         return Response({'message': 'Invitation revoked.'})

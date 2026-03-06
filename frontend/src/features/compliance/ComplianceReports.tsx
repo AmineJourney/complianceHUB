@@ -1,11 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// src/features/compliance/ComplianceReports.tsx
+/**
+ * FIX #6 — Framework dropdown now uses libraryApi.getFrameworks with the
+ * shared query key ['frameworks'] instead of the removed
+ * complianceApi.getFrameworks, so TanStack Query can deduplicate the request
+ * across the whole app.
+ */
 import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { complianceApi } from "../../api/compliance";
+import { libraryApi } from "../../api/library";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
@@ -17,16 +24,36 @@ import { FileText, Download, Plus, BarChart2 } from "lucide-react";
 import { formatDateTime } from "../../lib/utils";
 import { getErrorMessage } from "../../api/client";
 
+const REPORT_TYPES = [
+  { value: "summary", label: "Executive Summary" },
+  { value: "detailed", label: "Detailed Assessment" },
+  { value: "gap_analysis", label: "Gap Analysis" },
+  { value: "evidence_matrix", label: "Evidence Matrix" },
+  { value: "control_matrix", label: "Control Matrix" },
+  { value: "audit_report", label: "Audit Report" },
+];
+
+const STATUS_COLORS: Record<string, string> = {
+  pending: "bg-gray-100 text-gray-800",
+  generating: "bg-blue-100 text-blue-800",
+  completed: "bg-green-100 text-green-800",
+  failed: "bg-red-100 text-red-800",
+};
+
+const EMPTY_FORM = {
+  title: "",
+  framework: "",
+  report_type: "summary",
+  report_format: "pdf",
+  period_start: "",
+  period_end: "",
+};
+
 export function ComplianceReports() {
   const [showGenerateForm, setShowGenerateForm] = useState(false);
-  const [formData, setFormData] = useState({
-    title: "",
-    framework: "",
-    report_type: "summary",
-    report_format: "pdf",
-    period_start: "",
-    period_end: "",
-  });
+  const [formData, setFormData] = useState(EMPTY_FORM);
+
+  // ── Data fetching ──────────────────────────────────────────────────────────
 
   const {
     data: reports,
@@ -37,26 +64,25 @@ export function ComplianceReports() {
     queryFn: complianceApi.getReports,
   });
 
-  const { data: frameworks } = useQuery({
+  // FIX #6: shared query key ['frameworks'] — deduplicated across the app
+  const { data: frameworksData } = useQuery({
     queryKey: ["frameworks"],
-    queryFn: complianceApi.getFrameworks,
+    queryFn: () =>
+      libraryApi.getFrameworks({ is_published: true, page_size: 100 }),
   });
+
+  // ── Mutations ──────────────────────────────────────────────────────────────
 
   const generateMutation = useMutation({
     mutationFn: complianceApi.generateReport,
     onSuccess: () => {
       refetch();
       setShowGenerateForm(false);
-      setFormData({
-        title: "",
-        framework: "",
-        report_type: "summary",
-        report_format: "pdf",
-        period_start: "",
-        period_end: "",
-      });
+      setFormData(EMPTY_FORM);
     },
   });
+
+  // ── Handlers ──────────────────────────────────────────────────────────────
 
   const handleDownload = async (reportId: string, title: string) => {
     try {
@@ -74,25 +100,19 @@ export function ComplianceReports() {
     }
   };
 
-  const reportTypes = [
-    { value: "summary", label: "Executive Summary" },
-    { value: "detailed", label: "Detailed Assessment" },
-    { value: "gap_analysis", label: "Gap Analysis" },
-    { value: "evidence_matrix", label: "Evidence Matrix" },
-    { value: "control_matrix", label: "Control Matrix" },
-    { value: "audit_report", label: "Audit Report" },
-  ];
-
-  const statusColors: Record<string, string> = {
-    pending: "bg-gray-100 text-gray-800",
-    generating: "bg-blue-100 text-blue-800",
-    completed: "bg-green-100 text-green-800",
-    failed: "bg-red-100 text-red-800",
+  const handleGenerate = () => {
+    if (!formData.title.trim()) return;
+    generateMutation.mutate({
+      ...formData,
+      framework: formData.framework || undefined,
+      period_start: formData.period_start || undefined,
+      period_end: formData.period_end || undefined,
+    });
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  // ── Render ────────────────────────────────────────────────────────────────
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="space-y-6">
@@ -110,7 +130,7 @@ export function ComplianceReports() {
         </Button>
       </div>
 
-      {/* Generate Form */}
+      {/* Generate form */}
       {showGenerateForm && (
         <Card className="border-primary">
           <CardHeader>
@@ -124,6 +144,7 @@ export function ComplianceReports() {
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Title */}
               <div className="md:col-span-2 space-y-2">
                 <label className="text-sm font-medium">Report Title *</label>
                 <Input
@@ -132,10 +153,10 @@ export function ComplianceReports() {
                     setFormData({ ...formData, title: e.target.value })
                   }
                   placeholder="Q4 2024 Compliance Report"
-                  required
                 />
               </div>
 
+              {/* Framework */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Framework</label>
                 <select
@@ -146,16 +167,17 @@ export function ComplianceReports() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">All Frameworks</option>
-                  {frameworks?.results?.map((f: any) => (
+                  {frameworksData?.results?.map((f: any) => (
                     <option key={f.id} value={f.id}>
-                      {f.code} - {f.name}
+                      {f.code} – {f.name}
                     </option>
                   ))}
                 </select>
               </div>
 
+              {/* Report type */}
               <div className="space-y-2">
-                <label className="text-sm font-medium">Report Type *</label>
+                <label className="text-sm font-medium">Report Type</label>
                 <select
                   value={formData.report_type}
                   onChange={(e) =>
@@ -163,7 +185,7 @@ export function ComplianceReports() {
                   }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  {reportTypes.map((t) => (
+                  {REPORT_TYPES.map((t) => (
                     <option key={t.value} value={t.value}>
                       {t.label}
                     </option>
@@ -171,6 +193,7 @@ export function ComplianceReports() {
                 </select>
               </div>
 
+              {/* Period start */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Period Start</label>
                 <Input
@@ -182,6 +205,7 @@ export function ComplianceReports() {
                 />
               </div>
 
+              {/* Period end */}
               <div className="space-y-2">
                 <label className="text-sm font-medium">Period End</label>
                 <Input
@@ -196,10 +220,10 @@ export function ComplianceReports() {
 
             <div className="flex gap-3 mt-6">
               <Button
-                onClick={() => generateMutation.mutate(formData)}
-                disabled={!formData.title || generateMutation.isPending}
+                onClick={handleGenerate}
+                disabled={!formData.title.trim() || generateMutation.isPending}
               >
-                {generateMutation.isPending ? "Generating..." : "Generate"}
+                {generateMutation.isPending ? "Generating…" : "Generate Report"}
               </Button>
               <Button
                 variant="outline"
@@ -212,16 +236,13 @@ export function ComplianceReports() {
         </Card>
       )}
 
-      {/* Reports List */}
+      {/* Reports table */}
       <Card>
         <CardHeader>
           <CardTitle>Generated Reports</CardTitle>
-          <CardDescription>
-            {reports?.count || 0} reports generated
-          </CardDescription>
         </CardHeader>
         <CardContent>
-          {!reports?.results || reports.results.length === 0 ? (
+          {!reports?.results?.length ? (
             <div className="text-center py-12">
               <BarChart2 className="h-12 w-12 text-gray-300 mx-auto mb-3" />
               <p className="text-gray-500">No reports generated yet</p>
@@ -286,10 +307,11 @@ export function ComplianceReports() {
                       <td className="py-3 px-4">
                         <Badge
                           className={
-                            statusColors[report.generation_status] || ""
+                            STATUS_COLORS[report.status] ||
+                            STATUS_COLORS.pending
                           }
                         >
-                          {report.generation_status}
+                          {report.status}
                         </Badge>
                       </td>
                       <td className="py-3 px-4">
@@ -297,21 +319,19 @@ export function ComplianceReports() {
                           {formatDateTime(report.created_at)}
                         </span>
                       </td>
-                      <td className="py-3 px-4">
-                        <div className="flex justify-end">
-                          {report.generation_status === "completed" &&
-                            report.report_file && (
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                onClick={() =>
-                                  handleDownload(report.id, report.title)
-                                }
-                              >
-                                <Download className="h-4 w-4" />
-                              </Button>
-                            )}
-                        </div>
+                      <td className="py-3 px-4 text-right">
+                        {report.status === "completed" && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() =>
+                              handleDownload(report.id, report.title)
+                            }
+                          >
+                            <Download className="h-4 w-4 mr-1" />
+                            Download
+                          </Button>
+                        )}
                       </td>
                     </tr>
                   ))}
