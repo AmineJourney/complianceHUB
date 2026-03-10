@@ -1,0 +1,200 @@
+framework:
+  name:
+    en: "TISAX – Trusted Information Security Assessment Exchange"
+    fr: "TISAX – Échange d'évaluation de la sécurité de l'information"
+  slug: tisax
+version:
+  name: "VDA ISA"
+  release_year: 2020
+  description:
+    en: "Information security assessment framework widely used in the automotive sector."
+    fr: "Cadre d'évaluation de la sécurité de l'information largement utilisé dans le secteur automobile."
+
+domains:
+  - code: "IS"
+    name:
+      en: "Information Security"
+      fr: "Sécurité de l'information"
+    description:
+      en: "Controls addressing overall information security requirements."
+      fr: "Contrôles abordant les exigences globales de sécurité de l'information."
+
+  - code: "AC"
+    name:
+      en: "Access Control"
+      fr: "Contrôle d'accès"
+    description:
+      en: "Controls governing access to systems and data."
+      fr: "Contrôles régissant l'accès aux systèmes et aux données."
+
+  - code: "SYS"
+    name:
+      en: "System Security"
+      fr: "Sécurité des systèmes"
+    description:
+      en: "Technical and operational security measures for systems."
+      fr: "Mesures de sécurité techniques et opérationnelles pour les systèmes."
+
+controls:
+  # ───────────── Information Security Domain ─────────────
+  - code: "IS.1"
+    domain: "IS"
+    title:
+      en: "Information Security Policy"
+      fr: "Politique de sécurité de l'information"
+    description:
+      en: "Define and maintain an organizational information security policy."
+      fr: "Définir et maintenir une politique de sécurité de l'information organisationnelle."
+    guidance:
+      en: |
+        Establish a documented information security policy
+        aligned with business objectives and legal requirements.
+      fr: |
+        Établir une politique de sécurité de l'information documentée
+        alignée sur les objectifs commerciaux et les exigences légales.
+    evidence_required:
+      - security_policy_document
+      - management_approval_record
+    requirements:
+      - id: "IS.1.1"
+        control: "IS.1"
+        text:
+          en: "An information security policy must be documented and approved by management."
+          fr: "Une politique de sécurité de l'information doit être documentée et approuvée par la direction."
+        implementation_guidance:
+          en: "Maintain, publish, and review the information security policy annually."
+          fr: "Maintenir, publier et revoir la politique de sécurité de l'information annuellement."
+        evidence:
+          - security_policy_document
+          - management_approval_record
+
+  - code: "IS.2"
+    domain: "IS"
+    title:
+      en: "Security Roles and Responsibilities"
+      fr: "Rôles et responsabilités de sécurité"
+    description:
+      en: "Assign information security roles and responsibilities."
+      fr: "Attribuer les rôles et responsabilités en matière de sécurité de l'information."
+    guidance:
+      en: "Define responsibilities for information security in job descriptions."
+      fr: "Définir les responsabilités de sécurité de l'information dans les descriptions de poste."
+    evidence_required:
+      - organizational_role_matrix
+    requirements:
+      - id: "IS.2.1"
+        control: "IS.2"
+        text:
+          en: "Roles and responsibilities must be defined and documented."
+          fr: "Les rôles et responsabilités doivent être définis et documentés."
+        implementation_guidance:
+          en: "Document security responsibilities in a roles matrix."
+          fr: "Documenter les responsabilités de sécurité dans une matrice de rôles."
+        evidence:
+          - organizational_role_matrix
+
+  # ───────────── Access Control Domain ─────────────
+  - code: "AC.1"
+    domain: "AC"
+    title:
+      en: "User Access Management"
+      fr: "Gestion des accès utilisateurs"
+    description:
+      en: "Ensure that user access rights are managed consistently."
+      fr: "S'assurer que les droits d'accès des utilisateurs sont gérés de manière cohérente."
+    guidance:
+      en: "Implement role-based access control and remove unused accounts."
+      fr: "Mettre en œuvre un contrôle d'accès basé sur les rôles et supprimer les comptes inutilisés."
+    evidence_required:
+      - access_control_matrix
+      - user_access_review_log
+    requirements:
+      - id: "AC.1.1"
+        control: "AC.1"
+        text:
+          en: "User access rights must be periodically reviewed."
+          fr: "Les droits d'accès des utilisateurs doivent être périodiquement révisés."
+        implementation_guidance:
+          en: "Conduct quarterly access reviews and remove unused privileges."
+          fr: "Effectuer des révisions trimestrielles des accès et supprimer les privilèges inutilisés."
+        evidence:
+          - access_control_matrix
+          - user_access_review_log
+
+  - code: "AC.2"
+    domain: "AC"
+    title:
+      en: "Authentication Controls"
+      fr: "Contrôles d'authentification"
+    description:
+      en: "Ensure secure authentication mechanisms are in place."
+      fr: "S'assurer que des mécanismes d'authentification sécurisés sont en place."
+    guidance:
+      en: "Use multi-factor authentication for critical systems."
+      fr: "Utiliser une authentification multi-facteurs pour les systèmes critiques."
+    evidence_required:
+      - mfa_configuration
+    requirements:
+      - id: "AC.2.1"
+        control: "AC.2"
+        text:
+          en: "Critical systems must implement multi-factor authentication."
+          fr: "Les systèmes critiques doivent mettre en œuvre une authentification multi-facteurs."
+        implementation_guidance:
+          en: "Configure MFA across VPN, cloud apps, and administrative accounts."
+          fr: "Configurer MFA pour les VPN, applications cloud et comptes administratifs."
+        evidence:
+          - mfa_configuration
+
+  # ───────────── System Security Domain ─────────────
+  - code: "SYS.1"
+    domain: "SYS"
+    title:
+      en: "Device Hardening"
+      fr: "Durcissement des dispositifs"
+    description:
+      en: "Secure configuration of endpoints and servers."
+      fr: "Configuration sécurisée des points de terminaison et des serveurs."
+    guidance:
+      en: "Deploy CIS Benchmarks or equivalent secure baselines."
+      fr: "Déployer les référentiels CIS ou des bases sécurisées équivalentes."
+    evidence_required:
+      - configuration_baselines
+      - vulnerability_scan_reports
+    requirements:
+      - id: "SYS.1.1"
+        control: "SYS.1"
+        text:
+          en: "Endpoints must follow documented secure baselines."
+          fr: "Les terminaux doivent suivre des configurations sécurisées documentées."
+        implementation_guidance:
+          en: "Scan for deviations and remediate findings."
+          fr: "Analyser les écarts et corriger les résultats."
+        evidence:
+          - configuration_baselines
+          - vulnerability_scan_reports
+
+  - code: "SYS.2"
+    domain: "SYS"
+    title:
+      en: "Patch Management"
+      fr: "Gestion des correctifs"
+    description:
+      en: "Keep systems up to date with security patches."
+      fr: "Maintenir les systèmes à jour avec les correctifs de sécurité."
+    guidance:
+      en: "Implement automated patching and testing processes."
+      fr: "Mettre en œuvre un processus automatisé de correctifs et de tests."
+    evidence_required:
+      - patch_management_records
+    requirements:
+      - id: "SYS.2.1"
+        control: "SYS.2"
+        text:
+          en: "Critical patches must be applied within defined SLAs."
+          fr: "Les correctifs critiques doivent être appliqués dans les SLA définis."
+        implementation_guidance:
+          en: "Monitor patch pipeline and exceptions regularly."
+          fr: "Surveiller régulièrement le pipeline des correctifs et les exceptions."
+        evidence:
+          - patch_management_records

@@ -1,0 +1,711 @@
+framework:
+  name:
+    en: "ISO 27001"
+    fr: "ISO 27001"
+  slug: iso27001
+
+version:
+  name: "2022"
+  release_year: 2022
+  description:
+    en: "International standard for Information Security Management Systems."
+    fr: "Norme internationale pour les systèmes de gestion de la sécurité de l'information."
+
+domains:
+  - code: "A.5"
+    name:
+      en: "Organizational Controls"
+      fr: "Contrôles organisationnels"
+    description:
+      en: "Controls related to organizational policies and management."
+      fr: "Contrôles liés aux politiques organisationnelles et à la gestion."
+
+  - code: "A.6"
+    name:
+      en: "People Controls"
+      fr: "Contrôles liés aux personnes"
+    description:
+      en: "Controls to manage personnel-related security."
+      fr: "Contrôles pour gérer la sécurité liée au personnel."
+
+  - code: "A.7"
+    name:
+      en: "Physical Controls"
+      fr: "Contrôles physiques"
+    description:
+      en: "Controls protecting physical premises and assets."
+      fr: "Contrôles protégeant les locaux et actifs physiques."
+
+  - code: "A.8"
+    name:
+      en: "Technical Controls"
+      fr: "Contrôles techniques"
+    description:
+      en: "Technical measures for safeguarding systems."
+      fr: "Mesures techniques pour sécuriser les systèmes."
+
+  - code: "A.9"
+    name:
+      en: "Identity and Access Controls"
+      fr: "Contrôles d'identité et d'accès"
+    description:
+      en: "Controls governing user access and authentication."
+      fr: "Contrôles régissant l'accès des utilisateurs et l'authentification."
+
+  - code: "A.10"
+    name:
+      en: "Data Security Controls"
+      fr: "Contrôles de sécurité des données"
+    description:
+      en: "Controls that protect data integrity and confidentiality."
+      fr: "Contrôles protégeant l'intégrité et la confidentialité des données."
+
+  - code: "A.11"
+    name:
+      en: "Network Security Controls"
+      fr: "Contrôles de sécurité réseau"
+    description:
+      en: "Measures securing network infrastructure."
+      fr: "Mesures sécurisant l'infrastructure réseau."
+
+  - code: "A.12"
+    name:
+      en: "System Security Controls"
+      fr: "Contrôles de sécurité des systèmes"
+    description:
+      en: "Safeguards applied at system level."
+      fr: "Mesures de protection au niveau des systèmes."
+
+  - code: "A.13"
+    name:
+      en: "Security Monitoring Controls"
+      fr: "Contrôles de surveillance de sécurité"
+    description:
+      en: "Controls for detection and monitoring."
+      fr: "Contrôles pour la détection et la surveillance."
+
+  - code: "A.14"
+    name:
+      en: "Supplier and Third Party Controls"
+      fr: "Contrôles des fournisseurs et tiers"
+    description:
+      en: "Controls governing external partners."
+      fr: "Contrôles régissant les partenaires externes."
+
+  - code: "A.15"
+    name:
+      en: "Business Continuity Controls"
+      fr: "Contrôles de continuité des activités"
+    description:
+      en: "Controls ensuring business resilience."
+      fr: "Contrôles assurant la résilience des activités."
+
+  - code: "A.16"
+    name:
+      en: "Risk and Audit Controls"
+      fr: "Contrôles de risque et d'audit"
+    description:
+      en: "Controls related to risk assessment & audit."
+      fr: "Contrôles liés à l’évaluation des risques et aux audits."
+
+  - code: "A.17"
+    name:
+      en: "Compliance Controls"
+      fr: "Contrôles de conformité"
+    description:
+      en: "Controls ensuring compliance with laws & policies."
+      fr: "Contrôles assurant la conformité aux lois et politiques."
+
+  - code: "A.18"
+    name:
+      en: "Improvement Controls"
+      fr: "Contrôles d'amélioration"
+    description:
+      en: "Controls focused on continual improvement."
+      fr: "Contrôles axés sur l’amélioration continue."
+
+controls:
+  # ───────────── A.5 Organizational Controls ─────────────
+  - code: "A.5.1"
+    domain: "A.5"
+    title:
+      en: "Policies for information security"
+      fr: "Politiques de sécurité de l'information"
+    description:
+      en: "Establish and communicate information security policies."
+      fr: "Établir et communiquer des politiques de sécurité de l'information."
+    guidance:
+      en: "Document and publish information security policies approved by management."
+      fr: "Documenter et publier des politiques de sécurité approuvées par la direction."
+    evidence_required:
+      - security_policy_document
+      - management_approval_record
+    requirements:
+      - id: "A.5.1.1"
+        control: "A.5.1"
+        text:
+          en: "Security policies must be documented and approved by management."
+          fr: "Les politiques de sécurité doivent être documentées et approuvées par la direction."
+        implementation_guidance:
+          en: "Create a formal information security policy document and obtain management approval."
+          fr: "Créer un document formel de politique de sécurité et obtenir l'approbation de la direction."
+        evidence:
+          - security_policy_document
+          - management_approval_record
+
+  - code: "A.5.2"
+    domain: "A.5"
+    title:
+      en: "Information security roles & responsibilities"
+      fr: "Rôles et responsabilités de sécurité de l'information"
+    description:
+      en: "Define roles, responsibilities, and authorities."
+      fr: "Définir les rôles, responsabilités et autorités."
+    guidance:
+      en: "Assign ownership and accountability for controls."
+      fr: "Assigner la propriété et la responsabilité des contrôles."
+    evidence_required:
+      - organizational_role_matrix
+    requirements:
+      - id: "A.5.2.1"
+        control: "A.5.2"
+        text:
+          en: "Roles and responsibilities must be assigned and documented."
+          fr: "Les rôles et responsabilités doivent être assignés et documentés."
+        implementation_guidance:
+          en: "Create a role and responsibility matrix for all security controls."
+          fr: "Créer une matrice des rôles et responsabilités pour tous les contrôles de sécurité."
+        evidence:
+          - organizational_role_matrix
+
+  # ───────────── A.6 People Controls ─────────────
+  - code: "A.6.1"
+    domain: "A.6"
+    title:
+      en: "Screening"
+      fr: "Sélection du personnel"
+    description:
+      en: "Screen job applicants and employees appropriately."
+      fr: "Effectuer un filtrage approprié des candidats et employés."
+    guidance:
+      en: "Background checks should be performed based on role risk."
+      fr: "Des vérifications des antécédents doivent être effectuées."
+    evidence_required:
+      - screening_records
+    requirements:
+      - id: "A.6.1.1"
+        control: "A.6.1"
+        text:
+          en: "Perform background checks on all critical personnel."
+          fr: "Effectuer des vérifications des antécédents sur tout le personnel critique."
+        implementation_guidance:
+          en: "Conduct identity verification, criminal record check, and reference checks."
+          fr: "Effectuer la vérification d'identité, les contrôles des casiers judiciaires et les références."
+        evidence:
+          - screening_records
+
+  - code: "A.6.2"
+    domain: "A.6"
+    title:
+      en: "Security Awareness Training"
+      fr: "Formation à la sensibilisation à la sécurité"
+    description:
+      en: "Educate personnel on security responsibilities."
+      fr: "Former le personnel sur les responsabilités de sécurité."
+    guidance:
+      en: "Regular security awareness sessions must occur."
+      fr: "Des sessions régulières de sensibilisation doivent avoir lieu."
+    evidence_required:
+      - training_attendance_log
+    requirements:
+      - id: "A.6.2.1"
+        control: "A.6.2"
+        text:
+          en: "All personnel must complete security awareness training annually."
+          fr: "Tout le personnel doit suivre une formation à la sensibilisation à la sécurité chaque année."
+        implementation_guidance:
+          en: "Maintain logs of attendance and training materials."
+          fr: "Conserver les registres de présence et les supports de formation."
+        evidence:
+          - training_attendance_log
+
+  # ───────────── A.7 Physical Controls ─────────────
+  - code: "A.7.1"
+    domain: "A.7"
+    title:
+      en: "Secure Areas"
+      fr: "Zones sécurisées"
+    description:
+      en: "Protect physical areas with security measures."
+      fr: "Protéger les zones physiques avec des mesures de sécurité."
+    guidance:
+      en: "Restrict access to critical areas to authorized personnel."
+      fr: "Restreindre l'accès aux zones critiques au personnel autorisé."
+    evidence_required:
+      - access_logs
+      - security_badges
+    requirements:
+      - id: "A.7.1.1"
+        control: "A.7.1"
+        text:
+          en: "Critical areas must have controlled entry."
+          fr: "Les zones critiques doivent avoir un accès contrôlé."
+        implementation_guidance:
+          en: "Install keycard access and maintain logs."
+          fr: "Installer un accès par badge et conserver les journaux d'accès."
+        evidence:
+          - access_logs
+          - security_badges
+framework:
+  name:
+    en: "ISO 27001"
+    fr: "ISO 27001"
+  slug: iso27001
+
+version:
+  name: "2022"
+  release_year: 2022
+  description:
+    en: "International standard for Information Security Management Systems."
+    fr: "Norme internationale pour les systèmes de gestion de la sécurité de l'information."
+
+domains:
+  - code: "A.5"
+    name:
+      en: "Organizational Controls"
+      fr: "Contrôles organisationnels"
+    description:
+      en: "Controls related to organizational policies and management."
+      fr: "Contrôles liés aux politiques organisationnelles et à la gestion."
+
+  - code: "A.6"
+    name:
+      en: "People Controls"
+      fr: "Contrôles liés aux personnes"
+    description:
+      en: "Controls to manage personnel-related security."
+      fr: "Contrôles pour gérer la sécurité liée au personnel."
+
+  - code: "A.7"
+    name:
+      en: "Physical Controls"
+      fr: "Contrôles physiques"
+    description:
+      en: "Controls protecting physical premises and assets."
+      fr: "Contrôles protégeant les locaux et actifs physiques."
+
+  - code: "A.8"
+    name:
+      en: "Technical Controls"
+      fr: "Contrôles techniques"
+    description:
+      en: "Technical measures for safeguarding systems."
+      fr: "Mesures techniques pour sécuriser les systèmes."
+
+  - code: "A.9"
+    name:
+      en: "Identity and Access Controls"
+      fr: "Contrôles d'identité et d'accès"
+    description:
+      en: "Controls governing user access and authentication."
+      fr: "Contrôles régissant l'accès des utilisateurs et l'authentification."
+
+  - code: "A.10"
+    name:
+      en: "Data Security Controls"
+      fr: "Contrôles de sécurité des données"
+    description:
+      en: "Controls that protect data integrity and confidentiality."
+      fr: "Contrôles protégeant l'intégrité et la confidentialité des données."
+
+  - code: "A.11"
+    name:
+      en: "Network Security Controls"
+      fr: "Contrôles de sécurité réseau"
+    description:
+      en: "Measures securing network infrastructure."
+      fr: "Mesures sécurisant l'infrastructure réseau."
+
+  - code: "A.12"
+    name:
+      en: "System Security Controls"
+      fr: "Contrôles de sécurité des systèmes"
+    description:
+      en: "Safeguards applied at system level."
+      fr: "Mesures de protection au niveau des systèmes."
+
+  - code: "A.13"
+    name:
+      en: "Security Monitoring Controls"
+      fr: "Contrôles de surveillance de sécurité"
+    description:
+      en: "Controls for detection and monitoring."
+      fr: "Contrôles pour la détection et la surveillance."
+
+  - code: "A.14"
+    name:
+      en: "Supplier and Third Party Controls"
+      fr: "Contrôles des fournisseurs et tiers"
+    description:
+      en: "Controls governing external partners."
+      fr: "Contrôles régissant les partenaires externes."
+
+  - code: "A.15"
+    name:
+      en: "Business Continuity Controls"
+      fr: "Contrôles de continuité des activités"
+    description:
+      en: "Controls ensuring business resilience."
+      fr: "Contrôles assurant la résilience des activités."
+
+  - code: "A.16"
+    name:
+      en: "Risk and Audit Controls"
+      fr: "Contrôles de risque et d'audit"
+    description:
+      en: "Controls related to risk assessment & audit."
+      fr: "Contrôles liés à l’évaluation des risques et aux audits."
+
+  - code: "A.17"
+    name:
+      en: "Compliance Controls"
+      fr: "Contrôles de conformité"
+    description:
+      en: "Controls ensuring compliance with laws & policies."
+      fr: "Contrôles assurant la conformité aux lois et politiques."
+
+  - code: "A.18"
+    name:
+      en: "Improvement Controls"
+      fr: "Contrôles d'amélioration"
+    description:
+      en: "Controls focused on continual improvement."
+      fr: "Contrôles axés sur l’amélioration continue."
+
+controls:
+
+  # ───────────── A.5 Organizational Controls ─────────────
+  - code: "A.5.1"
+    domain: "A.5"
+    title:
+      en: "Policies for information security"
+      fr: "Politiques de sécurité de l'information"
+    description:
+      en: "Establish and communicate information security policies."
+      fr: "Établir et communiquer des politiques de sécurité de l'information."
+    guidance:
+      en: "Document and publish information security policies approved by management."
+      fr: "Documenter et publier des politiques de sécurité approuvées par la direction."
+    evidence_required:
+      - security_policy_document
+      - management_approval_record
+    requirements:
+      - id: "A.5.1.1"
+        control: "A.5.1"
+        text:
+          en: "Security policies must be documented and approved by management."
+          fr: "Les politiques de sécurité doivent être documentées et approuvées par la direction."
+        implementation_guidance:
+          en: "Create a formal information security policy document and obtain management approval."
+          fr: "Créer un document formel de politique de sécurité et obtenir l'approbation de la direction."
+        evidence:
+          - security_policy_document
+          - management_approval_record
+
+  - code: "A.5.2"
+    domain: "A.5"
+    title:
+      en: "Information security roles & responsibilities"
+      fr: "Rôles et responsabilités de sécurité de l'information"
+    description:
+      en: "Define roles, responsibilities, and authorities."
+      fr: "Définir les rôles, responsabilités et autorités."
+    guidance:
+      en: "Assign ownership and accountability for controls."
+      fr: "Assigner la propriété et la responsabilité des contrôles."
+    evidence_required:
+      - organizational_role_matrix
+    requirements:
+      - id: "A.5.2.1"
+        control: "A.5.2"
+        text:
+          en: "Roles and responsibilities must be assigned and documented."
+          fr: "Les rôles et responsabilités doivent être assignés et documentés."
+        implementation_guidance:
+          en: "Create a role and responsibility matrix for all security controls."
+          fr: "Créer une matrice des rôles et responsabilités pour tous les contrôles de sécurité."
+        evidence:
+          - organizational_role_matrix
+
+  # ───────────── A.6 People Controls ─────────────
+  - code: "A.6.1"
+    domain: "A.6"
+    title:
+      en: "Screening"
+      fr: "Sélection du personnel"
+    description:
+      en: "Screen job applicants and employees appropriately."
+      fr: "Effectuer un filtrage approprié des candidats et employés."
+    guidance:
+      en: "Background checks should be performed based on role risk."
+      fr: "Des vérifications des antécédents doivent être effectuées."
+    evidence_required:
+      - screening_records
+    requirements:
+      - id: "A.6.1.1"
+        control: "A.6.1"
+        text:
+          en: "Perform background checks on all critical personnel."
+          fr: "Effectuer des vérifications des antécédents sur tout le personnel critique."
+        implementation_guidance:
+          en: "Conduct identity verification, criminal record check, and reference checks."
+          fr: "Effectuer la vérification d'identité, les contrôles des casiers judiciaires et les références."
+        evidence:
+          - screening_records
+
+  - code: "A.6.2"
+    domain: "A.6"
+    title:
+      en: "Security Awareness Training"
+      fr: "Formation à la sensibilisation à la sécurité"
+    description:
+      en: "Educate personnel on security responsibilities."
+      fr: "Former le personnel sur les responsabilités de sécurité."
+    guidance:
+      en: "Regular security awareness sessions must occur."
+      fr: "Des sessions régulières de sensibilisation doivent avoir lieu."
+    evidence_required:
+      - training_attendance_log
+    requirements:
+      - id: "A.6.2.1"
+        control: "A.6.2"
+        text:
+          en: "All personnel must complete security awareness training annually."
+          fr: "Tout le personnel doit suivre une formation à la sensibilisation à la sécurité chaque année."
+        implementation_guidance:
+          en: "Maintain logs of attendance and training materials."
+          fr: "Conserver les registres de présence et les supports de formation."
+        evidence:
+          - training_attendance_log
+
+  # ───────────── A.7 Physical Controls ─────────────
+  - code: "A.7.1"
+    domain: "A.7"
+    title:
+      en: "Secure Areas"
+      fr: "Zones sécurisées"
+    description:
+      en: "Protect physical areas with security measures."
+      fr: "Protéger les zones physiques avec des mesures de sécurité."
+    guidance:
+      en: "Restrict access to critical areas to authorized personnel."
+      fr: "Restreindre l'accès aux zones critiques au personnel autorisé."
+    evidence_required:
+      - access_logs
+      - security_badges
+    requirements:
+      - id: "A.7.1.1"
+        control: "A.7.1"
+        text:
+          en: "Critical areas must have controlled entry."
+          fr: "Les zones critiques doivent avoir un accès contrôlé."
+        implementation_guidance:
+          en: "Install keycard access and maintain logs."
+          fr: "Installer un accès par badge et conserver les journaux d'accès."
+        evidence:
+          - access_logs
+          - security_badges
+            # ───────────── A.13 Security Monitoring Controls ─────────────
+  - code: "A.13.1"
+    domain: "A.13"
+    title:
+      en: "Event Logging"
+      fr: "Journalisation des événements"
+    description:
+      en: "Ensure that security-relevant events are logged and monitored."
+      fr: "S'assurer que les événements liés à la sécurité sont enregistrés et surveillés."
+    guidance:
+      en: "Implement centralized logging and review logs regularly."
+      fr: "Mettre en place une journalisation centralisée et examiner régulièrement les journaux."
+    evidence_required:
+      - log_files
+      - monitoring_reports
+    requirements:
+      - id: "A.13.1.1"
+        control: "A.13.1"
+        text:
+          en: "All security events must be logged and reviewed."
+          fr: "Tous les événements de sécurité doivent être enregistrés et examinés."
+        implementation_guidance:
+          en: "Use SIEM or log aggregation tools for monitoring."
+          fr: "Utiliser un SIEM ou des outils d'agrégation des journaux pour la surveillance."
+        evidence:
+          - log_files
+          - monitoring_reports
+
+  - code: "A.13.2"
+    domain: "A.13"
+    title:
+      en: "Incident Management"
+      fr: "Gestion des incidents"
+    description:
+      en: "Respond to security incidents in a timely and effective manner."
+      fr: "Répondre aux incidents de sécurité de manière rapide et efficace."
+    guidance:
+      en: "Establish an incident response plan and reporting procedures."
+      fr: "Établir un plan de réponse aux incidents et des procédures de signalement."
+    evidence_required:
+      - incident_reports
+      - incident_response_plan
+    requirements:
+      - id: "A.13.2.1"
+        control: "A.13.2"
+        text:
+          en: "All incidents must be documented and analyzed."
+          fr: "Tous les incidents doivent être documentés et analysés."
+        implementation_guidance:
+          en: "Maintain a register of incidents and lessons learned."
+          fr: "Conserver un registre des incidents et des enseignements tirés."
+        evidence:
+          - incident_reports
+          - incident_response_plan
+
+  # ───────────── A.14 Supplier and Third Party Controls ─────────────
+  - code: "A.14.1"
+    domain: "A.14"
+    title:
+      en: "Supplier Security Requirements"
+      fr: "Exigences de sécurité des fournisseurs"
+    description:
+      en: "Ensure suppliers and third parties meet security requirements."
+      fr: "S'assurer que les fournisseurs et tiers respectent les exigences de sécurité."
+    guidance:
+      en: "Include security clauses in contracts and review compliance."
+      fr: "Inclure des clauses de sécurité dans les contrats et vérifier la conformité."
+    evidence_required:
+      - supplier_contracts
+      - audit_reports
+    requirements:
+      - id: "A.14.1.1"
+        control: "A.14.1"
+        text:
+          en: "All critical suppliers must comply with security policies."
+          fr: "Tous les fournisseurs critiques doivent respecter les politiques de sécurité."
+        implementation_guidance:
+          en: "Conduct regular audits and assessments of suppliers."
+          fr: "Effectuer des audits et évaluations réguliers des fournisseurs."
+        evidence:
+          - supplier_contracts
+          - audit_reports
+
+  # ───────────── A.15 Business Continuity Controls ─────────────
+  - code: "A.15.1"
+    domain: "A.15"
+    title:
+      en: "Business Continuity Planning"
+      fr: "Planification de la continuité des activités"
+    description:
+      en: "Develop plans to ensure business operations continue during disruptions."
+      fr: "Développer des plans pour assurer la continuité des activités pendant les perturbations."
+    guidance:
+      en: "Identify critical processes and create recovery strategies."
+      fr: "Identifier les processus critiques et créer des stratégies de reprise."
+    evidence_required:
+      - business_continuity_plan
+      - recovery_test_reports
+    requirements:
+      - id: "A.15.1.1"
+        control: "A.15.1"
+        text:
+          en: "Business continuity plans must be established and tested."
+          fr: "Les plans de continuité des activités doivent être établis et testés."
+        implementation_guidance:
+          en: "Conduct periodic testing and update plans accordingly."
+          fr: "Effectuer des tests périodiques et mettre à jour les plans en conséquence."
+        evidence:
+          - business_continuity_plan
+          - recovery_test_reports
+
+  # ───────────── A.16 Risk and Audit Controls ─────────────
+  - code: "A.16.1"
+    domain: "A.16"
+    title:
+      en: "Internal Audit"
+      fr: "Audit interne"
+    description:
+      en: "Perform audits to ensure compliance with policies and standards."
+      fr: "Réaliser des audits pour assurer la conformité aux politiques et normes."
+    guidance:
+      en: "Plan and conduct audits based on risk and criticality."
+      fr: "Planifier et réaliser des audits en fonction du risque et de la criticité."
+    evidence_required:
+      - audit_reports
+      - audit_plans
+    requirements:
+      - id: "A.16.1.1"
+        control: "A.16.1"
+        text:
+          en: "Audits must be scheduled and documented."
+          fr: "Les audits doivent être planifiés et documentés."
+        implementation_guidance:
+          en: "Use internal audit teams or external auditors."
+          fr: "Utiliser des équipes d'audit internes ou des auditeurs externes."
+        evidence:
+          - audit_reports
+          - audit_plans
+
+  # ───────────── A.17 Compliance Controls ─────────────
+  - code: "A.17.1"
+    domain: "A.17"
+    title:
+      en: "Legal and Regulatory Compliance"
+      fr: "Conformité légale et réglementaire"
+    description:
+      en: "Ensure the organization complies with applicable laws and regulations."
+      fr: "S'assurer que l'organisation respecte les lois et réglementations applicables."
+    guidance:
+      en: "Monitor changes in laws and maintain compliance records."
+      fr: "Surveiller les changements législatifs et conserver les dossiers de conformité."
+    evidence_required:
+      - compliance_records
+      - regulatory_reports
+    requirements:
+      - id: "A.17.1.1"
+        control: "A.17.1"
+        text:
+          en: "All relevant laws and regulations must be identified and addressed."
+          fr: "Toutes les lois et réglementations pertinentes doivent être identifiées et traitées."
+        implementation_guidance:
+          en: "Maintain a legal compliance register and review annually."
+          fr: "Maintenir un registre de conformité légale et le réviser annuellement."
+        evidence:
+          - compliance_records
+          - regulatory_reports
+
+  # ───────────── A.18 Improvement Controls ─────────────
+  - code: "A.18.1"
+    domain: "A.18"
+    title:
+      en: "Continual Improvement"
+      fr: "Amélioration continue"
+    description:
+      en: "Continually improve the ISMS to adapt to risks and changes."
+      fr: "Améliorer continuellement le SGSI pour s'adapter aux risques et changements."
+    guidance:
+      en: "Review performance metrics and update policies and controls."
+      fr: "Examiner les indicateurs de performance et mettre à jour les politiques et contrôles."
+    evidence_required:
+      - management_review_records
+      - improvement_plans
+    requirements:
+      - id: "A.18.1.1"
+        control: "A.18.1"
+        text:
+          en: "Management must review and improve the ISMS regularly."
+          fr: "La direction doit examiner et améliorer régulièrement le SGSI."
+        implementation_guidance:
+          en: "Conduct management review meetings and track improvements."
+          fr: "Organiser des réunions de revue de direction et suivre les améliorations."
+        evidence:
+          - management_review_records
+          - improvement_plans

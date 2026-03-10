@@ -6647,3 +6647,452 @@ INFO 2026-03-05 11:41:58,922 middleware GET /api/library/frameworks/fefea0a5-6be
 INFO 2026-03-05 11:41:58,923 basehttp "GET /api/library/frameworks/fefea0a5-6be0-40ad-bad1-d82df6ef467a/requirements_tree/ HTTP/1.1" 200 35354
 INFO 2026-03-06 11:37:52,498 autoreload Watching for file changes with StatReloader
 INFO 2026-03-06 11:38:56,963 autoreload Watching for file changes with StatReloader
+INFO 2026-03-09 13:39:55,959 autoreload Watching for file changes with StatReloader
+INFO 2026-03-09 13:41:12,382 autoreload Watching for file changes with StatReloader
+INFO 2026-03-09 13:41:14,646 basehttp "OPTIONS /api/controls/applied-controls/dashboard/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:41:14,963 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-03-09 13:41:15,048 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-03-09 13:41:15,049 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-03-09 13:41:15,050 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 183
+INFO 2026-03-09 13:41:15,054 basehttp "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:41:15,057 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-03-09 13:41:15,149 middleware POST /api/auth/token/refresh/ | Status: 200
+INFO 2026-03-09 13:41:15,150 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 200 582
+INFO 2026-03-09 13:41:15,167 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-03-09 13:41:15,180 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-03-09 13:41:15,181 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-03-09 13:41:15,182 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 51
+INFO 2026-03-09 13:41:16,759 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+INFO 2026-03-09 13:41:16,764 middleware GET /api/controls/applied-controls/dashboard/ | Status: 401
+WARNING 2026-03-09 13:41:16,765 log Unauthorized: /api/controls/applied-controls/dashboard/
+WARNING 2026-03-09 13:41:16,767 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 401 51
+INFO 2026-03-09 13:41:16,777 middleware POST /api/auth/token/refresh/ | User: anonymous
+INFO 2026-03-09 13:41:16,782 middleware POST /api/auth/token/refresh/ | Status: 401
+WARNING 2026-03-09 13:41:16,784 log Unauthorized: /api/auth/token/refresh/
+WARNING 2026-03-09 13:41:16,786 basehttp "POST /api/auth/token/refresh/ HTTP/1.1" 401 58
+INFO 2026-03-09 13:41:23,218 basehttp "OPTIONS /api/auth/token/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:41:23,220 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-03-09 13:41:23,594 middleware POST /api/auth/token/ | Status: 401
+WARNING 2026-03-09 13:41:23,594 log Unauthorized: /api/auth/token/
+WARNING 2026-03-09 13:41:23,595 basehttp "POST /api/auth/token/ HTTP/1.1" 401 63
+INFO 2026-03-09 13:41:55,662 basehttp "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:41:55,664 middleware POST /api/auth/register/ | User: anonymous
+INFO 2026-03-09 13:41:56,091 middleware POST /api/auth/register/ | Status: 201
+INFO 2026-03-09 13:41:56,091 basehttp "POST /api/auth/register/ HTTP/1.1" 201 246
+INFO 2026-03-09 13:42:02,474 middleware POST /api/auth/token/ | User: anonymous
+INFO 2026-03-09 13:42:02,959 middleware POST /api/auth/token/ | Status: 200
+INFO 2026-03-09 13:42:02,960 basehttp "POST /api/auth/token/ HTTP/1.1" 200 597
+INFO 2026-03-09 13:42:02,967 basehttp "OPTIONS /api/auth/me/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:02,968 basehttp "OPTIONS /api/companies/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:02,971 middleware GET /api/companies/ | User: anonymous
+INFO 2026-03-09 13:42:02,972 middleware GET /api/auth/me/ | User: anonymous
+INFO 2026-03-09 13:42:02,985 middleware GET /api/companies/ | Status: 200
+INFO 2026-03-09 13:42:02,986 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:03,046 middleware GET /api/auth/me/ | Status: 200
+INFO 2026-03-09 13:42:03,047 basehttp "GET /api/auth/me/ HTTP/1.1" 200 196
+INFO 2026-03-09 13:42:03,066 middleware GET /api/companies/ | User: anonymous
+INFO 2026-03-09 13:42:03,085 middleware GET /api/companies/ | Status: 200
+INFO 2026-03-09 13:42:03,086 basehttp "GET /api/companies/ HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:06,170 basehttp "OPTIONS /api/companies/create_with_membership/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:06,172 middleware POST /api/companies/create_with_membership/ | User: anonymous
+INFO 2026-03-09 13:42:06,197 middleware POST /api/companies/create_with_membership/ | Status: 201
+INFO 2026-03-09 13:42:06,198 basehttp "POST /api/companies/create_with_membership/ HTTP/1.1" 201 621
+INFO 2026-03-09 13:42:06,251 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+ERROR 2026-03-09 13:42:06,471 log Internal Server Error: /api/controls/applied-controls/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 260, in dashboard
+    dashboard_data = ControlAnalyticsService.get_company_control_dashboard(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\services.py", line 185, in get_company_control_dashboard
+    compliance_scores = [
+                        ^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+INFO 2026-03-09 13:42:06,477 middleware GET /api/controls/applied-controls/dashboard/ | Status: 500
+ERROR 2026-03-09 13:42:06,478 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 500 187670
+INFO 2026-03-09 13:42:07,489 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+ERROR 2026-03-09 13:42:07,566 log Internal Server Error: /api/controls/applied-controls/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 260, in dashboard
+    dashboard_data = ControlAnalyticsService.get_company_control_dashboard(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\services.py", line 185, in get_company_control_dashboard
+    compliance_scores = [
+                        ^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+INFO 2026-03-09 13:42:07,570 middleware GET /api/controls/applied-controls/dashboard/ | Status: 500
+ERROR 2026-03-09 13:42:07,572 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 500 187670
+INFO 2026-03-09 13:42:12,192 basehttp "OPTIONS /api/library/frameworks/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:12,198 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-09 13:42:12,218 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-09 13:42:12,219 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:13,211 basehttp "OPTIONS /api/organizations/departments/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:13,218 middleware GET /api/organizations/departments/ | User: anonymous
+INFO 2026-03-09 13:42:13,237 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-03-09 13:42:13,238 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:13,955 basehttp "OPTIONS /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:13,955 basehttp "OPTIONS /api/audit/logs/summary/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:13,960 middleware GET /api/audit/logs/ | User: anonymous
+INFO 2026-03-09 13:42:13,961 middleware GET /api/audit/logs/summary/ | User: anonymous
+INFO 2026-03-09 13:42:13,974 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-09 13:42:13,976 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 432
+INFO 2026-03-09 13:42:13,983 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-09 13:42:13,985 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 174
+INFO 2026-03-09 13:42:15,941 basehttp "OPTIONS /api/compliance/results/overview/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:15,941 basehttp "OPTIONS /api/compliance/adoptions/active/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:15,945 basehttp "OPTIONS /api/compliance/gaps/open/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:15,945 basehttp "OPTIONS /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:15,958 middleware GET /api/compliance/results/overview/ | User: anonymous
+INFO 2026-03-09 13:42:15,959 middleware GET /api/compliance/adoptions/active/ | User: anonymous
+INFO 2026-03-09 13:42:15,976 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-09 13:42:15,977 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-03-09 13:42:15,979 middleware GET /api/compliance/gaps/open/ | User: anonymous
+INFO 2026-03-09 13:42:15,989 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-09 13:42:15,990 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:42:15,994 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous
+INFO 2026-03-09 13:42:16,003 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-09 13:42:16,004 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-09 13:42:16,005 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:42:16,005 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:42:16,762 basehttp "OPTIONS /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:16,762 basehttp "OPTIONS /api/risk/risks/summary/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:16,765 middleware GET /api/risk/risks/ | User: anonymous
+INFO 2026-03-09 13:42:16,766 middleware GET /api/risk/risks/summary/ | User: anonymous
+INFO 2026-03-09 13:42:16,790 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-09 13:42:16,791 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-09 13:42:16,792 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:16,792 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-09 13:42:17,424 basehttp "OPTIONS /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:17,424 basehttp "OPTIONS /api/evidence/evidence/analytics/ HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:17,428 middleware GET /api/evidence/evidence/ | User: anonymous
+INFO 2026-03-09 13:42:17,429 middleware GET /api/evidence/evidence/analytics/ | User: anonymous
+INFO 2026-03-09 13:42:17,453 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-09 13:42:17,455 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:17,468 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-09 13:42:17,469 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-09 13:42:18,098 basehttp "OPTIONS /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2026-03-09 13:42:18,104 middleware GET /api/controls/applied-controls/ | User: anonymous
+INFO 2026-03-09 13:42:18,119 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-09 13:42:18,121 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:42:18,815 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+ERROR 2026-03-09 13:42:18,892 log Internal Server Error: /api/controls/applied-controls/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 260, in dashboard
+    dashboard_data = ControlAnalyticsService.get_company_control_dashboard(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\services.py", line 185, in get_company_control_dashboard
+    compliance_scores = [
+                        ^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+INFO 2026-03-09 13:42:18,895 middleware GET /api/controls/applied-controls/dashboard/ | Status: 500
+ERROR 2026-03-09 13:42:18,897 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 500 187670
+INFO 2026-03-09 13:42:19,904 middleware GET /api/controls/applied-controls/dashboard/ | User: anonymous
+ERROR 2026-03-09 13:42:19,961 log Internal Server Error: /api/controls/applied-controls/dashboard/
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python311\Lib\contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\views.py", line 260, in dashboard
+    dashboard_data = ControlAnalyticsService.get_company_control_dashboard(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\controls\services.py", line 185, in get_company_control_dashboard
+    compliance_scores = [
+                        ^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 398, in __iter__
+    self._fetch_all()
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\legion\Desktop\compliancehub\backend\venv\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column applied_controls.unified_control_id does not exist
+LINE 1: ...t", "applied_controls"."annual_maintenance_cost", "applied_c...
+                                                             ^
+
+INFO 2026-03-09 13:42:19,964 middleware GET /api/controls/applied-controls/dashboard/ | Status: 500
+ERROR 2026-03-09 13:42:19,965 basehttp "GET /api/controls/applied-controls/dashboard/ HTTP/1.1" 500 187670
+INFO 2026-03-09 13:45:54,241 middleware GET /api/controls/applied-controls/ | User: anonymous
+INFO 2026-03-09 13:45:54,255 middleware GET /api/controls/applied-controls/ | Status: 200
+INFO 2026-03-09 13:45:54,256 basehttp "GET /api/controls/applied-controls/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:45:55,222 middleware GET /api/evidence/evidence/ | User: anonymous
+INFO 2026-03-09 13:45:55,223 middleware GET /api/evidence/evidence/analytics/ | User: anonymous
+INFO 2026-03-09 13:45:55,238 middleware GET /api/evidence/evidence/ | Status: 200
+INFO 2026-03-09 13:45:55,240 basehttp "GET /api/evidence/evidence/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:45:55,249 middleware GET /api/evidence/evidence/analytics/ | Status: 200
+INFO 2026-03-09 13:45:55,250 basehttp "GET /api/evidence/evidence/analytics/ HTTP/1.1" 200 194
+INFO 2026-03-09 13:45:55,835 middleware GET /api/risk/risks/ | User: anonymous
+INFO 2026-03-09 13:45:55,836 middleware GET /api/risk/risks/summary/ | User: anonymous
+INFO 2026-03-09 13:45:55,851 middleware GET /api/risk/risks/ | Status: 200
+INFO 2026-03-09 13:45:55,851 middleware GET /api/risk/risks/summary/ | Status: 200
+INFO 2026-03-09 13:45:55,852 basehttp "GET /api/risk/risks/?page=1&page_size=20 HTTP/1.1" 200 52
+INFO 2026-03-09 13:45:55,852 basehttp "GET /api/risk/risks/summary/ HTTP/1.1" 200 113
+INFO 2026-03-09 13:45:56,611 middleware GET /api/compliance/results/overview/ | User: anonymous
+INFO 2026-03-09 13:45:56,612 middleware GET /api/compliance/adoptions/active/ | User: anonymous
+INFO 2026-03-09 13:45:56,625 middleware GET /api/compliance/results/overview/ | Status: 200
+INFO 2026-03-09 13:45:56,626 basehttp "GET /api/compliance/results/overview/ HTTP/1.1" 200 84
+INFO 2026-03-09 13:45:56,628 middleware GET /api/compliance/gaps/open/ | User: anonymous
+INFO 2026-03-09 13:45:56,631 middleware GET /api/compliance/adoptions/active/ | Status: 200
+INFO 2026-03-09 13:45:56,636 basehttp "GET /api/compliance/adoptions/active/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:45:56,637 middleware GET /api/compliance/adoptions/expiring_soon/ | User: anonymous
+INFO 2026-03-09 13:45:56,645 middleware GET /api/compliance/adoptions/expiring_soon/ | Status: 200
+INFO 2026-03-09 13:45:56,646 middleware GET /api/compliance/gaps/open/ | Status: 200
+INFO 2026-03-09 13:45:56,647 basehttp "GET /api/compliance/adoptions/expiring_soon/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:45:56,647 basehttp "GET /api/compliance/gaps/open/ HTTP/1.1" 200 2
+INFO 2026-03-09 13:45:57,396 middleware GET /api/audit/logs/summary/ | User: anonymous
+INFO 2026-03-09 13:45:57,397 middleware GET /api/audit/logs/ | User: anonymous
+INFO 2026-03-09 13:45:57,412 middleware GET /api/audit/logs/summary/ | Status: 200
+INFO 2026-03-09 13:45:57,412 middleware GET /api/audit/logs/ | Status: 200
+INFO 2026-03-09 13:45:57,412 basehttp "GET /api/audit/logs/summary/ HTTP/1.1" 200 174
+INFO 2026-03-09 13:45:57,413 basehttp "GET /api/audit/logs/?page=1&page_size=50 HTTP/1.1" 200 432
+INFO 2026-03-09 13:45:59,062 middleware GET /api/organizations/departments/ | User: anonymous
+INFO 2026-03-09 13:45:59,079 middleware GET /api/organizations/departments/ | Status: 200
+INFO 2026-03-09 13:45:59,081 basehttp "GET /api/organizations/departments/ HTTP/1.1" 200 52
+INFO 2026-03-09 13:46:00,572 middleware GET /api/library/frameworks/ | User: anonymous
+INFO 2026-03-09 13:46:00,588 middleware GET /api/library/frameworks/ | Status: 200
+INFO 2026-03-09 13:46:00,589 basehttp "GET /api/library/frameworks/ HTTP/1.1" 200 52

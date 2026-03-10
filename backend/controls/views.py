@@ -7,13 +7,14 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from core.permissions import IsTenantMember, TenantObjectPermission, RolePermission
 from .models import (
     ReferenceControl, AppliedControl,
-    RequirementReferenceControl, ControlException
+    RequirementReferenceControl, ControlException, UnifiedControl, UnifiedControlMapping
 )
 from .serializers import (
     ReferenceControlSerializer, ReferenceControlListSerializer,
     AppliedControlSerializer, AppliedControlListSerializer,
     RequirementReferenceControlSerializer, ControlExceptionSerializer,
-    ControlCoverageSerializer, ControlDashboardSerializer
+    ControlCoverageSerializer, ControlDashboardSerializer,
+    UnifiedControlSerializer, UnifiedControlMappingSerializer
 )
 from .services import ControlApplicationService, ControlAnalyticsService
 
@@ -84,210 +85,147 @@ class ReferenceControlViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-class AppliedControlViewSet(viewsets.ModelViewSet):
-    """Applied control management for companies."""
 
-    serializer_class = AppliedControlSerializer
-    permission_classes = [IsAuthenticated, IsTenantMember, TenantObjectPermission, RolePermission]
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = [
-        'status', 'department', 'control_owner', 'has_deficiencies',
-        'reference_control__control_family', 'reference_control__control_type'
-    ]
-    search_fields = [
-        'reference_control__code', 'reference_control__name',
-        'implementation_notes', 'custom_procedures'
-    ]
-    ordering_fields = [
-        'reference_control__code', 'status', 'effectiveness_rating',
-        'next_review_date', 'created_at'
-    ]
-    ordering = ['reference_control__code']
-
+class UnifiedControlViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Unified Control Library
+    
+    Read-only access to the internal unified control library.
+    These are the controls your company implements to satisfy multiple frameworks.
+    """
+    queryset = UnifiedControl.objects.filter(is_active=True)
+    serializer_class = UnifiedControlSerializer
+    
     def get_queryset(self):
-        if hasattr(self.request, 'tenant'):
-            return AppliedControl.objects.for_company(
-                self.request.tenant
-            ).select_related('reference_control', 'department', 'control_owner')
-        return AppliedControl.objects.none()
-
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return AppliedControlListSerializer
-        return AppliedControlSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(company=self.request.tenant)
-
-    @action(detail=False, methods=['post'])
-    def apply_control(self, request):
-        """Apply a reference control to the company."""
-        reference_control_id = request.data.get('reference_control')
-        department_id = request.data.get('department')
-        control_owner_id = request.data.get('control_owner')
-
-        if not reference_control_id:
-            return Response(
-                {'error': 'reference_control is required'},
-                status=status.HTTP_400_BAD_REQUEST
+        queryset = super().get_queryset()
+        
+        # Filter by domain
+        domain = self.request.query_params.get('domain')
+        if domain:
+            queryset = queryset.filter(domain=domain)
+        
+        # Filter by tags
+        tags = self.request.query_params.getlist('tags')
+        if tags:
+            queryset = queryset.filter(tags__contains=tags)
+        
+        # Search
+        search = self.request.query_params.get('search')
+        if search:
+            queryset = queryset.filter(
+                Q(control_name__icontains=search) |
+                Q(description__icontains=search) |
+                Q(control_code__icontains=search)
             )
-
-        try:
-            reference_control = ReferenceControl.objects.get(
-                id=reference_control_id,
-                is_published=True,
-                is_deleted=False
-            )
-        except ReferenceControl.DoesNotExist:
-            return Response(
-                {'error': 'Reference control not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        department = None
-        if department_id:
-            from organizations.models import Department
-            try:
-                department = Department.objects.get(
-                    id=department_id,
-                    company=request.tenant
-                )
-            except Department.DoesNotExist:
-                return Response(
-                    {'error': 'Department not found'},
-                    status=status.HTTP_404_NOT_FOUND
-                )
-
-        control_owner = None
-        if control_owner_id:
-            from core.models import User
-            try:
-                control_owner = User.objects.get(id=control_owner_id)
-            except User.DoesNotExist:
-                return Response(
-                    {'error': 'User not found'},
-                    status=status.HTTP_404_NOT_FOUND
-                )
-
-        applied_control = ControlApplicationService.apply_control(
-            company=request.tenant,
-            reference_control=reference_control,
-            department=department,
-            control_owner=control_owner,
-        )
-
-        serializer = AppliedControlSerializer(
-            applied_control,
-            context={'request': request}
-        )
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    @action(detail=False, methods=['post'])
-    def apply_framework_controls(self, request):
-        """Apply all controls for a framework."""
-        framework_id = request.data.get('framework')
-        department_id = request.data.get('department')
-
-        if not framework_id:
-            return Response(
-                {'error': 'framework is required'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        try:
-            from library.models import Framework
-            framework = Framework.objects.get(
-                id=framework_id,
-                is_published=True,
-                is_deleted=False
-            )
-        except Framework.DoesNotExist:
-            return Response(
-                {'error': 'Framework not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
-        department = None
-        if department_id:
-            from organizations.models import Department
-            try:
-                department = Department.objects.get(
-                    id=department_id,
-                    company=request.tenant
-                )
-            except Department.DoesNotExist:
-                return Response(
-                    {'error': 'Department not found'},
-                    status=status.HTTP_404_NOT_FOUND
-                )
-
-        applied_controls = ControlApplicationService.apply_controls_for_framework(
-            company=request.tenant,
-            framework=framework,
-            department=department
-        )
-
-        return Response({
-            'message': f'Applied {len(applied_controls)} controls',
-            'applied_count': len(applied_controls)
-        }, status=status.HTTP_201_CREATED)
-
+        
+        return queryset
+    
     @action(detail=True, methods=['get'])
-    def coverage(self, request, pk=None):
-        """Get requirement coverage for an applied control."""
-        applied_control = self.get_object()
-        mappings = RequirementReferenceControl.objects.filter(
-            reference_control=applied_control.reference_control,
-            validation_status='validated',
+    def framework_coverage(self, request, pk=None):
+        """
+        Get all frameworks this unified control satisfies
+        """
+        unified_control = self.get_object()
+        coverage = unified_control.get_framework_coverage()
+        
+        return Response(coverage)
+    
+    @action(detail=True, methods=['get'])
+    def implementations(self, request, pk=None):
+        """
+        Get all company implementations of this unified control
+        (Admin/Owner only)
+        """
+        unified_control = self.get_object()
+        company = request.tenant  # From TenantMiddleware
+        
+        implementations = AppliedControl.objects.filter(
+            company=company,
+            unified_control=unified_control,
             is_deleted=False
-        ).select_related('requirement')
+        )
+        
+        serializer = AppliedControlSerializer(implementations, many=True)
+        return Response(serializer.data)
 
-        coverage_data = []
-        for mapping in mappings:
-            coverage = ControlApplicationService.get_control_coverage_for_requirement(
-                company=request.tenant,
-                requirement=mapping.requirement
+
+class AppliedControlViewSet(viewsets.ModelViewSet):
+    """
+    Applied Controls - Company implementations
+    ENHANCED with maturity tracking
+    """
+    serializer_class = AppliedControlSerializer
+    
+    def get_queryset(self):
+        company = self.request.tenant
+        queryset = AppliedControl.objects.filter(
+            company=company,
+            is_deleted=False
+        ).select_related(
+            'reference_control',
+            'unified_control',
+            'control_owner',
+            'department'
+        )
+        
+        # Filter by maturity level
+        maturity = self.request.query_params.get('maturity_level')
+        if maturity:
+            queryset = queryset.filter(maturity_level=maturity)
+        
+        return queryset
+    
+    @action(detail=True, methods=['post'])
+    def assess_maturity(self, request, pk=None):
+        """
+        Assess and update maturity level for a control
+        
+        Request body:
+        {
+          "maturity_level": 3,
+          "maturity_notes": "Processes well documented and followed"
+        }
+        """
+        applied_control = self.get_object()
+        
+        maturity_level = request.data.get('maturity_level')
+        maturity_notes = request.data.get('maturity_notes', '')
+        
+        if maturity_level not in [1, 2, 3, 4, 5]:
+            return Response(
+                {'error': 'maturity_level must be 1-5'},
+                status=status.HTTP_400_BAD_REQUEST
             )
-            coverage_data.append({
-                'requirement': mapping.requirement.code,
-                'coverage': coverage
-            })
-        return Response(coverage_data)
-
-    @action(detail=False, methods=['get'])
-    def dashboard(self, request):
-        """Get control dashboard metrics."""
-        dashboard_data = ControlAnalyticsService.get_company_control_dashboard(
-            company=request.tenant
-        )
-        serializer = ControlDashboardSerializer(dashboard_data)
+        
+        applied_control.maturity_level = maturity_level
+        applied_control.maturity_notes = maturity_notes
+        applied_control.maturity_assessment_date = timezone.now().date()
+        applied_control.save()
+        
+        serializer = self.get_serializer(applied_control)
         return Response(serializer.data)
-
+    
     @action(detail=False, methods=['get'])
-    def effectiveness_metrics(self, request):
-        """Get control effectiveness metrics."""
-        metrics = ControlAnalyticsService.get_control_effectiveness_metrics(
-            company=request.tenant
-        )
-        return Response(metrics)
-
-    @action(detail=False, methods=['get'])
-    def overdue_reviews(self, request):
-        """Get controls with overdue reviews."""
-        from django.utils import timezone
-        overdue = self.get_queryset().filter(
-            next_review_date__lt=timezone.now().date()
-        )
-        serializer = AppliedControlListSerializer(overdue, many=True)
-        return Response(serializer.data)
-
-    @action(detail=False, methods=['get'])
-    def with_deficiencies(self, request):
-        """Get controls with deficiencies."""
-        deficient = self.get_queryset().filter(has_deficiencies=True)
-        serializer = AppliedControlListSerializer(deficient, many=True)
-        return Response(serializer.data)
-
+    def maturity_summary(self, request):
+        """
+        Get maturity level summary for all controls
+        """
+        company = request.tenant
+        
+        summary = AppliedControl.objects.filter(
+            company=company,
+            is_deleted=False
+        ).values('maturity_level').annotate(
+            count=Count('id')
+        ).order_by('maturity_level')
+        
+        return Response({
+            'maturity_distribution': list(summary),
+            'average_maturity': AppliedControl.objects.filter(
+                company=company,
+                is_deleted=False
+            ).aggregate(avg=Avg('maturity_level'))['avg']
+        })
 
 class RequirementReferenceControlViewSet(viewsets.ModelViewSet):
     """Requirement-control mapping management — admin-only for writes."""
