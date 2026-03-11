@@ -284,7 +284,7 @@ class Migration(migrations.Migration):
                 'db_table': 'unified_control_mappings',
                 'unique_together': [['reference_control', 'unified_control']],
                 'indexes': [
-                    models.Index(fields=['coverage_type']),
+                    models.Index(fields=['coverage_type'],name='ucmap_covtype_idx'),
                 ],
             },
         ),

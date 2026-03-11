@@ -740,9 +740,9 @@ class UnifiedControl(TimeStampedModel):
         db_table = 'unified_controls'
         ordering = ['control_code']
         indexes = [
-            models.Index(fields=['control_code']),
-            models.Index(fields=['domain']),
-            models.Index(fields=['is_active']),
+        models.Index(fields=['control_code'], name='unified_code_idx'),
+        models.Index(fields=['domain'], name='unified_domain_idx'),
+        models.Index(fields=['is_active'], name='unified_active_idx'),
         ]
     
     def __str__(self):

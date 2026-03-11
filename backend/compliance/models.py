@@ -135,7 +135,21 @@ class ComplianceResult(TenantMixin, TimeStampedModel, SoftDeleteModel):
         blank=True,
         related_name='calculated_compliance_results'
     )
+        # Control statistics
+    total_controls = models.IntegerField(default=0)
+    controls_operational = models.IntegerField(default=0)
     
+    # ADD THESE TWO FIELDS:
+    controls_implemented = models.IntegerField(
+        default=0,
+        help_text='Number of controls in implemented status'
+    )
+    controls_in_progress = models.IntegerField(
+        default=0,
+        help_text='Number of controls currently in progress'
+    )
+    
+    controls_not_started = models.IntegerField(default=0)
     # Status
     status = models.CharField(
         max_length=20,
