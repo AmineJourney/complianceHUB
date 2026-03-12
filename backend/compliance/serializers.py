@@ -24,28 +24,67 @@ class ComplianceResultSerializer(serializers.ModelSerializer):
     def get_gap_count(self, obj):
         return obj.get_gap_count()
 
-    @extend_schema_field(serializers.BooleanField())
-    def get_is_certification_expired(self, obj):
-        if hasattr(obj, 'certification_expiry_date') and obj.certification_expiry_date:
-            return obj.certification_expiry_date < timezone.now()
-        return False
 
+    is_certification_expired = serializers.SerializerMethodField()
+    
     class Meta:
         model = ComplianceResult
         fields = [
-            'id', 'company', 'framework', 'framework_code', 'framework_name',
-            'department', 'department_name', 'coverage_percentage', 'compliance_score',
-            'compliance_grade', 'compliance_status', 'total_requirements',
-            'requirements_addressed', 'requirements_compliant', 'requirements_partial',
-            'requirements_non_compliant', 'total_controls', 'controls_operational',
-            'controls_implemented', 'controls_in_progress', 'controls_not_started',
-            'controls_with_evidence', 'total_evidence_count', 'high_risk_gaps',
-            'medium_risk_gaps', 'low_risk_gaps', 'gap_count', 'requirement_details',
-            'control_details', 'calculation_date', 'calculated_by', 'calculated_by_email',
-            'status', 'error_message', 'is_current', 'created_at', 'updated_at',
+            'id',
+            'framework',
+            'framework_code',
+            'framework_name',
+            'department',
+            'department_name',
+            'coverage_percentage',
+            'compliance_score',
+            'compliance_grade',
+            'compliance_status',
+            'total_requirements',
+            'requirements_compliant',
+            'requirements_partial',
+            'requirements_non_compliant',
+            'total_controls',
+            'controls_operational',
+            'controls_implemented',      # ← ADD THIS
+            'controls_in_progress',       # ← ADD THIS
+            'controls_not_started',
+            'gap_count',
+            'calculation_date',
+            'is_current',
             'is_certification_expired',
+            'calculated_at',
+            'created_at',
+            'updated_at',
         ]
-        read_only_fields = ['id', 'company', 'calculation_date', 'created_at', 'updated_at']
+        read_only_fields = [
+            'id',
+            'coverage_percentage',
+            'compliance_score',
+            'compliance_grade',
+            'compliance_status',
+            'gap_count',
+            'calculation_date',
+            'is_current',
+            'calculated_at',
+            'created_at',
+            'updated_at',
+        ]
+    
+    def get_is_certification_expired(self, obj):
+        # Existing implementation...
+        adoption = FrameworkAdoption.objects.filter(
+            company=obj.company,
+            framework=obj.framework,
+            is_certified=True,
+            is_deleted=False
+        ).first()
+        
+        if adoption and adoption.certification_expiry_date:
+            from django.utils import timezone
+            return adoption.certification_expiry_date < timezone.now().date()
+        return False
+
 
 
 class ComplianceResultListSerializer(serializers.ModelSerializer):
