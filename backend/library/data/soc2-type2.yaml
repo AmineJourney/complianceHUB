@@ -1,0 +1,592 @@
+framework:
+  name:
+    en: "SOC 2 Type II"
+    fr: "SOC 2 Type II"
+  slug: soc2-type2
+
+version:
+  name: "2017"
+  release_year: 2017
+  description:
+    en: "Service Organization Control 2 - Trust Services Criteria for Security, Availability, Processing Integrity, Confidentiality, and Privacy"
+    fr: "Service Organization Control 2 - Critères de services de confiance pour sécurité, disponibilité, intégrité de traitement, confidentialité et confidentialité"
+
+domains:
+  - code: "CC"
+    name:
+      en: "Common Criteria"
+      fr: "Critères communs"
+    description:
+      en: "Foundational trust services criteria applicable to all SOC 2 audits"
+      fr: "Critères de services de confiance fondamentaux applicables à tous les audits SOC 2"
+
+  - code: "A"
+    name:
+      en: "Availability"
+      fr: "Disponibilité"
+    description:
+      en: "System availability commitments and system requirements"
+      fr: "Engagements de disponibilité du système et exigences"
+
+  - code: "PI"
+    name:
+      en: "Processing Integrity"
+      fr: "Intégrité de traitement"
+    description:
+      en: "System processing completeness, accuracy, timeliness, and authorization"
+      fr: "Complétude, précision, ponctualité et autorisation du traitement système"
+
+  - code: "C"
+    name:
+      en: "Confidentiality"
+      fr: "Confidentialité"
+    description:
+      en: "Information designated as confidential is protected"
+      fr: "Les informations désignées comme confidentielles sont protégées"
+
+  - code: "P"
+    name:
+      en: "Privacy"
+      fr: "Confidentialité"
+    description:
+      en: "Personal information collection, use, retention, disclosure, and disposal"
+      fr: "Collecte, utilisation, rétention, divulgation et élimination des informations personnelles"
+
+controls:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CC - COMMON CRITERIA
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "CC1.1"
+    domain: "CC"
+    title:
+      en: "Control Environment - Integrity and Ethics"
+      fr: "Environnement de contrôle - Intégrité et éthique"
+    description:
+      en: "Demonstrates commitment to integrity and ethical values"
+      fr: "Démontre l'engagement envers l'intégrité et les valeurs éthiques"
+    guidance:
+      en: "Establish code of conduct, ethical standards, tone at the top for information security and privacy"
+      fr: "Établir code de conduite, normes éthiques, ton donné par la direction pour sécurité et confidentialité"
+    evidence_required:
+      - code_of_conduct
+      - ethics_policy
+      - board_meeting_minutes
+    requirements:
+      - id: "CC1.1.1"
+        control: "CC1.1"
+        text:
+          en: "Board and management demonstrate commitment to integrity through code of conduct"
+          fr: "Le conseil et la direction démontrent engagement envers intégrité via code de conduite"
+        implementation_guidance:
+          en: "Document code of conduct, obtain board approval, communicate to all personnel, enforce violations"
+          fr: "Documenter code de conduite, obtenir approbation conseil, communiquer à personnel, appliquer violations"
+        evidence:
+          - code_of_conduct
+          - board_approval
+          - employee_acknowledgments
+
+  - code: "CC2.1"
+    domain: "CC"
+    title:
+      en: "Communication and Information"
+      fr: "Communication et information"
+    description:
+      en: "Obtains and communicates information to support internal control"
+      fr: "Obtient et communique les informations pour supporter le contrôle interne"
+    guidance:
+      en: "Establish communication channels for security incidents, policy updates, and control effectiveness"
+      fr: "Établir canaux de communication pour incidents sécurité, mises à jour politiques, efficacité contrôles"
+    evidence_required:
+      - communication_procedures
+      - information_flow_documentation
+      - stakeholder_communications
+    requirements:
+      - id: "CC2.1.1"
+        control: "CC2.1"
+        text:
+          en: "Internal control information is communicated to enable personnel to fulfill responsibilities"
+          fr: "Les informations de contrôle interne sont communiquées pour permettre au personnel de remplir responsabilités"
+        implementation_guidance:
+          en: "Document communication procedures, distribute policies, provide training, maintain awareness programs"
+          fr: "Documenter procédures communication, distribuer politiques, fournir formation, maintenir programmes sensibilisation"
+        evidence:
+          - communication_procedures
+          - training_records
+
+  - code: "CC3.1"
+    domain: "CC"
+    title:
+      en: "Risk Assessment Process"
+      fr: "Processus d'évaluation des risques"
+    description:
+      en: "Identifies and assesses risks to achieving objectives"
+      fr: "Identifie et évalue les risques pour atteindre les objectifs"
+    guidance:
+      en: "Conduct risk assessments for security, availability, and privacy; document risk treatment decisions"
+      fr: "Effectuer évaluations risques pour sécurité, disponibilité, confidentialité; documenter décisions traitement risque"
+    evidence_required:
+      - risk_assessment_reports
+      - risk_register
+      - risk_treatment_plans
+    requirements:
+      - id: "CC3.1.1"
+        control: "CC3.1"
+        text:
+          en: "Risk assessment identifies threats, vulnerabilities, and impacts to service commitments"
+          fr: "L'évaluation des risques identifie menaces, vulnérabilités et impacts sur engagements de service"
+        implementation_guidance:
+          en: "Use structured methodology, assess likelihood and impact, prioritize risks, document mitigation plans"
+          fr: "Utiliser méthodologie structurée, évaluer probabilité et impact, prioriser risques, documenter plans atténuation"
+        evidence:
+          - annual_risk_assessment
+          - risk_register
+
+  - code: "CC4.1"
+    domain: "CC"
+    title:
+      en: "Monitoring Activities"
+      fr: "Activités de surveillance"
+    description:
+      en: "Monitors system through ongoing and separate evaluations"
+      fr: "Surveille le système via évaluations continues et séparées"
+    guidance:
+      en: "Implement continuous monitoring, logging, and periodic assessments of control effectiveness"
+      fr: "Implémenter surveillance continue, journalisation, évaluations périodiques efficacité contrôles"
+    evidence_required:
+      - monitoring_procedures
+      - log_review_reports
+      - control_assessment_results
+    requirements:
+      - id: "CC4.1.1"
+        control: "CC4.1"
+        text:
+          en: "Control effectiveness is monitored through ongoing activities and periodic evaluations"
+          fr: "L'efficacité des contrôles est surveillée via activités continues et évaluations périodiques"
+        implementation_guidance:
+          en: "Deploy monitoring tools, review logs, conduct quarterly control assessments, track findings"
+          fr: "Déployer outils surveillance, examiner journaux, effectuer évaluations contrôles trimestrielles"
+        evidence:
+          - monitoring_dashboard
+          - quarterly_assessment_reports
+
+  - code: "CC5.1"
+    domain: "CC"
+    title:
+      en: "Control Activities - Policies and Procedures"
+      fr: "Activités de contrôle - Politiques et procédures"
+    description:
+      en: "Selects and develops control activities that contribute to mitigation of risks"
+      fr: "Sélectionne et développe activités de contrôle qui contribuent à l'atténuation des risques"
+    guidance:
+      en: "Implement control activities addressing identified risks across technology, processes, and people"
+      fr: "Implémenter activités contrôle traitant risques identifiés à travers technologie, processus, personnes"
+    evidence_required:
+      - control_documentation
+      - operating_procedures
+      - control_test_results
+    requirements:
+      - id: "CC5.1.1"
+        control: "CC5.1"
+        text:
+          en: "Control activities are designed and implemented to address identified risks"
+          fr: "Les activités de contrôle sont conçues et implémentées pour traiter risques identifiés"
+        implementation_guidance:
+          en: "Document controls for each risk, assign ownership, define procedures, test effectiveness"
+          fr: "Documenter contrôles pour chaque risque, assigner propriété, définir procédures, tester efficacité"
+        evidence:
+          - control_matrix
+          - procedure_documents
+          - testing_results
+
+  - code: "CC6.1"
+    domain: "CC"
+    title:
+      en: "Logical Access - Identity and Access Management"
+      fr: "Accès logique - Gestion identité et accès"
+    description:
+      en: "Implements logical access security controls"
+      fr: "Implémente contrôles de sécurité d'accès logique"
+    guidance:
+      en: "Deploy authentication, authorization, access reviews, and segregation of duties"
+      fr: "Déployer authentification, autorisation, révisions d'accès, ségrégation des tâches"
+    evidence_required:
+      - access_control_matrix
+      - user_access_reports
+      - mfa_configuration
+      - access_review_reports
+    requirements:
+      - id: "CC6.1.1"
+        control: "CC6.1"
+        text:
+          en: "Access rights are granted based on job responsibilities and principle of least privilege"
+          fr: "Les droits d'accès sont accordés selon responsabilités et principe moindre privilège"
+        implementation_guidance:
+          en: "Implement RBAC, require approvals for access requests, conduct quarterly access reviews"
+          fr: "Implémenter RBAC, exiger approbations demandes accès, effectuer révisions accès trimestrielles"
+        evidence:
+          - access_request_forms
+          - approval_records
+          - quarterly_access_reviews
+
+  - code: "CC6.2"
+    domain: "CC"
+    title:
+      en: "Authentication"
+      fr: "Authentification"
+    description:
+      en: "Requires authentication for system access"
+      fr: "Exige authentification pour accès système"
+    guidance:
+      en: "Implement multi-factor authentication, strong passwords, account lockout policies"
+      fr: "Implémenter authentification multifacteur, mots de passe forts, politiques verrouillage compte"
+    evidence_required:
+      - authentication_policy
+      - mfa_enrollment_reports
+      - password_configuration
+    requirements:
+      - id: "CC6.2.1"
+        control: "CC6.2"
+        text:
+          en: "Multi-factor authentication required for remote access and privileged accounts"
+          fr: "Authentification multifacteur requise pour accès distant et comptes privilégiés"
+        implementation_guidance:
+          en: "Deploy MFA solution, enforce for VPN and admin access, monitor enrollment compliance"
+          fr: "Déployer solution MFA, appliquer pour VPN et accès admin, surveiller conformité inscription"
+        evidence:
+          - mfa_configuration
+          - enrollment_status_report
+
+  - code: "CC7.1"
+    domain: "CC"
+    title:
+      en: "System Operations - Change Management"
+      fr: "Opérations système - Gestion des changements"
+    description:
+      en: "Manages changes to system components"
+      fr: "Gère les changements aux composants système"
+    guidance:
+      en: "Implement formal change control process with approval, testing, and rollback procedures"
+      fr: "Implémenter processus formel contrôle changements avec approbation, tests, procédures retour arrière"
+    evidence_required:
+      - change_management_procedure
+      - change_tickets
+      - approval_records
+      - test_results
+    requirements:
+      - id: "CC7.1.1"
+        control: "CC7.1"
+        text:
+          en: "All changes require approval, testing, and documentation before production deployment"
+          fr: "Tous changements exigent approbation, tests, documentation avant déploiement production"
+        implementation_guidance:
+          en: "Use ticketing system for changes, require manager approval, conduct UAT, document rollback plans"
+          fr: "Utiliser système tickets pour changements, exiger approbation manager, effectuer UAT, documenter plans retour"
+        evidence:
+          - change_tickets
+          - approval_emails
+          - test_reports
+
+  - code: "CC7.2"
+    domain: "CC"
+    title:
+      en: "System Monitoring"
+      fr: "Surveillance système"
+    description:
+      en: "Monitors system and detects anomalies"
+      fr: "Surveille système et détecte anomalies"
+    guidance:
+      en: "Deploy monitoring tools, configure alerts, review logs, respond to incidents"
+      fr: "Déployer outils surveillance, configurer alertes, examiner journaux, répondre incidents"
+    evidence_required:
+      - monitoring_configuration
+      - alert_logs
+      - incident_response_records
+    requirements:
+      - id: "CC7.2.1"
+        control: "CC7.2"
+        text:
+          en: "System activity is monitored and alerts are generated for anomalous events"
+          fr: "L'activité système est surveillée et alertes générées pour événements anormaux"
+        implementation_guidance:
+          en: "Configure SIEM, define alert thresholds, assign SOC team, document response procedures"
+          fr: "Configurer SIEM, définir seuils alerte, assigner équipe SOC, documenter procédures réponse"
+        evidence:
+          - siem_configuration
+          - alert_rules
+          - soc_procedures
+
+  - code: "CC8.1"
+    domain: "CC"
+    title:
+      en: "Change Management - Development"
+      fr: "Gestion changements - Développement"
+    description:
+      en: "Manages system development and changes to system components"
+      fr: "Gère développement système et changements aux composants système"
+    guidance:
+      en: "Implement SDLC with security requirements, code reviews, testing, deployment controls"
+      fr: "Implémenter SDLC avec exigences sécurité, revues code, tests, contrôles déploiement"
+    evidence_required:
+      - sdlc_documentation
+      - code_review_records
+      - security_testing_results
+    requirements:
+      - id: "CC8.1.1"
+        control: "CC8.1"
+        text:
+          en: "System development follows secure SDLC with code reviews and security testing"
+          fr: "Le développement système suit SDLC sécurisé avec revues code et tests sécurité"
+        implementation_guidance:
+          en: "Define SDLC phases, require peer code reviews, conduct SAST/DAST, vulnerability scanning"
+          fr: "Définir phases SDLC, exiger revues code par pairs, effectuer SAST/DAST, analyse vulnérabilités"
+        evidence:
+          - sdlc_process_document
+          - code_review_logs
+          - security_scan_results
+
+  - code: "CC9.1"
+    domain: "CC"
+    title:
+      en: "Risk Mitigation - Vendor Management"
+      fr: "Atténuation risque - Gestion fournisseurs"
+    description:
+      en: "Manages risks associated with vendor and business partner relationships"
+      fr: "Gère risques associés aux relations fournisseurs et partenaires commerciaux"
+    guidance:
+      en: "Assess vendor security, include security requirements in contracts, monitor vendor performance"
+      fr: "Évaluer sécurité fournisseur, inclure exigences sécurité dans contrats, surveiller performance fournisseur"
+    evidence_required:
+      - vendor_assessment_reports
+      - vendor_contracts
+      - soc2_reports_from_vendors
+    requirements:
+      - id: "CC9.1.1"
+        control: "CC9.1"
+        text:
+          en: "Vendors are assessed for security and contractually required to meet security standards"
+          fr: "Les fournisseurs sont évalués pour sécurité et contractuellement tenus de respecter normes sécurité"
+        implementation_guidance:
+          en: "Conduct vendor security assessments, review SOC 2 reports, include security clauses in contracts"
+          fr: "Effectuer évaluations sécurité fournisseur, examiner rapports SOC 2, inclure clauses sécurité dans contrats"
+        evidence:
+          - vendor_security_questionnaires
+          - vendor_soc2_reports
+          - contract_security_appendices
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # A - AVAILABILITY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "A1.1"
+    domain: "A"
+    title:
+      en: "Availability Monitoring and Response"
+      fr: "Surveillance et réponse disponibilité"
+    description:
+      en: "Monitors system performance and availability to meet commitments"
+      fr: "Surveille performance système et disponibilité pour respecter engagements"
+    guidance:
+      en: "Track uptime, response time, capacity; configure alerts; respond to availability issues"
+      fr: "Suivre temps disponibilité, temps réponse, capacité; configurer alertes; répondre problèmes disponibilité"
+    evidence_required:
+      - uptime_reports
+      - sla_compliance_reports
+      - incident_response_records
+    requirements:
+      - id: "A1.1.1"
+        control: "A1.1"
+        text:
+          en: "System availability is continuously monitored and incidents are responded to per SLA"
+          fr: "La disponibilité système est surveillée en continu et incidents traités selon SLA"
+        implementation_guidance:
+          en: "Deploy monitoring tools, track uptime percentage, configure availability alerts, maintain incident log"
+          fr: "Déployer outils surveillance, suivre pourcentage disponibilité, configurer alertes, maintenir journal incidents"
+        evidence:
+          - monitoring_dashboard
+          - uptime_reports
+          - incident_tickets
+
+  - code: "A1.2"
+    domain: "A"
+    title:
+      en: "Capacity Planning"
+      fr: "Planification capacité"
+    description:
+      en: "Plans for capacity to meet availability commitments"
+      fr: "Planifie capacité pour respecter engagements disponibilité"
+    guidance:
+      en: "Monitor resource utilization, forecast capacity needs, scale infrastructure proactively"
+      fr: "Surveiller utilisation ressources, prévoir besoins capacité, mettre à l'échelle infrastructure proactivement"
+    evidence_required:
+      - capacity_planning_reports
+      - resource_utilization_metrics
+      - scaling_procedures
+    requirements:
+      - id: "A1.2.1"
+        control: "A1.2"
+        text:
+          en: "Capacity is monitored and scaled to maintain performance and availability targets"
+          fr: "La capacité est surveillée et mise à l'échelle pour maintenir cibles performance et disponibilité"
+        implementation_guidance:
+          en: "Track CPU, memory, storage utilization; set capacity thresholds; implement auto-scaling"
+          fr: "Suivre utilisation CPU, mémoire, stockage; définir seuils capacité; implémenter mise à l'échelle auto"
+        evidence:
+          - utilization_reports
+          - scaling_event_logs
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # PI - PROCESSING INTEGRITY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "PI1.1"
+    domain: "PI"
+    title:
+      en: "Processing Completeness and Accuracy"
+      fr: "Complétude et précision traitement"
+    description:
+      en: "Ensures processing is complete, accurate, timely, and authorized"
+      fr: "Assure que le traitement est complet, précis, ponctuel et autorisé"
+    guidance:
+      en: "Implement data validation, error handling, reconciliation procedures, audit trails"
+      fr: "Implémenter validation données, gestion erreurs, procédures rapprochement, pistes audit"
+    evidence_required:
+      - processing_validation_procedures
+      - error_logs
+      - reconciliation_reports
+    requirements:
+      - id: "PI1.1.1"
+        control: "PI1.1"
+        text:
+          en: "Data inputs are validated and processing errors are detected and corrected"
+          fr: "Les entrées données sont validées et erreurs traitement détectées et corrigées"
+        implementation_guidance:
+          en: "Implement input validation rules, log processing errors, conduct reconciliations, maintain audit trails"
+          fr: "Implémenter règles validation entrée, journaliser erreurs traitement, effectuer rapprochements"
+        evidence:
+          - validation_rules_documentation
+          - error_logs
+          - reconciliation_reports
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # C - CONFIDENTIALITY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "C1.1"
+    domain: "C"
+    title:
+      en: "Confidential Information Protection"
+      fr: "Protection informations confidentielles"
+    description:
+      en: "Protects information designated as confidential"
+      fr: "Protège informations désignées comme confidentielles"
+    guidance:
+      en: "Classify data, encrypt confidential information, restrict access, monitor data exfiltration"
+      fr: "Classifier données, chiffrer informations confidentielles, restreindre accès, surveiller exfiltration données"
+    evidence_required:
+      - data_classification_policy
+      - encryption_configuration
+      - access_controls
+      - dlp_configuration
+    requirements:
+      - id: "C1.1.1"
+        control: "C1.1"
+        text:
+          en: "Confidential data is encrypted at rest and in transit"
+          fr: "Les données confidentielles sont chiffrées au repos et en transit"
+        implementation_guidance:
+          en: "Enable TLS for data in transit, implement disk encryption, encrypt database fields, use encrypted backups"
+          fr: "Activer TLS pour données en transit, implémenter chiffrement disque, chiffrer champs base données"
+        evidence:
+          - encryption_policy
+          - tls_configuration
+          - disk_encryption_status
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # P - PRIVACY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "P1.1"
+    domain: "P"
+    title:
+      en: "Privacy Notice"
+      fr: "Avis de confidentialité"
+    description:
+      en: "Provides notice about privacy practices to data subjects"
+      fr: "Fournit avis sur pratiques confidentialité aux personnes concernées"
+    guidance:
+      en: "Publish privacy policy explaining collection, use, retention, sharing of personal information"
+      fr: "Publier politique confidentialité expliquant collecte, utilisation, rétention, partage informations personnelles"
+    evidence_required:
+      - privacy_policy
+      - privacy_notice
+      - consent_records
+    requirements:
+      - id: "P1.1.1"
+        control: "P1.1"
+        text:
+          en: "Privacy notice clearly describes data collection, use, retention, and sharing practices"
+          fr: "L'avis de confidentialité décrit clairement pratiques collecte, utilisation, rétention, partage données"
+        implementation_guidance:
+          en: "Create privacy policy covering all processing activities, publish on website, update when practices change"
+          fr: "Créer politique confidentialité couvrant toutes activités traitement, publier sur site web"
+        evidence:
+          - published_privacy_policy
+          - policy_review_records
+
+  - code: "P2.1"
+    domain: "P"
+    title:
+      en: "Choice and Consent"
+      fr: "Choix et consentement"
+    description:
+      en: "Obtains consent for collection, use, and disclosure of personal information"
+      fr: "Obtient consentement pour collecte, utilisation, divulgation informations personnelles"
+    guidance:
+      en: "Implement consent mechanisms, provide opt-in/opt-out options, honor user choices"
+      fr: "Implémenter mécanismes consentement, fournir options acceptation/refus, respecter choix utilisateur"
+    evidence_required:
+      - consent_management_system
+      - consent_records
+      - opt_out_procedures
+    requirements:
+      - id: "P2.1.1"
+        control: "P2.1"
+        text:
+          en: "Explicit consent is obtained before collecting sensitive personal information"
+          fr: "Le consentement explicite est obtenu avant de collecter informations personnelles sensibles"
+        implementation_guidance:
+          en: "Deploy consent management tool, require affirmative consent for sensitive data, maintain consent records"
+          fr: "Déployer outil gestion consentement, exiger consentement affirmatif pour données sensibles"
+        evidence:
+          - consent_management_configuration
+          - consent_logs
+
+  - code: "P3.1"
+    domain: "P"
+    title:
+      en: "Data Subject Rights"
+      fr: "Droits des personnes concernées"
+    description:
+      en: "Enables data subjects to access, correct, and delete their personal information"
+      fr: "Permet aux personnes concernées d'accéder, corriger, supprimer leurs informations personnelles"
+    guidance:
+      en: "Implement mechanisms for access requests, data portability, deletion, rectification"
+      fr: "Implémenter mécanismes pour demandes accès, portabilité données, suppression, rectification"
+    evidence_required:
+      - data_subject_request_procedures
+      - request_fulfillment_logs
+      - deletion_procedures
+    requirements:
+      - id: "P3.1.1"
+        control: "P3.1"
+        text:
+          en: "Data subject requests for access, correction, and deletion are fulfilled within 30 days"
+          fr: "Les demandes des personnes concernées pour accès, correction, suppression sont satisfaites dans 30 jours"
+        implementation_guidance:
+          en: "Create request intake process, verify identity, retrieve data from all systems, provide in portable format"
+          fr: "Créer processus réception demandes, vérifier identité, récupérer données de tous systèmes"
+        evidence:
+          - dsr_procedure_document
+          - request_tickets
+          - fulfillment_records

@@ -24,6 +24,11 @@ class ComplianceResultSerializer(serializers.ModelSerializer):
     def get_gap_count(self, obj):
         return obj.get_gap_count()
 
+    @extend_schema_field(serializers.BooleanField())
+    def get_is_certification_expired(self, obj):
+        if hasattr(obj, 'certification_expiry_date') and obj.certification_expiry_date:
+            return obj.certification_expiry_date < timezone.now()
+        return False
 
     is_certification_expired = serializers.SerializerMethodField()
     
@@ -46,8 +51,8 @@ class ComplianceResultSerializer(serializers.ModelSerializer):
             'requirements_non_compliant',
             'total_controls',
             'controls_operational',
-            'controls_implemented',      # ← ADD THIS
-            'controls_in_progress',       # ← ADD THIS
+            'controls_implemented',      
+            'controls_in_progress',      
             'controls_not_started',
             'gap_count',
             'calculation_date',

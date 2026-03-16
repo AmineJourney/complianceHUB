@@ -1,0 +1,641 @@
+framework:
+  name:
+    en: "ISO 42001"
+    fr: "ISO 42001"
+  slug: iso42001
+
+version:
+  name: "2023"
+  release_year: 2023
+  description:
+    en: "ISO/IEC 42001:2023 - Information technology - Artificial intelligence - Management system"
+    fr: "ISO/IEC 42001:2023 - Technologies de l'information - Intelligence artificielle - Système de management"
+
+domains:
+  - code: "4"
+    name:
+      en: "Context of the Organization"
+      fr: "Contexte de l'organisation"
+    description:
+      en: "Understanding organizational context and AI management system scope"
+      fr: "Comprendre le contexte organisationnel et le périmètre du système de gestion de l'IA"
+
+  - code: "5"
+    name:
+      en: "Leadership"
+      fr: "Leadership"
+    description:
+      en: "Leadership commitment and AI policy establishment"
+      fr: "Engagement du leadership et établissement de la politique IA"
+
+  - code: "6"
+    name:
+      en: "Planning"
+      fr: "Planification"
+    description:
+      en: "Risk assessment, objectives, and planning for AI systems"
+      fr: "Évaluation des risques, objectifs et planification des systèmes IA"
+
+  - code: "7"
+    name:
+      en: "Support"
+      fr: "Support"
+    description:
+      en: "Resources, competence, awareness, and communication for AI"
+      fr: "Ressources, compétence, sensibilisation et communication pour l'IA"
+
+  - code: "8"
+    name:
+      en: "Operation"
+      fr: "Fonctionnement"
+    description:
+      en: "AI system lifecycle management and operational controls"
+      fr: "Gestion du cycle de vie du système IA et contrôles opérationnels"
+
+  - code: "9"
+    name:
+      en: "Performance Evaluation"
+      fr: "Évaluation des performances"
+    description:
+      en: "Monitoring, measurement, analysis, and evaluation of AI systems"
+      fr: "Surveillance, mesure, analyse et évaluation des systèmes IA"
+
+  - code: "10"
+    name:
+      en: "Improvement"
+      fr: "Amélioration"
+    description:
+      en: "Continual improvement of the AI management system"
+      fr: "Amélioration continue du système de gestion de l'IA"
+
+  - code: "A"
+    name:
+      en: "AI-Specific Controls"
+      fr: "Contrôles spécifiques à l'IA"
+    description:
+      en: "Controls specific to artificial intelligence systems and applications"
+      fr: "Contrôles spécifiques aux systèmes et applications d'intelligence artificielle"
+
+controls:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 4. CONTEXT OF THE ORGANIZATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "4.1"
+    domain: "4"
+    title:
+      en: "Understanding the Organization and Context"
+      fr: "Comprendre l'organisation et son contexte"
+    description:
+      en: "Determine external and internal issues relevant to AI management system"
+      fr: "Déterminer les enjeux externes et internes pertinents pour le système de gestion de l'IA"
+    guidance:
+      en: "Identify stakeholders, regulatory requirements, ethical considerations, and societal impacts of AI systems"
+      fr: "Identifier les parties prenantes, exigences réglementaires, considérations éthiques et impacts sociétaux des systèmes IA"
+    evidence_required:
+      - context_analysis_document
+      - stakeholder_register
+      - regulatory_requirements_list
+    requirements:
+      - id: "4.1.1"
+        control: "4.1"
+        text:
+          en: "External and internal issues affecting AI management must be identified and documented"
+          fr: "Les enjeux externes et internes affectant la gestion de l'IA doivent être identifiés et documentés"
+        implementation_guidance:
+          en: "Document regulatory landscape, ethical frameworks, stakeholder expectations, technological trends"
+          fr: "Documenter le paysage réglementaire, cadres éthiques, attentes des parties prenantes, tendances technologiques"
+        evidence:
+          - context_analysis_document
+
+  - code: "4.2"
+    domain: "4"
+    title:
+      en: "Interested Parties and Requirements"
+      fr: "Parties intéressées et exigences"
+    description:
+      en: "Determine interested parties and their requirements for AI systems"
+      fr: "Déterminer les parties intéressées et leurs exigences pour les systèmes IA"
+    guidance:
+      en: "Identify users, data subjects, regulators, and affected communities; document their needs and expectations"
+      fr: "Identifier les utilisateurs, personnes concernées, régulateurs et communautés affectées; documenter leurs besoins"
+    evidence_required:
+      - stakeholder_analysis
+      - requirements_register
+    requirements:
+      - id: "4.2.1"
+        control: "4.2"
+        text:
+          en: "Requirements of interested parties for AI systems must be determined and addressed"
+          fr: "Les exigences des parties intéressées pour les systèmes IA doivent être déterminées et traitées"
+        implementation_guidance:
+          en: "Create stakeholder map, conduct requirements gathering, establish feedback mechanisms"
+          fr: "Créer une carte des parties prenantes, recueillir les exigences, établir des mécanismes de retour d'information"
+        evidence:
+          - stakeholder_analysis
+          - requirements_register
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 5. LEADERSHIP
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "5.1"
+    domain: "5"
+    title:
+      en: "Leadership and Commitment"
+      fr: "Leadership et engagement"
+    description:
+      en: "Top management demonstrates leadership and commitment to AI management system"
+      fr: "La direction démontre son leadership et son engagement envers le système de gestion de l'IA"
+    guidance:
+      en: "Executive accountability for AI ethics, safety, and responsible use; resource allocation for AI governance"
+      fr: "Responsabilité exécutive pour l'éthique, la sécurité et l'utilisation responsable de l'IA"
+    evidence_required:
+      - management_commitment_statement
+      - board_meeting_minutes
+      - resource_allocation_records
+    requirements:
+      - id: "5.1.1"
+        control: "5.1"
+        text:
+          en: "Top management must demonstrate commitment to responsible AI development and use"
+          fr: "La direction doit démontrer son engagement envers le développement et l'utilisation responsables de l'IA"
+        implementation_guidance:
+          en: "Document executive commitment, assign AI governance roles, allocate budget and resources"
+          fr: "Documenter l'engagement de la direction, assigner des rôles de gouvernance IA, allouer budget et ressources"
+        evidence:
+          - management_commitment_statement
+          - ai_governance_charter
+
+  - code: "5.2"
+    domain: "5"
+    title:
+      en: "AI Policy"
+      fr: "Politique IA"
+    description:
+      en: "Establish AI policy aligned with organizational purpose and strategic direction"
+      fr: "Établir une politique IA alignée avec l'objectif et la direction stratégique de l'organisation"
+    guidance:
+      en: "Define principles for ethical AI, transparency, fairness, accountability, and human oversight"
+      fr: "Définir les principes pour l'IA éthique, transparence, équité, responsabilité et supervision humaine"
+    evidence_required:
+      - ai_policy_document
+      - policy_communication_records
+      - policy_approval_records
+    requirements:
+      - id: "5.2.1"
+        control: "5.2"
+        text:
+          en: "AI policy must address ethics, transparency, fairness, accountability, and human rights"
+          fr: "La politique IA doit traiter de l'éthique, transparence, équité, responsabilité et droits humains"
+        implementation_guidance:
+          en: "Create comprehensive AI policy covering ethical principles, use case approval, bias mitigation, explainability"
+          fr: "Créer une politique IA complète couvrant les principes éthiques, approbation des cas d'usage, atténuation des biais"
+        evidence:
+          - ai_policy_document
+          - ethics_framework
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 6. PLANNING
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "6.1"
+    domain: "6"
+    title:
+      en: "Risk Assessment for AI"
+      fr: "Évaluation des risques pour l'IA"
+    description:
+      en: "Assess risks and opportunities related to AI systems throughout their lifecycle"
+      fr: "Évaluer les risques et opportunités liés aux systèmes IA tout au long de leur cycle de vie"
+    guidance:
+      en: "Identify AI-specific risks: bias, discrimination, privacy violations, safety failures, misuse, adversarial attacks"
+      fr: "Identifier les risques spécifiques à l'IA: biais, discrimination, violations de vie privée, défaillances de sécurité"
+    evidence_required:
+      - ai_risk_assessment
+      - risk_treatment_plan
+      - risk_register
+    requirements:
+      - id: "6.1.1"
+        control: "6.1"
+        text:
+          en: "AI-specific risks including bias, fairness, and safety must be systematically assessed"
+          fr: "Les risques spécifiques à l'IA incluant biais, équité et sécurité doivent être évalués systématiquement"
+        implementation_guidance:
+          en: "Conduct AI impact assessments, evaluate fairness metrics, assess safety and security risks"
+          fr: "Effectuer des évaluations d'impact IA, évaluer les métriques d'équité, évaluer les risques de sécurité"
+        evidence:
+          - ai_impact_assessment
+          - fairness_analysis
+          - safety_assessment
+
+  - code: "6.2"
+    domain: "6"
+    title:
+      en: "AI Objectives and Planning"
+      fr: "Objectifs IA et planification"
+    description:
+      en: "Establish AI objectives and plan to achieve them with measurable outcomes"
+      fr: "Établir des objectifs IA et planifier pour les atteindre avec des résultats mesurables"
+    guidance:
+      en: "Define success criteria for AI systems including performance, fairness, safety, and transparency metrics"
+      fr: "Définir les critères de succès pour les systèmes IA incluant performance, équité, sécurité et transparence"
+    evidence_required:
+      - ai_objectives_document
+      - performance_metrics
+      - implementation_plan
+    requirements:
+      - id: "6.2.1"
+        control: "6.2"
+        text:
+          en: "Measurable objectives for AI performance, fairness, and transparency must be established"
+          fr: "Des objectifs mesurables pour la performance, équité et transparence de l'IA doivent être établis"
+        implementation_guidance:
+          en: "Define KPIs for accuracy, fairness across demographics, explainability, user satisfaction"
+          fr: "Définir des KPI pour la précision, équité entre démographies, explicabilité, satisfaction utilisateur"
+        evidence:
+          - ai_kpis_document
+          - measurement_framework
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 7. SUPPORT
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "7.1"
+    domain: "7"
+    title:
+      en: "Resources for AI"
+      fr: "Ressources pour l'IA"
+    description:
+      en: "Provide resources needed for AI system development, deployment, and monitoring"
+      fr: "Fournir les ressources nécessaires pour le développement, déploiement et surveillance des systèmes IA"
+    guidance:
+      en: "Allocate compute resources, data infrastructure, AI tools, human expertise for responsible AI"
+      fr: "Allouer des ressources de calcul, infrastructure de données, outils IA, expertise humaine"
+    evidence_required:
+      - resource_allocation_plan
+      - infrastructure_documentation
+      - staffing_plan
+    requirements:
+      - id: "7.1.1"
+        control: "7.1"
+        text:
+          en: "Adequate resources for responsible AI development and governance must be provided"
+          fr: "Des ressources adéquates pour le développement et la gouvernance responsables de l'IA doivent être fournies"
+        implementation_guidance:
+          en: "Budget for AI infrastructure, tools, training data, ethics expertise, monitoring systems"
+          fr: "Budgétiser pour infrastructure IA, outils, données d'entraînement, expertise éthique, systèmes de surveillance"
+        evidence:
+          - resource_budget
+          - infrastructure_inventory
+
+  - code: "7.2"
+    domain: "7"
+    title:
+      en: "Competence in AI"
+      fr: "Compétence en IA"
+    description:
+      en: "Ensure personnel have necessary competence in AI development, deployment, and ethics"
+      fr: "Assurer que le personnel a les compétences nécessaires en développement, déploiement et éthique de l'IA"
+    guidance:
+      en: "Provide training on AI ethics, bias detection, explainability techniques, safety testing"
+      fr: "Fournir une formation sur l'éthique de l'IA, détection de biais, techniques d'explicabilité, tests de sécurité"
+    evidence_required:
+      - competence_requirements
+      - training_programs
+      - training_records
+    requirements:
+      - id: "7.2.1"
+        control: "7.2"
+        text:
+          en: "Personnel must be competent in AI ethics, fairness, safety, and governance"
+          fr: "Le personnel doit être compétent en éthique, équité, sécurité et gouvernance de l'IA"
+        implementation_guidance:
+          en: "Provide AI ethics training, responsible AI workshops, bias mitigation techniques training"
+          fr: "Fournir formation en éthique IA, ateliers IA responsable, formation aux techniques d'atténuation des biais"
+        evidence:
+          - training_curriculum
+          - completion_records
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 8. OPERATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "8.1"
+    domain: "8"
+    title:
+      en: "AI Lifecycle Management"
+      fr: "Gestion du cycle de vie de l'IA"
+    description:
+      en: "Manage AI system lifecycle from conception through decommissioning"
+      fr: "Gérer le cycle de vie du système IA de la conception au déclassement"
+    guidance:
+      en: "Implement controls at each stage: design, development, validation, deployment, monitoring, retirement"
+      fr: "Mettre en œuvre des contrôles à chaque étape: conception, développement, validation, déploiement, surveillance"
+    evidence_required:
+      - lifecycle_documentation
+      - stage_gate_approvals
+      - retirement_procedures
+    requirements:
+      - id: "8.1.1"
+        control: "8.1"
+        text:
+          en: "AI systems must have documented lifecycle management from design to retirement"
+          fr: "Les systèmes IA doivent avoir une gestion du cycle de vie documentée de la conception au retrait"
+        implementation_guidance:
+          en: "Define stage gates, approval criteria, testing requirements, monitoring protocols for each lifecycle phase"
+          fr: "Définir les jalons, critères d'approbation, exigences de test, protocoles de surveillance pour chaque phase"
+        evidence:
+          - lifecycle_process_document
+          - stage_gate_records
+
+  - code: "8.2"
+    domain: "8"
+    title:
+      en: "Data Management for AI"
+      fr: "Gestion des données pour l'IA"
+    description:
+      en: "Manage data quality, provenance, and governance for AI training and operation"
+      fr: "Gérer la qualité, provenance et gouvernance des données pour l'entraînement et l'exploitation de l'IA"
+    guidance:
+      en: "Ensure data quality, representativeness, privacy compliance, bias detection in training datasets"
+      fr: "Assurer qualité des données, représentativité, conformité vie privée, détection de biais dans les ensembles d'entraînement"
+    evidence_required:
+      - data_quality_reports
+      - data_provenance_documentation
+      - bias_testing_results
+    requirements:
+      - id: "8.2.1"
+        control: "8.2"
+        text:
+          en: "Training data must be evaluated for quality, bias, and representativeness"
+          fr: "Les données d'entraînement doivent être évaluées pour la qualité, biais et représentativité"
+        implementation_guidance:
+          en: "Conduct data quality assessments, bias audits, demographic representation analysis"
+          fr: "Effectuer des évaluations de qualité des données, audits de biais, analyse de représentation démographique"
+        evidence:
+          - data_quality_assessment
+          - bias_audit_report
+
+  - code: "8.3"
+    domain: "8"
+    title:
+      en: "AI Model Development and Validation"
+      fr: "Développement et validation de modèles IA"
+    description:
+      en: "Develop and validate AI models with appropriate testing and documentation"
+      fr: "Développer et valider des modèles IA avec tests et documentation appropriés"
+    guidance:
+      en: "Implement robust testing: accuracy, fairness, safety, adversarial robustness, explainability"
+      fr: "Mettre en œuvre des tests robustes: précision, équité, sécurité, robustesse adversariale, explicabilité"
+    evidence_required:
+      - model_documentation
+      - validation_results
+      - fairness_test_reports
+    requirements:
+      - id: "8.3.1"
+        control: "8.3"
+        text:
+          en: "AI models must be validated for accuracy, fairness, and safety before deployment"
+          fr: "Les modèles IA doivent être validés pour la précision, équité et sécurité avant déploiement"
+        implementation_guidance:
+          en: "Conduct comprehensive testing: cross-validation, fairness metrics, safety scenarios, adversarial testing"
+          fr: "Effectuer tests complets: validation croisée, métriques d'équité, scénarios de sécurité, tests adversariaux"
+        evidence:
+          - validation_test_results
+          - fairness_metrics_report
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 9. PERFORMANCE EVALUATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "9.1"
+    domain: "9"
+    title:
+      en: "AI System Monitoring"
+      fr: "Surveillance des systèmes IA"
+    description:
+      en: "Monitor AI system performance, fairness, and impact in production"
+      fr: "Surveiller la performance, équité et impact des systèmes IA en production"
+    guidance:
+      en: "Implement continuous monitoring for model drift, performance degradation, fairness violations"
+      fr: "Mettre en œuvre surveillance continue pour dérive de modèle, dégradation de performance, violations d'équité"
+    evidence_required:
+      - monitoring_dashboards
+      - performance_reports
+      - incident_logs
+    requirements:
+      - id: "9.1.1"
+        control: "9.1"
+        text:
+          en: "AI systems in production must be continuously monitored for performance and fairness"
+          fr: "Les systèmes IA en production doivent être surveillés en continu pour la performance et l'équité"
+        implementation_guidance:
+          en: "Deploy monitoring tools tracking accuracy, latency, fairness metrics, user feedback, error rates"
+          fr: "Déployer outils de surveillance suivant précision, latence, métriques d'équité, retours utilisateurs"
+        evidence:
+          - monitoring_dashboard_screenshots
+          - performance_trend_reports
+
+  - code: "9.2"
+    domain: "9"
+    title:
+      en: "Internal Audit for AI"
+      fr: "Audit interne pour l'IA"
+    description:
+      en: "Conduct internal audits of AI management system and controls"
+      fr: "Effectuer des audits internes du système de gestion de l'IA et des contrôles"
+    guidance:
+      en: "Audit AI governance, risk management, ethical compliance, technical controls"
+      fr: "Auditer la gouvernance IA, gestion des risques, conformité éthique, contrôles techniques"
+    evidence_required:
+      - audit_plan
+      - audit_reports
+      - corrective_actions
+    requirements:
+      - id: "9.2.1"
+        control: "9.2"
+        text:
+          en: "Regular audits must assess AI ethics, fairness, safety, and governance compliance"
+          fr: "Des audits réguliers doivent évaluer l'éthique, équité, sécurité et conformité de gouvernance IA"
+        implementation_guidance:
+          en: "Schedule annual AI audits covering policy compliance, risk management, bias testing, incident response"
+          fr: "Planifier audits IA annuels couvrant conformité politique, gestion risques, tests biais, réponse incidents"
+        evidence:
+          - annual_audit_reports
+          - findings_remediation_records
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # 10. IMPROVEMENT
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "10.1"
+    domain: "10"
+    title:
+      en: "Nonconformity and Corrective Action"
+      fr: "Non-conformité et action corrective"
+    description:
+      en: "Address AI system failures, bias incidents, and safety violations"
+      fr: "Traiter les défaillances du système IA, incidents de biais et violations de sécurité"
+    guidance:
+      en: "Establish incident response for AI failures, bias discoveries, fairness violations, safety breaches"
+      fr: "Établir réponse aux incidents pour défaillances IA, découvertes de biais, violations d'équité"
+    evidence_required:
+      - incident_reports
+      - corrective_action_plans
+      - root_cause_analyses
+    requirements:
+      - id: "10.1.1"
+        control: "10.1"
+        text:
+          en: "AI incidents and bias discoveries must trigger investigation and corrective action"
+          fr: "Les incidents IA et découvertes de biais doivent déclencher investigation et action corrective"
+        implementation_guidance:
+          en: "Document incident response process for AI failures, conduct root cause analysis, implement fixes"
+          fr: "Documenter processus réponse incidents pour défaillances IA, effectuer analyse cause racine, implémenter corrections"
+        evidence:
+          - ai_incident_response_plan
+          - incident_investigation_reports
+
+  - code: "10.2"
+    domain: "10"
+    title:
+      en: "Continual Improvement of AI Systems"
+      fr: "Amélioration continue des systèmes IA"
+    description:
+      en: "Continuously improve AI system performance, fairness, and safety"
+      fr: "Améliorer continuellement la performance, équité et sécurité des systèmes IA"
+    guidance:
+      en: "Implement feedback loops, retrain models with updated data, enhance fairness, improve explainability"
+      fr: "Mettre en œuvre boucles de rétroaction, réentraîner modèles avec données mises à jour, améliorer équité"
+    evidence_required:
+      - improvement_plans
+      - model_update_logs
+      - performance_improvement_metrics
+    requirements:
+      - id: "10.2.1"
+        control: "10.2"
+        text:
+          en: "AI systems must be continuously improved based on monitoring data and user feedback"
+          fr: "Les systèmes IA doivent être améliorés continuellement basé sur données de surveillance et retours utilisateurs"
+        implementation_guidance:
+          en: "Establish regular model retraining schedule, incorporate feedback, update fairness constraints"
+          fr: "Établir calendrier régulier de réentraînement de modèle, intégrer retours, mettre à jour contraintes d'équité"
+        evidence:
+          - model_retraining_schedule
+          - improvement_tracking_log
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # ANNEX A: AI-SPECIFIC CONTROLS
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "A.1"
+    domain: "A"
+    title:
+      en: "Transparency and Explainability"
+      fr: "Transparence et explicabilité"
+    description:
+      en: "Ensure AI system decisions are transparent and explainable to stakeholders"
+      fr: "Assurer que les décisions du système IA sont transparentes et explicables aux parties prenantes"
+    guidance:
+      en: "Implement explainability techniques: LIME, SHAP, attention visualization, decision rationale"
+      fr: "Mettre en œuvre techniques d'explicabilité: LIME, SHAP, visualisation attention, rationale de décision"
+    evidence_required:
+      - explainability_documentation
+      - explanation_examples
+      - user_documentation
+    requirements:
+      - id: "A.1.1"
+        control: "A.1"
+        text:
+          en: "High-risk AI decisions must be explainable to affected individuals"
+          fr: "Les décisions IA à haut risque doivent être explicables aux personnes affectées"
+        implementation_guidance:
+          en: "Deploy explainability tools, document decision factors, provide user-friendly explanations"
+          fr: "Déployer outils d'explicabilité, documenter facteurs de décision, fournir explications conviviales"
+        evidence:
+          - explainability_reports
+          - user_explanation_samples
+
+  - code: "A.2"
+    domain: "A"
+    title:
+      en: "Bias Detection and Mitigation"
+      fr: "Détection et atténuation des biais"
+    description:
+      en: "Detect and mitigate bias in AI systems across protected characteristics"
+      fr: "Détecter et atténuer les biais dans les systèmes IA à travers les caractéristiques protégées"
+    guidance:
+      en: "Test for bias across demographics, implement fairness constraints, monitor for disparate impact"
+      fr: "Tester les biais à travers démographies, implémenter contraintes d'équité, surveiller impact disparate"
+    evidence_required:
+      - bias_testing_reports
+      - fairness_metrics
+      - mitigation_actions
+    requirements:
+      - id: "A.2.1"
+        control: "A.2"
+        text:
+          en: "AI systems must be tested for bias across protected characteristics before deployment"
+          fr: "Les systèmes IA doivent être testés pour biais à travers caractéristiques protégées avant déploiement"
+        implementation_guidance:
+          en: "Conduct fairness testing across gender, race, age, disability; measure disparate impact; apply bias mitigation"
+          fr: "Effectuer tests d'équité à travers genre, race, âge, handicap; mesurer impact disparate; appliquer atténuation biais"
+        evidence:
+          - fairness_test_results
+          - demographic_parity_analysis
+
+  - code: "A.3"
+    domain: "A"
+    title:
+      en: "Human Oversight and Control"
+      fr: "Supervision et contrôle humains"
+    description:
+      en: "Maintain meaningful human oversight over AI system decisions"
+      fr: "Maintenir une supervision humaine significative sur les décisions du système IA"
+    guidance:
+      en: "Implement human-in-the-loop for high-risk decisions, override mechanisms, escalation procedures"
+      fr: "Implémenter humain dans la boucle pour décisions à haut risque, mécanismes de remplacement, procédures d'escalade"
+    evidence_required:
+      - human_oversight_procedures
+      - override_logs
+      - escalation_records
+    requirements:
+      - id: "A.3.1"
+        control: "A.3"
+        text:
+          en: "Critical AI decisions must have human review and override capability"
+          fr: "Les décisions IA critiques doivent avoir capacité de révision et remplacement humains"
+        implementation_guidance:
+          en: "Define risk thresholds requiring human review, implement override interface, log all interventions"
+          fr: "Définir seuils de risque nécessitant révision humaine, implémenter interface de remplacement, journaliser interventions"
+        evidence:
+          - human_review_policy
+          - intervention_logs
+
+  - code: "A.4"
+    domain: "A"
+    title:
+      en: "AI Safety and Security"
+      fr: "Sécurité et sûreté de l'IA"
+    description:
+      en: "Protect AI systems from adversarial attacks and ensure safe operation"
+      fr: "Protéger les systèmes IA des attaques adversariales et assurer opération sûre"
+    guidance:
+      en: "Test for adversarial robustness, implement input validation, monitor for anomalies, failsafe mechanisms"
+      fr: "Tester robustesse adversariale, implémenter validation d'entrée, surveiller anomalies, mécanismes de sécurité"
+    evidence_required:
+      - adversarial_testing_results
+      - security_controls_documentation
+      - failsafe_procedures
+    requirements:
+      - id: "A.4.1"
+        control: "A.4"
+        text:
+          en: "AI systems must be tested for adversarial robustness and implement failsafe mechanisms"
+          fr: "Les systèmes IA doivent être testés pour robustesse adversariale et implémenter mécanismes de sécurité"
+        implementation_guidance:
+          en: "Conduct adversarial attack testing, implement input sanitization, deploy anomaly detection, create failsafe protocols"
+          fr: "Effectuer tests d'attaque adversariale, implémenter désinfection d'entrée, déployer détection d'anomalie"
+        evidence:
+          - adversarial_test_reports
+          - failsafe_test_results

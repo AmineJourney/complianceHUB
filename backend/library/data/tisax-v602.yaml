@@ -1,0 +1,865 @@
+# TISAX v6.0.2 - COMPLETE FRAMEWORK
+# Trusted Information Security Assessment Exchange
+# Note: TISAX assumes ISO 27001 ISMS is already in place (clauses 4-10)
+# This file contains TISAX-specific controls and automotive enhancements
+
+framework:
+  name:
+    en: "TISAX"
+    fr: "TISAX"
+  slug: tisax
+  based_on: "ISO 27001:2013"  # TISAX is based on ISO 27001
+  requires_isms: true  # Requires ISO 27001 clauses 4-10
+  structure: "control_framework"  # Controls only, not full management system
+
+version:
+  name: "6.0.2"
+  release_year: 2023
+  description:
+    en: "Trusted Information Security Assessment Exchange v6.0.2 - Automotive Industry"
+    fr: "Trusted Information Security Assessment Exchange v6.0.2 - Industrie automobile"
+
+provider:
+  name: "ENX Association / VDA ISA"
+  official_url: "https://portal.enx.com/en-US/TISAX/"
+
+domains:
+  # TISAX has 3 main assessment domains
+  
+  - code: "1"
+    name:
+      en: "Information Security"
+      fr: "Sécurité de l'information"
+    description:
+      en: "Core information security controls based on ISO 27001"
+      fr: "Contrôles de sécurité de l'information basés sur ISO 27001"
+    domain_type: "assessment_domain"
+
+  - code: "2"
+    name:
+      en: "Prototype Protection"
+      fr: "Protection des prototypes"
+    description:
+      en: "Automotive-specific controls for protecting vehicle prototypes"
+      fr: "Contrôles spécifiques automobile pour protéger les prototypes de véhicules"
+    domain_type: "assessment_domain"
+
+  - code: "3"
+    name:
+      en: "Data Protection"
+      fr: "Protection des données"
+    description:
+      en: "GDPR compliance and data protection requirements"
+      fr: "Conformité RGPD et exigences de protection des données"
+    domain_type: "assessment_domain"
+
+controls:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DOMAIN 1: INFORMATION SECURITY
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  # 1.1 Information Security Management
+  
+  - code: "1.1.1"
+    domain: "1"
+    title:
+      en: "Information Security Policy"
+      fr: "Politique de sécurité de l'information"
+    description:
+      en: "Management commitment to information security through documented policy"
+      fr: "Engagement de la direction envers la sécurité via politique documentée"
+    guidance:
+      en: "Create comprehensive InfoSec policy approved by senior management, covering confidentiality, integrity, availability"
+      fr: "Créer politique InfoSec complète approuvée par direction, couvrant confidentialité, intégrité, disponibilité"
+    based_on_iso: "A.5.1"
+    evidence_required:
+      - information_security_policy
+      - policy_approval_record
+      - policy_distribution_records
+    requirements:
+      - id: "1.1.1.1"
+        control: "1.1.1"
+        text:
+          en: "Information security policy must be documented, approved, and communicated"
+          fr: "La politique de sécurité doit être documentée, approuvée et communiquée"
+        evidence:
+          - information_security_policy
+
+  - code: "1.1.2"
+    domain: "1"
+    title:
+      en: "Organization of Information Security"
+      fr: "Organisation de la sécurité de l'information"
+    description:
+      en: "Defined roles, responsibilities, and reporting lines for information security"
+      fr: "Rôles, responsabilités et lignes de reporting définis pour la sécurité"
+    based_on_iso: "A.5.2"
+    evidence_required:
+      - organizational_chart
+      - responsibility_matrix
+      - ciso_appointment
+    requirements:
+      - id: "1.1.2.1"
+        control: "1.1.2"
+        text:
+          en: "Information security roles and responsibilities must be assigned and documented"
+          fr: "Les rôles et responsabilités de sécurité doivent être assignés et documentés"
+        evidence:
+          - responsibility_matrix
+
+  - code: "1.1.3"
+    domain: "1"
+    title:
+      en: "Risk Management"
+      fr: "Gestion des risques"
+    description:
+      en: "Systematic identification, assessment, and treatment of information security risks"
+      fr: "Identification, évaluation et traitement systématiques des risques de sécurité"
+    based_on_iso: "A.5.7, 6.1.2"
+    evidence_required:
+      - risk_assessment_methodology
+      - risk_register
+      - risk_treatment_plan
+    requirements:
+      - id: "1.1.3.1"
+        control: "1.1.3"
+        text:
+          en: "Risk assessment must be performed regularly and documented"
+          fr: "L'évaluation des risques doit être effectuée régulièrement et documentée"
+        evidence:
+          - risk_assessment_report
+
+  - code: "1.1.4"
+    domain: "1"
+    title:
+      en: "Information Classification"
+      fr: "Classification de l'information"
+    description:
+      en: "Classification scheme for information based on confidentiality requirements"
+      fr: "Schéma de classification de l'information basé sur exigences de confidentialité"
+    based_on_iso: "A.5.12"
+    evidence_required:
+      - classification_policy
+      - classified_asset_register
+    requirements:
+      - id: "1.1.4.1"
+        control: "1.1.4"
+        text:
+          en: "Information must be classified according to sensitivity and business impact"
+          fr: "L'information doit être classifiée selon sensibilité et impact métier"
+        evidence:
+          - classification_policy
+
+  # 1.2 Physical Security
+
+  - code: "1.2.1"
+    domain: "1"
+    title:
+      en: "Secure Areas"
+      fr: "Zones sécurisées"
+    description:
+      en: "Physical security perimeters, entry controls, and secure facilities"
+      fr: "Périmètres de sécurité physique, contrôles d'entrée et installations sécurisées"
+    based_on_iso: "A.7.1, A.7.2, A.7.3"
+    evidence_required:
+      - facility_security_plan
+      - access_control_records
+      - visitor_logs
+      - security_camera_coverage
+    requirements:
+      - id: "1.2.1.1"
+        control: "1.2.1"
+        text:
+          en: "Physical security perimeters must protect sensitive areas"
+          fr: "Les périmètres de sécurité physique doivent protéger les zones sensibles"
+        evidence:
+          - facility_security_plan
+      
+      - id: "1.2.1.2"
+        control: "1.2.1"
+        text:
+          en: "Access to secure areas must be controlled and monitored"
+          fr: "L'accès aux zones sécurisées doit être contrôlé et surveillé"
+        evidence:
+          - access_logs
+          - badge_system_records
+
+  - code: "1.2.2"
+    domain: "1"
+    title:
+      en: "Equipment Security"
+      fr: "Sécurité des équipements"
+    description:
+      en: "Protection of equipment, clear desk/screen policies, secure disposal"
+      fr: "Protection des équipements, politiques bureau/écran propres, élimination sécurisée"
+    based_on_iso: "A.7.7, A.7.8, A.7.10, A.11.1"
+    evidence_required:
+      - equipment_security_policy
+      - clear_desk_policy
+      - disposal_procedures
+      - disposal_certificates
+    requirements:
+      - id: "1.2.2.1"
+        control: "1.2.2"
+        text:
+          en: "Equipment must be protected against theft, damage, and unauthorized access"
+          fr: "Les équipements doivent être protégés contre vol, dommages et accès non autorisé"
+        evidence:
+          - equipment_security_policy
+
+  # 1.3 Identity and Access Management
+
+  - code: "1.3.1"
+    domain: "1"
+    title:
+      en: "User Access Management"
+      fr: "Gestion des accès utilisateurs"
+    description:
+      en: "Access provisioning, review, and de-provisioning based on business needs"
+      fr: "Provisionnement, révision et déprovisionnement des accès selon besoins métier"
+    based_on_iso: "A.5.15, A.5.16, A.5.17, A.8.2, A.8.3"
+    evidence_required:
+      - access_control_policy
+      - access_request_forms
+      - access_review_reports
+      - privileged_account_list
+    requirements:
+      - id: "1.3.1.1"
+        control: "1.3.1"
+        text:
+          en: "Access rights must be granted based on principle of least privilege"
+          fr: "Les droits d'accès doivent être accordés selon principe moindre privilège"
+        evidence:
+          - access_control_matrix
+      
+      - id: "1.3.1.2"
+        control: "1.3.1"
+        text:
+          en: "Access rights must be reviewed quarterly"
+          fr: "Les droits d'accès doivent être révisés trimestriellement"
+        implementation_guidance:
+          en: "Conduct quarterly access reviews for all user accounts, remove unnecessary permissions"
+          fr: "Effectuer révisions trimestrielles pour tous comptes, retirer permissions inutiles"
+        evidence:
+          - quarterly_access_reviews
+
+  - code: "1.3.2"
+    domain: "1"
+    title:
+      en: "Authentication and Password Management"
+      fr: "Authentification et gestion des mots de passe"
+    description:
+      en: "Strong authentication mechanisms including multi-factor authentication"
+      fr: "Mécanismes d'authentification forts incluant authentification multifacteur"
+    based_on_iso: "A.5.17, A.8.5"
+    enhancement: "TISAX mandates MFA for privileged accounts (stricter than ISO 27001)"
+    evidence_required:
+      - password_policy
+      - mfa_configuration
+      - mfa_enrollment_reports
+      - authentication_logs
+    requirements:
+      - id: "1.3.2.1"
+        control: "1.3.2"
+        text:
+          en: "Multi-factor authentication must be implemented for privileged accounts and remote access"
+          fr: "L'authentification multifacteur doit être implémentée pour comptes privilégiés et accès distant"
+        implementation_guidance:
+          en: "Deploy MFA solution (TOTP, hardware token, or biometric), enforce for VPN and admin access"
+          fr: "Déployer solution MFA, enforcer pour VPN et accès admin"
+        evidence:
+          - mfa_configuration
+          - mfa_enrollment_status
+      
+      - id: "1.3.2.2"
+        control: "1.3.2"
+        text:
+          en: "Password policy must enforce minimum 12 characters with complexity requirements"
+          fr: "La politique de mot de passe doit imposer minimum 12 caractères avec exigences de complexité"
+        evidence:
+          - password_policy_configuration
+
+  # 1.4 Network and Communication Security
+
+  - code: "1.4.1"
+    domain: "1"
+    title:
+      en: "Network Segmentation"
+      fr: "Segmentation réseau"
+    description:
+      en: "Network segregation to protect sensitive information and systems"
+      fr: "Ségrégation réseau pour protéger informations et systèmes sensibles"
+    based_on_iso: "A.8.20, A.8.21, A.8.22"
+    evidence_required:
+      - network_architecture_diagram
+      - vlan_configuration
+      - firewall_rules
+      - network_segmentation_policy
+    requirements:
+      - id: "1.4.1.1"
+        control: "1.4.1"
+        text:
+          en: "Networks must be segmented to separate sensitive data and production environments"
+          fr: "Les réseaux doivent être segmentés pour séparer données sensibles et environnements production"
+        evidence:
+          - network_segmentation_diagram
+          - firewall_configuration
+
+  - code: "1.4.2"
+    domain: "1"
+    title:
+      en: "Data Encryption"
+      fr: "Chiffrement des données"
+    description:
+      en: "Encryption of data at rest and in transit using strong algorithms"
+      fr: "Chiffrement des données au repos et en transit avec algorithmes forts"
+    based_on_iso: "A.8.24, A.10.1"
+    enhancement: "TISAX mandates AES-256 or equivalent (stricter than ISO 27001)"
+    evidence_required:
+      - encryption_policy
+      - tls_configuration
+      - disk_encryption_status
+      - key_management_procedures
+    requirements:
+      - id: "1.4.2.1"
+        control: "1.4.2"
+        text:
+          en: "Data in transit must be encrypted using TLS 1.2 or higher"
+          fr: "Les données en transit doivent être chiffrées avec TLS 1.2 ou supérieur"
+        evidence:
+          - tls_configuration
+      
+      - id: "1.4.2.2"
+        control: "1.4.2"
+        text:
+          en: "Sensitive data at rest must be encrypted using AES-256 or equivalent"
+          fr: "Les données sensibles au repos doivent être chiffrées avec AES-256 ou équivalent"
+        implementation_guidance:
+          en: "Implement full-disk encryption and database field-level encryption for sensitive data"
+          fr: "Implémenter chiffrement disque complet et chiffrement champs base de données"
+        evidence:
+          - encryption_algorithm_specification
+          - disk_encryption_reports
+
+  # 1.5 System and Application Security
+
+  - code: "1.5.1"
+    domain: "1"
+    title:
+      en: "Secure System Configuration"
+      fr: "Configuration système sécurisée"
+    description:
+      en: "Hardened configurations and secure baseline settings"
+      fr: "Configurations renforcées et paramètres de base sécurisés"
+    based_on_iso: "A.8.9, A.8.18"
+    evidence_required:
+      - hardening_standards
+      - configuration_baselines
+      - configuration_compliance_reports
+    requirements:
+      - id: "1.5.1.1"
+        control: "1.5.1"
+        text:
+          en: "Systems must be configured according to hardening standards (CIS, NIST)"
+          fr: "Les systèmes doivent être configurés selon normes de durcissement"
+        evidence:
+          - cis_benchmark_compliance
+
+  - code: "1.5.2"
+    domain: "1"
+    title:
+      en: "Patch Management"
+      fr: "Gestion des correctifs"
+    description:
+      en: "Timely application of security patches and updates"
+      fr: "Application en temps opportun des correctifs et mises à jour de sécurité"
+    based_on_iso: "A.8.8"
+    enhancement: "TISAX mandates 30-day SLA for critical patches"
+    evidence_required:
+      - patch_management_policy
+      - patch_deployment_reports
+      - vulnerability_scan_results
+    requirements:
+      - id: "1.5.2.1"
+        control: "1.5.2"
+        text:
+          en: "Critical security patches must be applied within 30 days of release"
+          fr: "Les correctifs critiques doivent être appliqués dans 30 jours après publication"
+        implementation_guidance:
+          en: "Establish patch testing process, deploy to production within SLA, maintain patch status dashboard"
+          fr: "Établir processus test correctifs, déployer en production selon SLA"
+        evidence:
+          - patch_deployment_reports
+          - sla_compliance_reports
+
+  # 1.6 Vulnerability Management
+
+  - code: "1.6.1"
+    domain: "1"
+    title:
+      en: "Vulnerability Scanning"
+      fr: "Analyse des vulnérabilités"
+    description:
+      en: "Regular vulnerability assessments of systems and applications"
+      fr: "Évaluations régulières des vulnérabilités des systèmes et applications"
+    based_on_iso: "A.8.8, A.12.6"
+    enhancement: "TISAX mandates monthly vulnerability scanning"
+    evidence_required:
+      - vulnerability_scanning_policy
+      - scan_schedules
+      - scan_reports
+      - remediation_tracking
+    requirements:
+      - id: "1.6.1.1"
+        control: "1.6.1"
+        text:
+          en: "Vulnerability scans must be performed monthly on all internet-facing systems"
+          fr: "Les analyses de vulnérabilités doivent être effectuées mensuellement sur systèmes exposés"
+        implementation_guidance:
+          en: "Use automated scanning tools (Qualys, Nessus, OpenVAS), scan all external IPs monthly"
+          fr: "Utiliser outils analyse automatisés, scanner toutes IP externes mensuellement"
+        evidence:
+          - monthly_scan_reports
+
+  - code: "1.6.2"
+    domain: "1"
+    title:
+      en: "Penetration Testing"
+      fr: "Tests d'intrusion"
+    description:
+      en: "Annual third-party penetration testing of critical systems"
+      fr: "Tests d'intrusion annuels par tiers sur systèmes critiques"
+    based_on_iso: "A.8.8, A.12.6"
+    enhancement: "TISAX mandates annual third-party penetration testing"
+    evidence_required:
+      - penetration_testing_policy
+      - third_party_pentest_reports
+      - remediation_evidence
+    requirements:
+      - id: "1.6.2.1"
+        control: "1.6.2"
+        text:
+          en: "Independent penetration testing must be conducted annually"
+          fr: "Des tests d'intrusion indépendants doivent être effectués annuellement"
+        implementation_guidance:
+          en: "Engage certified third-party pentesters (OSCP, CEH), test external and internal networks"
+          fr: "Engager testeurs tiers certifiés, tester réseaux externes et internes"
+        evidence:
+          - annual_pentest_report
+          - remediation_status
+
+  # 1.7 Logging and Monitoring
+
+  - code: "1.7.1"
+    domain: "1"
+    title:
+      en: "Security Event Logging"
+      fr: "Journalisation des événements de sécurité"
+    description:
+      en: "Comprehensive logging of security events with 12-month retention"
+      fr: "Journalisation complète des événements de sécurité avec rétention 12 mois"
+    based_on_iso: "A.8.15, A.12.4"
+    enhancement: "TISAX mandates 12-month log retention"
+    evidence_required:
+      - logging_policy
+      - log_configuration
+      - log_retention_proof
+    requirements:
+      - id: "1.7.1.1"
+        control: "1.7.1"
+        text:
+          en: "Security logs must be retained for minimum 12 months"
+          fr: "Les journaux de sécurité doivent être conservés minimum 12 mois"
+        evidence:
+          - log_retention_configuration
+
+  - code: "1.7.2"
+    domain: "1"
+    title:
+      en: "Security Monitoring"
+      fr: "Surveillance de la sécurité"
+    description:
+      en: "Continuous monitoring and alerting for security events"
+      fr: "Surveillance continue et alertes pour événements de sécurité"
+    based_on_iso: "A.8.16, A.12.4"
+    evidence_required:
+      - siem_configuration
+      - monitoring_procedures
+      - alert_response_times
+    requirements:
+      - id: "1.7.2.1"
+        control: "1.7.2"
+        text:
+          en: "Security events must be monitored 24/7 with automated alerting"
+          fr: "Les événements de sécurité doivent être surveillés 24/7 avec alertes automatisées"
+        evidence:
+          - siem_dashboard
+          - alert_logs
+
+  # 1.8 Incident Management
+
+  - code: "1.8.1"
+    domain: "1"
+    title:
+      en: "Incident Response Plan"
+      fr: "Plan de réponse aux incidents"
+    description:
+      en: "Documented incident response procedures with annual testing"
+      fr: "Procédures documentées de réponse aux incidents avec tests annuels"
+    based_on_iso: "A.16.1, A.5.24"
+    enhancement: "TISAX mandates annual testing of incident response plan"
+    evidence_required:
+      - incident_response_plan
+      - incident_response_team_roster
+      - annual_test_reports
+    requirements:
+      - id: "1.8.1.1"
+        control: "1.8.1"
+        text:
+          en: "Incident response plan must be tested annually through tabletop exercises"
+          fr: "Le plan de réponse doit être testé annuellement via exercices de simulation"
+        evidence:
+          - incident_response_test_report
+
+  - code: "1.8.2"
+    domain: "1"
+    title:
+      en: "Incident Documentation and Reporting"
+      fr: "Documentation et signalement des incidents"
+    description:
+      en: "Recording, analyzing, and reporting security incidents"
+      fr: "Enregistrement, analyse et signalement des incidents de sécurité"
+    based_on_iso: "A.16.1, A.5.26"
+    enhancement: "TISAX requires notification to automotive OEMs within defined timeframes"
+    evidence_required:
+      - incident_register
+      - incident_reports
+      - oem_notification_records
+    requirements:
+      - id: "1.8.2.1"
+        control: "1.8.2"
+        text:
+          en: "Security incidents affecting OEM data must be reported to affected parties"
+          fr: "Les incidents affectant données OEM doivent être signalés aux parties affectées"
+        implementation_guidance:
+          en: "Notify affected automotive customers within contractual timeframes (typically 24-72 hours)"
+          fr: "Notifier clients automobiles affectés selon délais contractuels"
+        evidence:
+          - oem_notification_emails
+
+  # 1.9 Business Continuity Management
+
+  - code: "1.9.1"
+    domain: "1"
+    title:
+      en: "Business Continuity Planning"
+      fr: "Planification de la continuité d'activité"
+    description:
+      en: "Business impact analysis and continuity plans with annual testing"
+      fr: "Analyse d'impact métier et plans de continuité avec tests annuels"
+    based_on_iso: "A.17.1, A.5.29"
+    evidence_required:
+      - business_impact_analysis
+      - business_continuity_plan
+      - annual_test_reports
+    requirements:
+      - id: "1.9.1.1"
+        control: "1.9.1"
+        text:
+          en: "Business continuity plan must be tested annually"
+          fr: "Le plan de continuité doit être testé annuellement"
+        evidence:
+          - bc_test_report
+
+  - code: "1.9.2"
+    domain: "1"
+    title:
+      en: "Data Backup and Recovery"
+      fr: "Sauvegarde et récupération des données"
+    description:
+      en: "Regular backups with quarterly restoration testing"
+      fr: "Sauvegardes régulières avec tests de restauration trimestriels"
+    based_on_iso: "A.8.13, A.17.2"
+    enhancement: "TISAX mandates quarterly backup restoration testing"
+    evidence_required:
+      - backup_policy
+      - backup_logs
+      - restoration_test_reports
+    requirements:
+      - id: "1.9.2.1"
+        control: "1.9.2"
+        text:
+          en: "Backup restoration must be tested quarterly"
+          fr: "La restauration de sauvegarde doit être testée trimestriellement"
+        implementation_guidance:
+          en: "Conduct quarterly restoration tests, verify data integrity, document RTO/RPO achievement"
+          fr: "Effectuer tests restauration trimestriels, vérifier intégrité données"
+        evidence:
+          - quarterly_restoration_reports
+
+  # 1.10 Supplier Relationships
+
+  - code: "1.10.1"
+    domain: "1"
+    title:
+      en: "Supplier Security Assessment"
+      fr: "Évaluation de la sécurité des fournisseurs"
+    description:
+      en: "Security assessment of suppliers before engagement"
+      fr: "Évaluation sécurité des fournisseurs avant engagement"
+    based_on_iso: "A.15.1, A.5.19"
+    enhancement: "TISAX-specific supplier assessment questionnaire"
+    evidence_required:
+      - supplier_assessment_procedure
+      - supplier_security_questionnaires
+      - tisax_assessment_results_from_suppliers
+    requirements:
+      - id: "1.10.1.1"
+        control: "1.10.1"
+        text:
+          en: "Critical suppliers must undergo TISAX assessment or equivalent security evaluation"
+          fr: "Les fournisseurs critiques doivent subir évaluation TISAX ou équivalente"
+        implementation_guidance:
+          en: "Require TISAX certification or comprehensive security questionnaire for suppliers handling sensitive data"
+          fr: "Exiger certification TISAX ou questionnaire sécurité complet pour fournisseurs"
+        evidence:
+          - supplier_tisax_certificates
+          - supplier_assessment_reports
+
+  - code: "1.10.2"
+    domain: "1"
+    title:
+      en: "Supplier Contracts and SLAs"
+      fr: "Contrats et SLA fournisseurs"
+    description:
+      en: "Security requirements in supplier contracts with defined SLAs"
+      fr: "Exigences de sécurité dans contrats fournisseurs avec SLA définis"
+    based_on_iso: "A.15.2, A.5.20"
+    evidence_required:
+      - supplier_contract_templates
+      - executed_contracts_with_security_clauses
+      - sla_monitoring_reports
+    requirements:
+      - id: "1.10.2.1"
+        control: "1.10.2"
+        text:
+          en: "Supplier contracts must include information security requirements and SLAs"
+          fr: "Les contrats fournisseurs doivent inclure exigences sécurité et SLA"
+        evidence:
+          - supplier_contracts_with_security_appendix
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DOMAIN 2: PROTOTYPE PROTECTION (TISAX-SPECIFIC - NO ISO EQUIVALENT)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "2.1.1"
+    domain: "2"
+    title:
+      en: "Prototype Handling Procedures"
+      fr: "Procédures de manipulation des prototypes"
+    description:
+      en: "Specialized procedures for handling, transporting, and destroying vehicle prototypes"
+      fr: "Procédures spécialisées pour manipulation, transport et destruction prototypes véhicules"
+    automotive_specific: true
+    tisax_unique: true
+    evidence_required:
+      - prototype_handling_policy
+      - nda_templates
+      - gps_tracking_logs
+      - destruction_certificates
+      - camouflage_procedures
+    requirements:
+      - id: "2.1.1.1"
+        control: "2.1.1"
+        text:
+          en: "All personnel handling prototypes must sign specific NDAs"
+          fr: "Tout personnel manipulant prototypes doit signer NDA spécifiques"
+        implementation_guidance:
+          en: "Implement prototype-specific NDAs with enhanced confidentiality clauses, maintain signed records"
+          fr: "Implémenter NDA spécifiques prototypes avec clauses confidentialité renforcées"
+        evidence:
+          - prototype_nda_records
+      
+      - id: "2.1.1.2"
+        control: "2.1.1"
+        text:
+          en: "Prototypes must be tracked via GPS during transport"
+          fr: "Les prototypes doivent être suivis via GPS pendant transport"
+        implementation_guidance:
+          en: "Install GPS tracking devices, monitor routes, maintain transport logs"
+          fr: "Installer dispositifs GPS, surveiller itinéraires, maintenir journaux transport"
+        evidence:
+          - gps_tracking_reports
+      
+      - id: "2.1.1.3"
+        control: "2.1.1"
+        text:
+          en: "Prototypes must use camouflage when in public areas"
+          fr: "Les prototypes doivent utiliser camouflage dans zones publiques"
+        implementation_guidance:
+          en: "Apply camouflage wraps or covers to conceal design features"
+          fr: "Appliquer camouflage pour dissimuler caractéristiques conception"
+        evidence:
+          - camouflage_procedure
+          - photographic_evidence
+      
+      - id: "2.1.1.4"
+        control: "2.1.1"
+        text:
+          en: "End-of-life prototypes must be destroyed with certified procedures"
+          fr: "Prototypes fin de vie doivent être détruits avec procédures certifiées"
+        implementation_guidance:
+          en: "Use certified destruction companies, obtain destruction certificates, verify complete destruction"
+          fr: "Utiliser sociétés destruction certifiées, obtenir certificats, vérifier destruction complète"
+        evidence:
+          - destruction_certificates
+          - destruction_vendor_certifications
+
+  - code: "2.1.2"
+    domain: "2"
+    title:
+      en: "Prototype Area Access Control"
+      fr: "Contrôle d'accès zones prototypes"
+    description:
+      en: "Enhanced physical security for areas containing vehicle prototypes"
+      fr: "Sécurité physique renforcée pour zones contenant prototypes véhicules"
+    automotive_specific: true
+    tisax_unique: true
+    enhancement: "Significantly stricter than ISO 27001 A.7 physical security"
+    evidence_required:
+      - prototype_area_access_policy
+      - biometric_access_logs
+      - 24_7_surveillance_recordings
+      - background_check_records
+      - prototype_area_training_records
+    requirements:
+      - id: "2.1.2.1"
+        control: "2.1.2"
+        text:
+          en: "Access to prototype areas must require multi-factor authentication (badge + biometric)"
+          fr: "Accès zones prototypes doit exiger authentification multifacteur (badge + biométrique)"
+        implementation_guidance:
+          en: "Deploy biometric readers (fingerprint/iris), require badge + biometric for entry"
+          fr: "Déployer lecteurs biométriques, exiger badge + biométrique pour entrée"
+        evidence:
+          - biometric_access_configuration
+          - access_logs
+      
+      - id: "2.1.2.2"
+        control: "2.1.2"
+        text:
+          en: "Prototype areas must have 24/7 video surveillance with 90-day retention"
+          fr: "Zones prototypes doivent avoir surveillance vidéo 24/7 avec rétention 90 jours"
+        implementation_guidance:
+          en: "Install cameras covering all entrances/exits and work areas, store recordings 90 days minimum"
+          fr: "Installer caméras couvrant entrées/sorties et zones travail, stocker 90 jours minimum"
+        evidence:
+          - camera_coverage_map
+          - recording_retention_configuration
+      
+      - id: "2.1.2.3"
+        control: "2.1.2"
+        text:
+          en: "Personnel accessing prototype areas must undergo enhanced background checks"
+          fr: "Personnel accédant zones prototypes doit subir vérifications antécédents renforcées"
+        implementation_guidance:
+          en: "Conduct criminal background checks, verify employment history, security clearance if required"
+          fr: "Effectuer vérifications antécédents criminels, vérifier historique emploi"
+        evidence:
+          - background_check_records
+          - clearance_approvals
+      
+      - id: "2.1.2.4"
+        control: "2.1.2"
+        text:
+          en: "All prototype area personnel must complete specialized training"
+          fr: "Tout personnel zone prototype doit compléter formation spécialisée"
+        implementation_guidance:
+          en: "Provide training on prototype confidentiality, handling procedures, security protocols"
+          fr: "Fournir formation sur confidentialité prototypes, procédures manipulation, protocoles sécurité"
+        evidence:
+          - prototype_training_records
+          - training_completion_certificates
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DOMAIN 3: DATA PROTECTION (GDPR COMPLIANCE)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "3.1.1"
+    domain: "3"
+    title:
+      en: "GDPR Compliance"
+      fr: "Conformité RGPD"
+    description:
+      en: "Implementation of GDPR requirements for personal data processing"
+      fr: "Mise en œuvre des exigences RGPD pour traitement données personnelles"
+    based_on_iso: "A.18.1, A.5.31"
+    legal_requirement: "EU GDPR"
+    evidence_required:
+      - data_processing_register
+      - lawful_basis_documentation
+      - privacy_impact_assessments
+      - dpo_appointment
+    requirements:
+      - id: "3.1.1.1"
+        control: "3.1.1"
+        text:
+          en: "All personal data processing must have documented lawful basis"
+          fr: "Tout traitement données personnelles doit avoir base juridique documentée"
+        implementation_guidance:
+          en: "Document lawful basis for each processing activity (consent, contract, legal obligation, etc.)"
+          fr: "Documenter base juridique pour chaque activité traitement"
+        evidence:
+          - processing_register_with_lawful_basis
+      
+      - id: "3.1.1.2"
+        control: "3.1.1"
+        text:
+          en: "Data Protection Officer must be appointed if required"
+          fr: "Délégué à la protection des données doit être nommé si requis"
+        implementation_guidance:
+          en: "Determine if DPO required based on processing activities, appoint and register with supervisory authority"
+          fr: "Déterminer si DPO requis selon activités traitement, nommer et enregistrer"
+        evidence:
+          - dpo_appointment_letter
+          - dpo_registration_confirmation
+
+  - code: "3.1.2"
+    domain: "3"
+    title:
+      en: "Data Subject Rights"
+      fr: "Droits des personnes concernées"
+    description:
+      en: "Processes to handle data subject requests (access, rectification, erasure, portability)"
+      fr: "Processus pour gérer demandes personnes concernées (accès, rectification, effacement, portabilité)"
+    based_on_iso: "A.18.1, A.5.34"
+    legal_requirement: "GDPR Articles 15-22"
+    evidence_required:
+      - dsar_procedure
+      - request_fulfillment_logs
+      - identity_verification_process
+      - response_templates
+    requirements:
+      - id: "3.1.2.1"
+        control: "3.1.2"
+        text:
+          en: "Data subject requests must be fulfilled within 30 days"
+          fr: "Les demandes des personnes concernées doivent être satisfaites dans 30 jours"
+        implementation_guidance:
+          en: "Establish intake process, verify identity, retrieve data from all systems, provide in portable format"
+          fr: "Établir processus réception, vérifier identité, récupérer données, fournir format portable"
+        evidence:
+          - dsar_fulfillment_records
+          - sla_compliance_reports
+      
+      - id: "3.1.2.2"
+        control: "3.1.2"
+        text:
+          en: "Identity verification must be performed before fulfilling data subject requests"
+          fr: "Vérification identité doit être effectuée avant satisfaire demandes"
+        implementation_guidance:
+          en: "Implement identity verification process to prevent unauthorized disclosure"
+          fr: "Implémenter processus vérification identité pour prévenir divulgation non autorisée"
+        evidence:
+          - identity_verification_procedure
+          - verification_logs

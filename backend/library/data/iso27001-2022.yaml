@@ -1,0 +1,854 @@
+# ISO/IEC 27001:2022 - COMPLETE BILINGUAL FRAMEWORK
+# Version complète bilingue avec toutes les traductions françaises
+
+framework:
+  name:
+    en: "ISO/IEC 27001"
+    fr: "ISO/CEI 27001"
+  slug: iso27001
+  structure: "iso_management_system"
+
+version:
+  name: "2022"
+  release_year: 2022
+  description:
+    en: "Information security management systems — Requirements (Complete: Clauses 4-10 + Annex A)"
+    fr: "Systèmes de management de la sécurité de l'information — Exigences (Complet : Clauses 4-10 + Annexe A)"
+
+domains:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # PARTIE 1: CLAUSES DU SYSTÈME DE MANAGEMENT (OBLIGATOIRE)
+  # PART 1: MANAGEMENT SYSTEM CLAUSES (MANDATORY)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "CLAUSE-4"
+    name:
+      en: "Context of the Organization"
+      fr: "Contexte de l'organisme"
+    description:
+      en: "Understand organization and stakeholder needs, determine ISMS scope"
+      fr: "Comprendre l'organisme et les besoins des parties prenantes, déterminer le périmètre du SMSI"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-5"
+    name:
+      en: "Leadership"
+      fr: "Leadership"
+    description:
+      en: "Leadership commitment, policy, roles and responsibilities"
+      fr: "Engagement du leadership, politique, rôles et responsabilités"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-6"
+    name:
+      en: "Planning"
+      fr: "Planification"
+    description:
+      en: "Risk assessment, treatment, and information security objectives"
+      fr: "Évaluation des risques, traitement et objectifs de sécurité de l'information"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-7"
+    name:
+      en: "Support"
+      fr: "Support"
+    description:
+      en: "Resources, competence, awareness, communication, documentation"
+      fr: "Ressources, compétences, sensibilisation, communication, documentation"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-8"
+    name:
+      en: "Operation"
+      fr: "Réalisation des activités opérationnelles"
+    description:
+      en: "Operational planning and risk treatment implementation"
+      fr: "Planification opérationnelle et mise en œuvre du traitement des risques"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-9"
+    name:
+      en: "Performance Evaluation"
+      fr: "Évaluation des performances"
+    description:
+      en: "Monitoring, internal audit, management review"
+      fr: "Surveillance, audit interne, revue de direction"
+    domain_type: "management_clause"
+
+  - code: "CLAUSE-10"
+    name:
+      en: "Improvement"
+      fr: "Amélioration"
+    description:
+      en: "Nonconformity, corrective action, continual improvement"
+      fr: "Non-conformité, action corrective, amélioration continue"
+    domain_type: "management_clause"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # PARTIE 2: FAMILLES DE CONTRÔLES ANNEXE A
+  # PART 2: ANNEX A CONTROL FAMILIES
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "A.5"
+    name:
+      en: "Organisational Controls"
+      fr: "Contrôles organisationnels"
+    description:
+      en: "Policies, asset management, access control, supplier security"
+      fr: "Politiques, gestion des actifs, contrôle d'accès, sécurité des fournisseurs"
+    domain_type: "annex_control"
+
+  - code: "A.6"
+    name:
+      en: "People Controls"
+      fr: "Contrôles relatifs aux personnes"
+    description:
+      en: "Screening, terms of employment, awareness, disciplinary process"
+      fr: "Sélection, conditions d'emploi, sensibilisation, processus disciplinaire"
+    domain_type: "annex_control"
+
+  - code: "A.7"
+    name:
+      en: "Physical Controls"
+      fr: "Contrôles physiques"
+    description:
+      en: "Physical security perimeters, secure areas, equipment protection"
+      fr: "Périmètres de sécurité physique, zones sécurisées, protection des équipements"
+    domain_type: "annex_control"
+
+  - code: "A.8"
+    name:
+      en: "Technological Controls"
+      fr: "Contrôles technologiques"
+    description:
+      en: "User endpoints, access rights, authentication, cryptography, security testing"
+      fr: "Points d'accès utilisateurs, droits d'accès, authentification, cryptographie, tests de sécurité"
+    domain_type: "annex_control"
+
+controls:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 4: CONTEXTE DE L'ORGANISME
+  # CLAUSE 4: CONTEXT OF THE ORGANIZATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "4.1"
+    domain: "CLAUSE-4"
+    title:
+      en: "Understanding the organization and its context"
+      fr: "Compréhension de l'organisme et de son contexte"
+    description:
+      en: "Determine external and internal issues relevant to the ISMS"
+      fr: "Déterminer les enjeux externes et internes pertinents pour le SMSI"
+    guidance:
+      en: "Conduct context analysis: regulatory requirements, market trends, organizational capabilities, stakeholder expectations"
+      fr: "Effectuer une analyse du contexte : exigences réglementaires, tendances du marché, capacités organisationnelles, attentes des parties prenantes"
+    evidence_required:
+      - context_analysis_document
+      - external_internal_issues_register
+    requirements:
+      - id: "4.1.1"
+        control: "4.1"
+        text:
+          en: "External and internal issues affecting ISMS must be identified and documented"
+          fr: "Les enjeux externes et internes affectant le SMSI doivent être identifiés et documentés"
+        evidence:
+          - context_analysis_document
+
+  - code: "4.2"
+    domain: "CLAUSE-4"
+    title:
+      en: "Understanding needs of interested parties"
+      fr: "Compréhension des besoins et attentes des parties intéressées"
+    description:
+      en: "Determine interested parties and their information security requirements"
+      fr: "Déterminer les parties intéressées et leurs exigences en matière de sécurité de l'information"
+    guidance:
+      en: "Identify stakeholders: customers, regulators, employees, suppliers; document their requirements"
+      fr: "Identifier les parties prenantes : clients, régulateurs, employés, fournisseurs ; documenter leurs exigences"
+    evidence_required:
+      - stakeholder_register
+      - requirements_register
+    requirements:
+      - id: "4.2.1"
+        control: "4.2"
+        text:
+          en: "Interested parties and their requirements must be determined"
+          fr: "Les parties intéressées et leurs exigences doivent être déterminées"
+        evidence:
+          - stakeholder_register
+
+  - code: "4.3"
+    domain: "CLAUSE-4"
+    title:
+      en: "Determining scope of ISMS"
+      fr: "Détermination du domaine d'application du SMSI"
+    description:
+      en: "Define boundaries and applicability of the ISMS"
+      fr: "Définir les limites et l'applicabilité du SMSI"
+    guidance:
+      en: "Document what's in scope (departments, locations, systems) and exclusions with justifications"
+      fr: "Documenter ce qui est inclus dans le périmètre (départements, sites, systèmes) et les exclusions avec justifications"
+    evidence_required:
+      - isms_scope_statement
+    requirements:
+      - id: "4.3.1"
+        control: "4.3"
+        text:
+          en: "ISMS scope must be documented considering 4.1 and 4.2 outputs"
+          fr: "Le périmètre du SMSI doit être documenté en tenant compte des sorties de 4.1 et 4.2"
+        evidence:
+          - isms_scope_statement
+
+  - code: "4.4"
+    domain: "CLAUSE-4"
+    title:
+      en: "Information security management system"
+      fr: "Système de management de la sécurité de l'information"
+    description:
+      en: "Establish, implement, maintain and continually improve ISMS"
+      fr: "Établir, mettre en œuvre, tenir à jour et améliorer de façon continue le SMSI"
+    guidance:
+      en: "Implement PDCA cycle for ISMS processes"
+      fr: "Mettre en œuvre le cycle PDCA pour les processus du SMSI"
+    evidence_required:
+      - isms_documentation
+    requirements:
+      - id: "4.4.1"
+        control: "4.4"
+        text:
+          en: "ISMS must be established with all required processes"
+          fr: "Le SMSI doit être établi avec tous les processus requis"
+        evidence:
+          - isms_manual
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 5: LEADERSHIP
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "5.1"
+    domain: "CLAUSE-5"
+    title:
+      en: "Leadership and commitment"
+      fr: "Leadership et engagement"
+    description:
+      en: "Top management demonstrates leadership for ISMS"
+      fr: "La direction démontre son leadership et son engagement vis-à-vis du SMSI"
+    guidance:
+      en: "CEO/Board actively supports ISMS, allocates resources, communicates importance"
+      fr: "PDG/Conseil d'administration soutient activement le SMSI, alloue des ressources, communique son importance"
+    evidence_required:
+      - management_commitment_statement
+      - board_minutes
+    requirements:
+      - id: "5.1.1"
+        control: "5.1"
+        text:
+          en: "Top management must ensure policy and objectives are established"
+          fr: "La direction doit s'assurer que la politique et les objectifs sont établis"
+        evidence:
+          - management_commitment_statement
+
+  - code: "5.2"
+    domain: "CLAUSE-5"
+    title:
+      en: "Information security policy"
+      fr: "Politique de sécurité de l'information"
+    description:
+      en: "Establish information security policy"
+      fr: "Établir une politique de sécurité de l'information"
+    guidance:
+      en: "Create policy aligned with business objectives, approved by CEO, communicated to all staff"
+      fr: "Créer une politique alignée avec les objectifs métier, approuvée par le PDG, communiquée à tout le personnel"
+    evidence_required:
+      - information_security_policy
+      - policy_approval
+      - policy_distribution_records
+    requirements:
+      - id: "5.2.1"
+        control: "5.2"
+        text:
+          en: "Policy must be appropriate, approved, communicated, and available"
+          fr: "La politique doit être appropriée, approuvée, communiquée et disponible"
+        evidence:
+          - information_security_policy
+
+  - code: "5.3"
+    domain: "CLAUSE-5"
+    title:
+      en: "Organizational roles and responsibilities"
+      fr: "Rôles, responsabilités et autorités organisationnels"
+    description:
+      en: "Assign and communicate information security roles"
+      fr: "Assigner et communiquer les rôles de sécurité de l'information"
+    guidance:
+      en: "Define CISO, security officers, data owners; document in org chart"
+      fr: "Définir le RSSI, les responsables sécurité, les propriétaires de données ; documenter dans l'organigramme"
+    evidence_required:
+      - organizational_chart
+      - responsibility_matrix
+    requirements:
+      - id: "5.3.1"
+        control: "5.3"
+        text:
+          en: "ISMS responsibilities and authorities must be assigned"
+          fr: "Les responsabilités et autorités du SMSI doivent être assignées"
+        evidence:
+          - responsibility_matrix
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 6: PLANIFICATION
+  # CLAUSE 6: PLANNING
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "6.1.1"
+    domain: "CLAUSE-6"
+    title:
+      en: "General - Risks and opportunities"
+      fr: "Généralités - Actions face aux risques et opportunités"
+    description:
+      en: "Determine risks and opportunities to be addressed"
+      fr: "Déterminer les risques et opportunités qui doivent être traités"
+    guidance:
+      en: "Consider issues from 4.1 and requirements from 4.2"
+      fr: "Prendre en compte les enjeux de 4.1 et les exigences de 4.2"
+    evidence_required:
+      - risk_opportunity_register
+    requirements:
+      - id: "6.1.1.1"
+        control: "6.1.1"
+        text:
+          en: "Risks and opportunities must be determined"
+          fr: "Les risques et opportunités doivent être déterminés"
+        evidence:
+          - risk_opportunity_register
+
+  - code: "6.1.2"
+    domain: "CLAUSE-6"
+    title:
+      en: "Information security risk assessment"
+      fr: "Appréciation des risques de sécurité de l'information"
+    description:
+      en: "Define and apply risk assessment process"
+      fr: "Définir et appliquer un processus d'appréciation des risques"
+    guidance:
+      en: "Establish methodology, identify assets/threats/vulnerabilities, assess likelihood and impact"
+      fr: "Établir une méthodologie, identifier les actifs/menaces/vulnérabilités, évaluer la vraisemblance et l'impact"
+    evidence_required:
+      - risk_assessment_methodology
+      - asset_register
+      - risk_assessment_report
+    requirements:
+      - id: "6.1.2.1"
+        control: "6.1.2"
+        text:
+          en: "Risk assessment criteria must be established"
+          fr: "Les critères d'appréciation des risques doivent être établis"
+        evidence:
+          - risk_assessment_methodology
+      - id: "6.1.2.2"
+        control: "6.1.2"
+        text:
+          en: "Information security risks must be identified and analyzed"
+          fr: "Les risques de sécurité de l'information doivent être identifiés et analysés"
+        evidence:
+          - risk_assessment_report
+
+  - code: "6.1.3"
+    domain: "CLAUSE-6"
+    title:
+      en: "Information security risk treatment"
+      fr: "Traitement des risques de sécurité de l'information"
+    description:
+      en: "Define and apply risk treatment process"
+      fr: "Définir et appliquer un processus de traitement des risques"
+    guidance:
+      en: "Select treatment options, choose Annex A controls, create Statement of Applicability"
+      fr: "Sélectionner les options de traitement, choisir les contrôles de l'Annexe A, créer la Déclaration d'Applicabilité"
+    evidence_required:
+      - risk_treatment_plan
+      - statement_of_applicability
+    requirements:
+      - id: "6.1.3.1"
+        control: "6.1.3"
+        text:
+          en: "Risk treatment plan and Statement of Applicability must be formulated"
+          fr: "Le plan de traitement des risques et la Déclaration d'Applicabilité doivent être formulés"
+        evidence:
+          - statement_of_applicability
+
+  - code: "6.2"
+    domain: "CLAUSE-6"
+    title:
+      en: "Information security objectives"
+      fr: "Objectifs de sécurité de l'information"
+    description:
+      en: "Establish measurable information security objectives"
+      fr: "Établir des objectifs de sécurité de l'information mesurables"
+    guidance:
+      en: "Set SMART objectives for security improvement"
+      fr: "Définir des objectifs SMART pour l'amélioration de la sécurité"
+    evidence_required:
+      - security_objectives_document
+    requirements:
+      - id: "6.2.1"
+        control: "6.2"
+        text:
+          en: "Objectives must be measurable, monitored, and communicated"
+          fr: "Les objectifs doivent être mesurables, surveillés et communiqués"
+        evidence:
+          - security_objectives_document
+
+  - code: "6.3"
+    domain: "CLAUSE-6"
+    title:
+      en: "Planning of changes"
+      fr: "Planification des changements"
+    description:
+      en: "Plan changes to ISMS in a controlled manner"
+      fr: "Planifier les changements au SMSI de manière maîtrisée"
+    guidance:
+      en: "Document change planning process"
+      fr: "Documenter le processus de planification des changements"
+    evidence_required:
+      - change_management_procedure
+    requirements:
+      - id: "6.3.1"
+        control: "6.3"
+        text:
+          en: "Changes to ISMS must be carried out in planned manner"
+          fr: "Les changements au SMSI doivent être effectués de manière planifiée"
+        evidence:
+          - change_management_procedure
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 7: SUPPORT
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "7.1"
+    domain: "CLAUSE-7"
+    title:
+      en: "Resources"
+      fr: "Ressources"
+    description:
+      en: "Provide resources needed for ISMS"
+      fr: "Fournir les ressources nécessaires pour le SMSI"
+    guidance:
+      en: "Allocate budget, people, infrastructure for information security"
+      fr: "Allouer budget, personnel, infrastructure pour la sécurité de l'information"
+    evidence_required:
+      - resource_allocation_records
+    requirements:
+      - id: "7.1.1"
+        control: "7.1"
+        text:
+          en: "Resources for ISMS must be determined and provided"
+          fr: "Les ressources pour le SMSI doivent être déterminées et fournies"
+        evidence:
+          - budget_allocation
+
+  - code: "7.2"
+    domain: "CLAUSE-7"
+    title:
+      en: "Competence"
+      fr: "Compétences"
+    description:
+      en: "Ensure personnel competence"
+      fr: "Assurer la compétence du personnel"
+    guidance:
+      en: "Define competence requirements, provide training, maintain records"
+      fr: "Définir les exigences de compétence, fournir une formation, tenir des enregistrements"
+    evidence_required:
+      - competence_requirements
+      - training_records
+    requirements:
+      - id: "7.2.1"
+        control: "7.2"
+        text:
+          en: "Competence must be determined, ensured, and maintained"
+          fr: "Les compétences doivent être déterminées, assurées et maintenues"
+        evidence:
+          - training_records
+
+  - code: "7.3"
+    domain: "CLAUSE-7"
+    title:
+      en: "Awareness"
+      fr: "Sensibilisation"
+    description:
+      en: "Ensure awareness of information security"
+      fr: "Assurer la sensibilisation à la sécurité de l'information"
+    guidance:
+      en: "Conduct awareness programs for all personnel"
+      fr: "Mener des programmes de sensibilisation pour tout le personnel"
+    evidence_required:
+      - awareness_program_documentation
+    requirements:
+      - id: "7.3.1"
+        control: "7.3"
+        text:
+          en: "Personnel must be aware of policy, their contribution, and implications of nonconformity"
+          fr: "Le personnel doit être conscient de la politique, de sa contribution et des implications de non-conformité"
+        evidence:
+          - awareness_records
+
+  - code: "7.4"
+    domain: "CLAUSE-7"
+    title:
+      en: "Communication"
+      fr: "Communication"
+    description:
+      en: "Determine internal and external communications"
+      fr: "Déterminer les communications internes et externes"
+    guidance:
+      en: "Establish communication procedures for ISMS"
+      fr: "Établir des procédures de communication pour le SMSI"
+    evidence_required:
+      - communication_procedures
+    requirements:
+      - id: "7.4.1"
+        control: "7.4"
+        text:
+          en: "Communication needs must be determined"
+          fr: "Les besoins de communication doivent être déterminés"
+        evidence:
+          - communication_plan
+
+  - code: "7.5"
+    domain: "CLAUSE-7"
+    title:
+      en: "Documented information"
+      fr: "Informations documentées"
+    description:
+      en: "Create, control, and maintain documented information"
+      fr: "Créer, maîtriser et tenir à jour les informations documentées"
+    guidance:
+      en: "Implement document control procedures"
+      fr: "Mettre en œuvre des procédures de maîtrise des documents"
+    evidence_required:
+      - document_control_procedure
+    requirements:
+      - id: "7.5.1"
+        control: "7.5"
+        text:
+          en: "Documented information must be controlled"
+          fr: "Les informations documentées doivent être maîtrisées"
+        evidence:
+          - document_control_procedure
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 8: RÉALISATION DES ACTIVITÉS OPÉRATIONNELLES
+  # CLAUSE 8: OPERATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "8.1"
+    domain: "CLAUSE-8"
+    title:
+      en: "Operational planning and control"
+      fr: "Planification et maîtrise opérationnelles"
+    description:
+      en: "Plan, implement and control processes to meet requirements"
+      fr: "Planifier, mettre en œuvre et maîtriser les processus pour satisfaire aux exigences"
+    guidance:
+      en: "Establish operational procedures and process controls"
+      fr: "Établir des procédures opérationnelles et des maîtrises de processus"
+    evidence_required:
+      - operational_procedures
+    requirements:
+      - id: "8.1.1"
+        control: "8.1"
+        text:
+          en: "Processes must be planned, implemented and controlled"
+          fr: "Les processus doivent être planifiés, mis en œuvre et maîtrisés"
+        evidence:
+          - operational_procedures
+
+  - code: "8.2"
+    domain: "CLAUSE-8"
+    title:
+      en: "Information security risk assessment (ongoing)"
+      fr: "Appréciation des risques de sécurité (continue)"
+    description:
+      en: "Perform risk assessments at planned intervals or when changes occur"
+      fr: "Effectuer des appréciations de risques à intervalles planifiés ou lorsque des changements surviennent"
+    guidance:
+      en: "Conduct periodic risk assessments and when significant changes happen"
+      fr: "Effectuer des appréciations périodiques des risques et lors de changements significatifs"
+    evidence_required:
+      - risk_assessment_schedule
+      - risk_assessment_updates
+    requirements:
+      - id: "8.2.1"
+        control: "8.2"
+        text:
+          en: "Risk assessments must be performed at planned intervals"
+          fr: "Les appréciations de risques doivent être effectuées à intervalles planifiés"
+        evidence:
+          - risk_assessment_updates
+
+  - code: "8.3"
+    domain: "CLAUSE-8"
+    title:
+      en: "Information security risk treatment (implementation)"
+      fr: "Traitement des risques de sécurité (mise en œuvre)"
+    description:
+      en: "Implement risk treatment plan"
+      fr: "Mettre en œuvre le plan de traitement des risques"
+    guidance:
+      en: "Deploy selected controls and monitor effectiveness"
+      fr: "Déployer les contrôles sélectionnés et surveiller leur efficacité"
+    evidence_required:
+      - control_implementation_records
+    requirements:
+      - id: "8.3.1"
+        control: "8.3"
+        text:
+          en: "Risk treatment plan must be implemented"
+          fr: "Le plan de traitement des risques doit être mis en œuvre"
+        evidence:
+          - control_implementation_records
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 9: ÉVALUATION DES PERFORMANCES
+  # CLAUSE 9: PERFORMANCE EVALUATION
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "9.1"
+    domain: "CLAUSE-9"
+    title:
+      en: "Monitoring and measurement"
+      fr: "Surveillance, mesure, analyse et évaluation"
+    description:
+      en: "Determine what, how, and when to monitor and measure"
+      fr: "Déterminer ce qui doit être surveillé et mesuré, comment et quand"
+    guidance:
+      en: "Establish KPIs for ISMS performance"
+      fr: "Établir des ICP pour la performance du SMSI"
+    evidence_required:
+      - monitoring_procedures
+      - performance_metrics
+    requirements:
+      - id: "9.1.1"
+        control: "9.1"
+        text:
+          en: "Performance and effectiveness must be monitored and measured"
+          fr: "Les performances et l'efficacité doivent être surveillées et mesurées"
+        evidence:
+          - performance_reports
+
+  - code: "9.2"
+    domain: "CLAUSE-9"
+    title:
+      en: "Internal audit"
+      fr: "Audit interne"
+    description:
+      en: "Conduct internal audits at planned intervals"
+      fr: "Effectuer des audits internes à intervalles planifiés"
+    guidance:
+      en: "Establish audit program, conduct audits, report findings"
+      fr: "Établir un programme d'audit, effectuer les audits, rapporter les résultats"
+    evidence_required:
+      - internal_audit_program
+      - audit_reports
+    requirements:
+      - id: "9.2.1"
+        control: "9.2"
+        text:
+          en: "Internal audits must be conducted at planned intervals"
+          fr: "Les audits internes doivent être effectués à intervalles planifiés"
+        evidence:
+          - audit_reports
+
+  - code: "9.3"
+    domain: "CLAUSE-9"
+    title:
+      en: "Management review"
+      fr: "Revue de direction"
+    description:
+      en: "Top management reviews ISMS at planned intervals"
+      fr: "La direction passe en revue le SMSI à intervalles planifiés"
+    guidance:
+      en: "Conduct quarterly or annual management reviews"
+      fr: "Effectuer des revues de direction trimestrielles ou annuelles"
+    evidence_required:
+      - management_review_minutes
+    requirements:
+      - id: "9.3.1"
+        control: "9.3"
+        text:
+          en: "Management must review ISMS at planned intervals"
+          fr: "La direction doit passer en revue le SMSI à intervalles planifiés"
+        evidence:
+          - management_review_minutes
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # CLAUSE 10: AMÉLIORATION
+  # CLAUSE 10: IMPROVEMENT
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "10.1"
+    domain: "CLAUSE-10"
+    title:
+      en: "Continual improvement"
+      fr: "Amélioration continue"
+    description:
+      en: "Continually improve suitability, adequacy and effectiveness"
+      fr: "Améliorer en permanence la pertinence, l'adéquation et l'efficacité"
+    guidance:
+      en: "Implement continuous improvement initiatives"
+      fr: "Mettre en œuvre des initiatives d'amélioration continue"
+    evidence_required:
+      - improvement_plans
+    requirements:
+      - id: "10.1.1"
+        control: "10.1"
+        text:
+          en: "ISMS must be continually improved"
+          fr: "Le SMSI doit être amélioré en permanence"
+        evidence:
+          - improvement_records
+
+  - code: "10.2"
+    domain: "CLAUSE-10"
+    title:
+      en: "Nonconformity and corrective action"
+      fr: "Non-conformité et action corrective"
+    description:
+      en: "React to nonconformity and take corrective action"
+      fr: "Réagir aux non-conformités et prendre des actions correctives"
+    guidance:
+      en: "Establish nonconformity management process"
+      fr: "Établir un processus de gestion des non-conformités"
+    evidence_required:
+      - nonconformity_register
+      - corrective_action_records
+    requirements:
+      - id: "10.2.1"
+        control: "10.2"
+        text:
+          en: "Nonconformities must be controlled and corrected"
+          fr: "Les non-conformités doivent être maîtrisées et corrigées"
+        evidence:
+          - nonconformity_register
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # ANNEXE A.5: CONTRÔLES ORGANISATIONNELS (14 contrôles)
+  # ANNEX A.5: ORGANISATIONAL CONTROLS (14 controls)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "A.5.1"
+    domain: "A.5"
+    title:
+      en: "Policies for information security"
+      fr: "Politiques de sécurité de l'information"
+    description:
+      en: "Information security policy and topic-specific policies defined, approved, published"
+      fr: "Politique de sécurité de l'information et politiques spécifiques définies, approuvées et publiées"
+    guidance:
+      en: "Create comprehensive policy set, get executive approval, distribute to all staff"
+      fr: "Créer un ensemble complet de politiques, obtenir l'approbation de la direction, distribuer à tout le personnel"
+    evidence_required:
+      - information_security_policy
+      - policy_approval
+    requirements:
+      - id: "A.5.1.1"
+        control: "A.5.1"
+        text:
+          en: "Policies must be defined, approved, published, and reviewed"
+          fr: "Les politiques doivent être définies, approuvées, publiées et révisées"
+        evidence:
+          - information_security_policy
+
+  - code: "A.5.2"
+    domain: "A.5"
+    title:
+      en: "Information security roles and responsibilities"
+      fr: "Rôles et responsabilités en matière de sécurité de l'information"
+    description:
+      en: "Information security roles and responsibilities defined and allocated"
+      fr: "Rôles et responsabilités en matière de sécurité de l'information définis et attribués"
+    guidance:
+      en: "Define CISO, security officers, data owners, assign responsibilities"
+      fr: "Définir le RSSI, les responsables sécurité, les propriétaires de données, attribuer les responsabilités"
+    evidence_required:
+      - responsibility_matrix
+    requirements:
+      - id: "A.5.2.1"
+        control: "A.5.2"
+        text:
+          en: "Roles and responsibilities must be defined and allocated"
+          fr: "Les rôles et responsabilités doivent être définis et attribués"
+        evidence:
+          - responsibility_matrix
+
+  - code: "A.5.3"
+    domain: "A.5"
+    title:
+      en: "Segregation of duties"
+      fr: "Séparation des tâches"
+    description:
+      en: "Conflicting duties and areas of responsibility segregated"
+      fr: "Tâches conflictuelles et domaines de responsabilité séparés"
+    guidance:
+      en: "Separate duties to reduce fraud/error risk"
+      fr: "Séparer les tâches pour réduire le risque de fraude/erreur"
+    evidence_required:
+      - segregation_of_duties_matrix
+    requirements:
+      - id: "A.5.3.1"
+        control: "A.5.3"
+        text:
+          en: "Conflicting duties must be segregated"
+          fr: "Les tâches conflictuelles doivent être séparées"
+        evidence:
+          - segregation_of_duties_matrix
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # ANNEXE A.8: CONTRÔLES TECHNOLOGIQUES (Échantillon - 34 au total)
+  # ANNEX A.8: TECHNOLOGICAL CONTROLS (Sample - 34 total)
+  # ═══════════════════════════════════════════════════════════════════════════
+
+  - code: "A.8.2"
+    domain: "A.8"
+    title:
+      en: "Privileged access rights"
+      fr: "Droits d'accès privilégiés"
+    description:
+      en: "Allocation and use of privileged access rights restricted and controlled"
+      fr: "Attribution et utilisation des droits d'accès privilégiés restreintes et contrôlées"
+    guidance:
+      en: "Implement least privilege, monitor privileged accounts, require MFA"
+      fr: "Mettre en œuvre le moindre privilège, surveiller les comptes privilégiés, exiger l'AMF"
+    evidence_required:
+      - privileged_access_policy
+      - privileged_account_list
+    requirements:
+      - id: "A.8.2.1"
+        control: "A.8.2"
+        text:
+          en: "Privileged access must be restricted and monitored"
+          fr: "L'accès privilégié doit être restreint et surveillé"
+        evidence:
+          - privileged_access_logs
+
+  - code: "A.8.5"
+    domain: "A.8"
+    title:
+      en: "Secure authentication"
+      fr: "Authentification sécurisée"
+    description:
+      en: "Secure authentication technologies and procedures implemented"
+      fr: "Technologies et procédures d'authentification sécurisées mises en œuvre"
+    guidance:
+      en: "Deploy MFA, strong passwords, account lockout"
+      fr: "Déployer l'AMF, mots de passe forts, verrouillage de compte"
+    evidence_required:
+      - authentication_policy
+      - mfa_configuration
+    requirements:
+      - id: "A.8.5.1"
+        control: "A.8.5"
+        text:
+          en: "Multi-factor authentication must be implemented for privileged access"
+          fr: "L'authentification multifacteur doit être mise en œuvre pour l'accès privilégié"
+        evidence:
+          - mfa_enrollment_report

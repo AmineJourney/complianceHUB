@@ -426,6 +426,7 @@ class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
             'target_level': self.maturity_target_level
         }
 
+
 class RequirementReferenceControl(TimeStampedModel, SoftDeleteModel):
     """
     Many-to-many mapping between Requirements and ReferenceControls
@@ -589,10 +590,6 @@ class ControlException(TenantMixin, TimeStampedModel, SoftDeleteModel):
         from django.utils import timezone
         return timezone.now().date() > self.expiration_date
     
-# backend/controls/models.py
-
-
-
 
 class UnifiedControl(TimeStampedModel):
     """
