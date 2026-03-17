@@ -4,7 +4,8 @@ Business logic services for control management
 from django.db import transaction
 from django.db.models import Count, Q, Avg
 from django.utils import timezone
-from .models import ReferenceControl, AppliedControl, RequirementReferenceControl
+from .models import ReferenceControl, AppliedControl
+from library.models import RequirementReferenceControl  # Import from library!
 
 
 class ControlApplicationService:

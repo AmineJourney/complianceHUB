@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import ReferenceControl, AppliedControl, RequirementReferenceControl, ControlException,UnifiedControl, UnifiedControlMapping
+from .models import ReferenceControl, AppliedControl, ControlException, UnifiedControl, UnifiedControlMapping
+from library.models import RequirementReferenceControl  # Import from library!
 
 
 class ReferenceControlListSerializer(serializers.ModelSerializer):

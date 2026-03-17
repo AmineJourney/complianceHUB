@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core.models import TimeStampedModel, SoftDeleteModel
 from core.mixins import TenantMixin
-from library.models import ReferenceControl, RequirementReferenceControl
+from library.models import ReferenceControl,RequirementReferenceControl ,Requirement
 
 
 
@@ -21,7 +21,7 @@ class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
     reference_control = models.ForeignKey(
         ReferenceControl,
         on_delete=models.PROTECT,
-        related_name='applied_instances'
+        related_name='applied_controls'
     )
     
     # Organizational scope
@@ -159,7 +159,7 @@ class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
     class Meta:
         db_table = 'applied_controls'
         unique_together = [['company', 'reference_control', 'department']]
-        ordering = ['reference_control__code']
+        ordering = ['reference_control__control_id']
         indexes = [
             models.Index(fields=['company', 'status'], name='applied_company_status_idx'),
             models.Index(fields=['company', 'department'], name='applied_company_dept_idx'),
