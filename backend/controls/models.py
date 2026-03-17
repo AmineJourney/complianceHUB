@@ -4,166 +4,10 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from core.models import TimeStampedModel, SoftDeleteModel
 from core.mixins import TenantMixin
+from library.models import ReferenceControl, RequirementReferenceControl
 
 
-class ReferenceControl(TimeStampedModel, SoftDeleteModel):
-    """
-    Global reference control catalog
-    Template controls that can be applied by companies
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
-    # Control identification
-    name = models.CharField(max_length=500)
-    code = models.CharField(
-        max_length=100,
-        unique=True,
-        help_text='Unique control identifier (e.g., "AC-001", "IAM-002")'
-    )
-    description = models.TextField(
-        help_text='Detailed control description'
-    )
-    
-    # Control categorization
-    control_family = models.CharField(
-        max_length=100,
-        choices=[
-            ('access_control', 'Access Control'),
-            ('asset_management', 'Asset Management'),
-            ('cryptography', 'Cryptography'),
-            ('physical_security', 'Physical Security'),
-            ('operations_security', 'Operations Security'),
-            ('communications_security', 'Communications Security'),
-            ('system_acquisition', 'System Acquisition & Development'),
-            ('supplier_relationships', 'Supplier Relationships'),
-            ('incident_management', 'Incident Management'),
-            ('business_continuity', 'Business Continuity'),
-            ('compliance', 'Compliance'),
-            ('risk_management', 'Risk Management'),
-            ('human_resources', 'Human Resources Security'),
-            ('information_security', 'Information Security'),
-        ],
-        default='access_control'
-    )
-    
-    # Control metadata
-    control_type = models.CharField(
-        max_length=50,
-        choices=[
-            ('preventive', 'Preventive'),
-            ('detective', 'Detective'),
-            ('corrective', 'Corrective'),
-            ('deterrent', 'Deterrent'),
-            ('compensating', 'Compensating'),
-        ],
-        default='preventive'
-    )
-    
-    # Implementation guidance
-    implementation_guidance = models.TextField(
-        blank=True,
-        help_text='How to implement this control'
-    )
-    testing_procedures = models.TextField(
-        blank=True,
-        help_text='How to test control effectiveness'
-    )
-    
-    # Control attributes
-    automation_level = models.CharField(
-        max_length=20,
-        choices=[
-            ('manual', 'Manual'),
-            ('semi_automated', 'Semi-Automated'),
-            ('automated', 'Fully Automated'),
-        ],
-        default='manual'
-    )
-    
-    frequency = models.CharField(
-        max_length=50,
-        choices=[
-            ('continuous', 'Continuous'),
-            ('daily', 'Daily'),
-            ('weekly', 'Weekly'),
-            ('monthly', 'Monthly'),
-            ('quarterly', 'Quarterly'),
-            ('annually', 'Annually'),
-            ('ad_hoc', 'Ad-Hoc'),
-        ],
-        default='monthly',
-        help_text='Recommended testing/review frequency'
-    )
-    
-    # Maturity and priority
-    maturity_level = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=1,
-        help_text='1=Initial, 2=Managed, 3=Defined, 4=Quantitatively Managed, 5=Optimizing'
-    )
-    
-    priority = models.CharField(
-        max_length=20,
-        choices=[
-            ('critical', 'Critical'),
-            ('high', 'High'),
-            ('medium', 'Medium'),
-            ('low', 'Low'),
-        ],
-        default='medium'
-    )
-    
-    # Cost and effort estimation
-    implementation_complexity = models.CharField(
-        max_length=20,
-        choices=[
-            ('low', 'Low'),
-            ('medium', 'Medium'),
-            ('high', 'High'),
-        ],
-        default='medium'
-    )
-    estimated_effort_hours = models.IntegerField(
-        null=True,
-        blank=True,
-        help_text='Estimated hours to implement'
-    )
-    
-    # Publication status
-    is_published = models.BooleanField(
-        default=True,
-        help_text='Whether this control is available to companies'
-    )
-    
-    # Tags for categorization
-    tags = models.JSONField(
-        default=list,
-        blank=True,
-        help_text='Tags for categorization (e.g., ["cloud", "AWS", "encryption"])'
-    )
-    
-    class Meta:
-        db_table = 'reference_controls'
-        ordering = ['code']
-        indexes = [
-            models.Index(fields=['code'], name='refctrl_code_idx'),
-            models.Index(fields=['control_family', 'is_published'], name='refctrl_family_pub_idx'),
-            models.Index(fields=['priority', 'control_type'], name='refctrl_priority_type_idx'),
-            ]
-    
-    def __str__(self):
-        return f"{self.code}: {self.name}"
-    
-    def get_mapped_requirements_count(self):
-        """Count requirements mapped to this control"""
-        return self.requirement_mappings.filter(is_deleted=False).count()
-    
-    def get_applied_count(self):
-        """Count how many companies have applied this control"""
-        return AppliedControl.objects.filter(
-            reference_control=self,
-            is_deleted=False
-        ).values('company').distinct().count()
+
 
 
 class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
@@ -427,7 +271,7 @@ class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
         }
 
 
-class RequirementReferenceControl(TimeStampedModel, SoftDeleteModel):
+
     """
     Many-to-many mapping between Requirements and ReferenceControls
     Global mapping that defines which controls satisfy which requirements

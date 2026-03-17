@@ -25,6 +25,8 @@ from library.models import (
     LoadedLibrary,
     Framework,
     Requirement,
+)
+from controls.models import (
     ReferenceControl,
     RequirementReferenceControl
 )

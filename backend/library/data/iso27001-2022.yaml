@@ -5,7 +5,6 @@ framework:
   name:
     en: "ISO/IEC 27001"
     fr: "ISO/CEI 27001"
-  slug: iso27001
   structure: "iso_management_system"
 
 version:

@@ -417,3 +417,130 @@ class Requirement(TimeStampedModel, SoftDeleteModel):
             depth += 1
             current = current.parent
         return depth
+    
+
+class ReferenceControl(TimeStampedModel, SoftDeleteModel):
+    """
+    Global reference control catalog
+    Template controls that map to framework requirements
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    # Control identification
+    control_id = models.CharField(
+        max_length=100,
+        unique=True,
+        help_text='Unique control identifier (e.g., "ISO27001-A.5.1")'
+    )
+    name = models.CharField(max_length=500)
+    description = models.TextField(help_text='Detailed control description')
+    
+    # Control categorization
+    control_family = models.CharField(
+        max_length=100,
+        choices=[
+            ('access_control', 'Access Control'),
+            ('asset_management', 'Asset Management'),
+            ('cryptography', 'Cryptography'),
+            ('physical_security', 'Physical Security'),
+            ('operations_security', 'Operations Security'),
+            ('communications_security', 'Communications Security'),
+            ('system_acquisition', 'System Acquisition & Development'),
+            ('supplier_relationships', 'Supplier Relationships'),
+            ('incident_management', 'Incident Management'),
+            ('business_continuity', 'Business Continuity'),
+            ('compliance', 'Compliance'),
+            ('risk_management', 'Risk Management'),
+            ('human_resources_security', 'Human Resources Security'),
+            ('information_security', 'Information Security'),
+        ],
+        default='information_security'
+    )
+    
+    control_type = models.CharField(
+        max_length=50,
+        choices=[
+            ('preventive', 'Preventive'),
+            ('detective', 'Detective'),
+            ('corrective', 'Corrective'),
+            ('deterrent', 'Deterrent'),
+            ('compensating', 'Compensating'),
+        ],
+        default='preventive'
+    )
+    
+    # Implementation details
+    implementation_guidance = models.TextField(
+        blank=True,
+        help_text='How to implement this control'
+    )
+    
+    priority = models.CharField(
+        max_length=20,
+        choices=[
+            ('critical', 'Critical'),
+            ('high', 'High'),
+            ('medium', 'Medium'),
+            ('low', 'Low'),
+        ],
+        default='medium'
+    )
+    
+    is_published = models.BooleanField(
+        default=True,
+        help_text='Whether this control is available'
+    )
+    
+    class Meta:
+        db_table = 'reference_controls'
+        ordering = ['control_id']
+        indexes = [
+            models.Index(fields=['control_id']),
+            models.Index(fields=['control_family', 'is_published']),
+        ]
+    
+    def __str__(self):
+        return f"{self.control_id}: {self.name}"
+
+
+class RequirementReferenceControl(TimeStampedModel, SoftDeleteModel):
+    """
+    Mapping between framework requirements and reference controls
+    Defines which controls satisfy which requirements
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
+    requirement = models.ForeignKey(
+        'Requirement',
+        on_delete=models.CASCADE,
+        related_name='control_mappings'
+    )
+    reference_control = models.ForeignKey(
+        'ReferenceControl',
+        on_delete=models.CASCADE,
+        related_name='requirement_mappings'
+    )
+    
+    # Mapping metadata
+    coverage_level = models.CharField(
+        max_length=20,
+        choices=[
+            ('full', 'Full Coverage'),
+            ('partial', 'Partial Coverage'),
+            ('supporting', 'Supporting Control'),
+        ],
+        default='full'
+    )
+    
+    is_primary = models.BooleanField(
+        default=True,
+        help_text='Whether this is a primary control for the requirement'
+    )
+    
+    class Meta:
+        db_table = 'requirement_reference_controls'
+        unique_together = [['requirement', 'reference_control']]
+        ordering = ['requirement__code', 'reference_control__control_id']
+    
+    def __str__(self):
+        return f"{self.requirement.code} → {self.reference_control.control_id}"
