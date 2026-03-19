@@ -15,6 +15,11 @@ class StoredLibrary(TimeStampedModel, SoftDeleteModel):
         unique=True,
         help_text='Library name (e.g., "ISO Standards", "NIST Framework")'
     )
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        help_text='URL-friendly identifier (e.g., "iso27001", "tisax", "soc2")'
+    )
     description = models.TextField(blank=True)
     
     # Raw content storage
@@ -56,6 +61,7 @@ class StoredLibrary(TimeStampedModel, SoftDeleteModel):
         ordering = ['name']
         indexes = [
             models.Index(fields=['name']),
+            models.Index(fields=['slug']),
             models.Index(fields=['library_type']),
         ]
     

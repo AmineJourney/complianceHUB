@@ -271,92 +271,6 @@ class AppliedControl(TenantMixin, TimeStampedModel, SoftDeleteModel):
         }
 
 
-
-    """
-    Many-to-many mapping between Requirements and ReferenceControls
-    Global mapping that defines which controls satisfy which requirements
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
-    requirement = models.ForeignKey(
-        'library.Requirement',
-        on_delete=models.CASCADE,
-        related_name='control_mappings'
-    )
-    reference_control = models.ForeignKey(
-        ReferenceControl,
-        on_delete=models.CASCADE,
-        related_name='requirement_mappings'
-    )
-    
-    # Mapping metadata
-    mapping_rationale = models.TextField(
-        blank=True,
-        help_text='Why this control satisfies this requirement'
-    )
-    
-    coverage_level = models.CharField(
-        max_length=20,
-        choices=[
-            ('full', 'Full Coverage'),
-            ('partial', 'Partial Coverage'),
-            ('supporting', 'Supporting Control'),
-        ],
-        default='full',
-        help_text='How well this control satisfies the requirement'
-    )
-    
-    is_primary = models.BooleanField(
-        default=True,
-        help_text='Whether this is a primary control for the requirement'
-    )
-    
-    # Validation status
-    validation_status = models.CharField(
-        max_length=20,
-        choices=[
-            ('pending', 'Pending Review'),
-            ('validated', 'Validated'),
-            ('rejected', 'Rejected'),
-        ],
-        default='pending'
-    )
-    validated_by = models.ForeignKey(
-        'core.User',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='validated_mappings'
-    )
-    validated_at = models.DateTimeField(null=True, blank=True)
-    
-    class Meta:
-        db_table = 'requirement_reference_controls'
-        unique_together = [['requirement', 'reference_control']]
-        ordering = ['requirement__code', 'reference_control__code']
-        indexes = [
-            models.Index(fields=['requirement', 'coverage_level'], name='reqctrl_req_cov_idx'),
-            models.Index(fields=['reference_control', 'is_primary'], name='reqctrl_ctrl_primary_idx'),
-            models.Index(fields=['validation_status'], name='reqctrl_validation_idx'),
-        ]
-    
-    def __str__(self):
-        return f"{self.requirement.code} → {self.reference_control.code}"
-    
-    def clean(self):
-        """Validate mapping"""
-        # Ensure both requirement and control are from active/published sources
-        if not self.requirement.framework.is_published:
-            raise ValidationError({
-                'requirement': 'Requirement must be from a published framework'
-            })
-        
-        if not self.reference_control.is_published:
-            raise ValidationError({
-                'reference_control': 'Control must be published'
-            })
-
-
 class ControlException(TenantMixin, TimeStampedModel, SoftDeleteModel):
     """
     Track exceptions to control implementation
@@ -628,7 +542,7 @@ class UnifiedControlMapping(TimeStampedModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     
     reference_control = models.ForeignKey(
-        'ReferenceControl',
+        'library.ReferenceControl',
         on_delete=models.CASCADE,
         related_name='unified_mappings'
     )
